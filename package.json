@@ -2,7 +2,7 @@
 	"name": "new-himarte",
 	"version": "0.0.1",
 	"private": true,
-"scripts": {
+	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
