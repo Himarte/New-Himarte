@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Button from '$lib/components/ui/button/button.svelte';
 	import * as Popover from '$lib/components/ui/popover';
+	import hiwifiLogo from '$lib/img/logos/hiwifi-logo.svg';
 
 	import LogoCompleto from '$lib/img/logos/logo-nome-quliadade2.png';
 	import Phone from 'lucide-svelte/icons/phone';
@@ -32,6 +33,11 @@
 			href="/trabalhe-conosco"
 			class="font-inter text-xl font-bold hover:text-orange-500 hover:no-underline"
 			>Trabalhe Conosco</Button
+		>
+		<Button
+			variant="link"
+			href="/hiwifi"
+			class="font-inter text-xl font-bold hover:text-orange-500 hover:no-underline">Hi Wifi</Button
 		>
 	</ul>
 	<div class="flex w-1/3 items-center justify-end gap-8">
