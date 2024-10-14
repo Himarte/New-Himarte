@@ -7,3 +7,8 @@
 <BackgroundLightsHero />
 <Beneficios />
 <FeatureSelectionDemo />
+<div
+	class="w-full h-screen flex items-center justify-center bg-gradient-to-b from-black via-transparent to-transparent"
+>
+	<p>TESTEEEEEEEEEEEEEEEEEEEEEEEEE</p>
+</div>

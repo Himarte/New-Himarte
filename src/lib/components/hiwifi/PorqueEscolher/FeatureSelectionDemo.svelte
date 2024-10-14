@@ -34,7 +34,7 @@
 	];
 </script>
 
-<div class="py-16 flex flex-col items-center justify-between w-full bg-gradient-to-b from-black">
+<div class="py-16 flex flex-col items-center justify-between w-full bg-black">
 	<h1 class="text-3xl uppercase font-inter mb-2">Por que sua empresa precisa da HiWiFi?</h1>
 	<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 md:gap-2 max-w-[60%] mx-auto">
 		{#each grid as feature}
