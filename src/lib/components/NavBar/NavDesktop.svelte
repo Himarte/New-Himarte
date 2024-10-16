@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Button from '$lib/components/ui/button/button.svelte';
 	import * as Popover from '$lib/components/ui/popover';
-	import * as Tooltip from '$lib/components/ui/tooltip';
 	import LogoCompleto from '$lib/img/logos/logo-nome-quliadade2.png';
 	import Phone from 'lucide-svelte/icons/phone';
 	import UsersRound from 'lucide-svelte/icons/users-round';
@@ -34,16 +33,17 @@
 			>Trabalhe Conosco</Button
 		>
 
-		<Tooltip.Root openDelay={100}>
-			<Tooltip.Trigger
-				><Button
+		<Popover.Root>
+			<Popover.Trigger>
+				<Button
 					variant="ghost"
 					class="font-inter text-lg font-bold  hover:no-underline hover:bg-orange-500/20"
 					>Nossos Serviços</Button
-				></Tooltip.Trigger
-			>
-			<Tooltip.Content
-				class="bg-[#0f1829] flex flex-col border py-3  rounded shadow-xl justify-center items-start "
+				>
+			</Popover.Trigger>
+			<Popover.Content
+				align="center"
+				class="bg-[#0f1829] flex flex-col border py-3 w-60 rounded shadow-xl justify-center items-start "
 			>
 				<Button
 					variant="link"
@@ -57,8 +57,8 @@
 					class="font-inter text-lg font-bold flex gap-2 items-center justify-center hover:text-orange-500 hover:no-underline"
 					><MapPinned color="#f97316" />Nossas Filiais
 				</Button>
-			</Tooltip.Content>
-		</Tooltip.Root>
+			</Popover.Content>
+		</Popover.Root>
 	</ul>
 	<div class="flex w-1/4 items-center justify-end gap-8">
 		<Button
