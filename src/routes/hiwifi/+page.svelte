@@ -1,95 +1,51 @@
 <script lang="ts">
-	import hiwifiLogo from '$lib/img/logos/hiwifi-logo.svg';
-	import internetImg from '$lib/img/extras/intenetimg.png';
-	import { ArrowRight } from 'lucide-svelte';
+	import BackgroundLightsHero from '$lib/components/hiwifi/BackgroundLightsHero.svelte';
+	import Beneficios from '$lib/components/hiwifi/BeneficiosParaSuaEmpresa/Beneficios.svelte';
+	import FeatureSelectionDemo from '$lib/components/hiwifi/PorqueEscolher/FeatureSelectionDemo.svelte';
+	import HoverBorderGradient from '$lib/components/HoverBorderGradient.svelte';
+	import Connecting from '$lib/img/extras/Connecting teams-bro.svg';
 </script>
 
-<div class="flex w-full flex-col pt-28">
-	<div class="flex w-full items-center justify-center gap-40">
-		<div class="flex flex-col items-start gap-5">
-			<img class="w-40" src={hiwifiLogo} alt="" />
-			<h1 class="font-inter text-5xl font-bold text-white">
-				Soluções completas <br /> em infraestrutura de redes
-			</h1>
-			<p class="text-sm text-gray-400">
-				Oferecemos soluções completas em redes e segurança. <br />Com a HiWiFi, tenha suporte
-				contínuo e infraestrutura personalizada.
-			</p>
-		</div>
-		<img src={internetImg} alt="" />
-	</div>
-	<div class="flex flex-col gap-10 py-10">
-		<h1 class="font-inter text-2xl font-bold text-white">Por que sua empresa precisa da HiWiFi?</h1>
-		<div class="flex flex-col gap-3">
-			<div class="flex gap-2">
-				<ArrowRight />
-				<p>Cobertura Wi-Fi inconsistente e com falhas.</p>
+<BackgroundLightsHero />
+<FeatureSelectionDemo />
+
+<Beneficios />
+<div
+	class="w-full h-[60vh] flex items-center justify-center bg-gradient-to-b from-black via-transparent to-transparent"
+>
+	<div class=" w-full md:w-2/3 flex items-center justify-center">
+		<!-- <img src={Connecting} alt="" class="w-2/5" /> -->
+		<div class="w-full flex flex-col md:w-2/3 gap-5 items-center justify-center">
+			<div class="flex flex-col w-full gap-3 mb-4">
+				<h1
+					class="text-transparent font-inter text-center font-bold text-3xl md:text-5xl text-nowrap bg-clip-text bg-gradient-to-br from-white/60 via-neutral-300 to-black/[0.6]"
+				>
+					Pronto para começar?
+				</h1>
+				<h4 class="text-white/[0.7] text-center px-5">
+					Temos como propósito entregar <span
+						class="underline underline-offset-4 decoration-1 decoration-orange-500"
+					>
+						excelência e qualidade</span
+					>
+					nos serviços prestados para
+					<span class="underline underline-offset-4 decoration-1 decoration-orange-500"
+						>contribuir positivamente</span
+					>
+					na caminhada de sucesso de sua empresa.
+					<span class="underline underline-offset-4 decoration-1 decoration-orange-500"
+						>Conte conosco!</span
+					>
+				</h4>
 			</div>
-			<div class="flex gap-2">
-				<ArrowRight />
-				<p>Falta de segurança contra ciberataques.</p>
-			</div>
-			<div class="flex gap-2">
-				<ArrowRight />
-				<p>Suporte técnico demorado e ineficiente.</p>
-			</div>
-			<div class="flex gap-2">
-				<ArrowRight />
-				<p>Desempenho de rede que afeta a produtividade.</p>
-			</div>
-			<div class="flex gap-2">
-				<ArrowRight />
-				<p>Dificuldade em monitorar e gerenciar a infraestrutura de TI.</p>
-			</div>
-		</div>
-	</div>
-	<div class="flex flex-col gap-5">
-		<h1 class="font-inter text-2xl font-bold text-white">
-			Como sua empresa se beneficia com a HiWiFi
-		</h1>
-		<div class="flex flex-col gap-5">
-			<div class="flex gap-2">
-				<div class="flex flex-col gap-2 rounded-lg bg-[#0F1829] p-5 md:w-1/3">
-					<div class="flex gap-2">
-						<h1 class="text-lg font-semibold">Conectividade</h1>
-					</div>
-					<p>Garantimos uma conexão Wi-Fi estável e sem falhas em toda a sua empresa.</p>
-				</div>
-				<div class="flex flex-col gap-2 rounded-lg bg-[#0F1829] p-5 md:w-1/3">
-					<div class="flex gap-2">
-						<h1 class="text-lg font-semibold">Segurança</h1>
-					</div>
-					<p>Protegemos sua rede com soluções avançadas, bloqueando ameaças cibernéticas.</p>
-				</div>
-				<div class="flex flex-col gap-2 rounded-lg bg-[#0F1829] p-5 md:w-1/3">
-					<div class="flex gap-2">
-						<h1 class="text-lg font-semibold">Eficiência</h1>
-					</div>
-					<p>Otimizamos o desempenho da rede para aumentar a produtividade e fluidez.</p>
-				</div>
-			</div>
-			<div class="flex gap-2">
-				<div class="flex flex-col gap-2 rounded-lg bg-[#0F1829] p-5 md:w-1/3">
-					<div class="flex gap-2">
-						<h1 class="text-lg font-semibold">Suporte</h1>
-					</div>
-					<p>Oferecemos suporte técnico ágil e contínuo, resolvendo problemas rapidamente.</p>
-				</div>
-				<div class="flex flex-col gap-2 rounded-lg bg-[#0F1829] p-5 md:w-1/3">
-					<div class="flex gap-2">
-						<h1 class="text-lg font-semibold">Monitoramento</h1>
-					</div>
-					<p>Monitoramos sua rede em tempo real, prevenindo falhas e interrupções.</p>
-				</div>
-				<div class="flex flex-col gap-2 rounded-lg bg-[#0F1829] p-5 md:w-1/3">
-					<div class="flex gap-2">
-						<h1 class="text-lg font-semibold">Personalização</h1>
-					</div>
-					<p>
-						Desenvolvemos soluções de rede sob medida para atender às necessidades da sua empresa.
-					</p>
-				</div>
-			</div>
+			<HoverBorderGradient className="w-52 text-xl"
+				><a
+					href="https://api.whatsapp.com/send/?phone=555130568251&text=Ola%20Tudo%20bem%3F%20Eu%20gostaria%20de%20saber%20mais%20sobre%20a%20HIWIFI!&type=phone_number&app_absent=0"
+					target="_blank"
+				>
+					Entre em contato!</a
+				></HoverBorderGradient
+			>
 		</div>
 	</div>
 </div>

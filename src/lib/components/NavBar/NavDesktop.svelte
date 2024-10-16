@@ -1,11 +1,10 @@
 <script lang="ts">
 	import Button from '$lib/components/ui/button/button.svelte';
 	import * as Popover from '$lib/components/ui/popover';
-
 	import LogoCompleto from '$lib/img/logos/logo-nome-quliadade2.png';
 	import Phone from 'lucide-svelte/icons/phone';
 	import UsersRound from 'lucide-svelte/icons/users-round';
-	import { PhoneCall } from 'lucide-svelte';
+	import { PhoneCall, MapPinned, Rss } from 'lucide-svelte';
 	import Clock_8 from 'lucide-svelte/icons/clock-8';
 	import Separator from '$lib/components/ui/separator/separator.svelte';
 </script>
@@ -13,28 +12,55 @@
 <nav
 	class="fixed z-50 flex h-[4rem] w-full items-center justify-center gap-5 bg-[#0f1829] px-[2%] xl:px-[5%] 2xl:px-[10%]"
 >
-	<a href="/" class="flex w-1/3 items-center justify-start gap-5">
+	<a href="/" class="flex w-1/4 items-center justify-start gap-5">
 		<img src={LogoCompleto} alt="" class="h-10 w-auto" />
 	</a>
-	<ul class=" flex w-1/3 items-center justify-start gap-5">
+	<ul class=" flex w-2/4 items-center justify-center gap-3">
 		<Button
 			variant="link"
 			href="/"
-			class=" font-inter text-xl font-bold  hover:text-orange-500 hover:no-underline">Home</Button
+			class="font-inter text-lg  font-bold hover:text-orange-500 hover:no-underline">Home</Button
 		>
 		<Button
 			variant="link"
 			href="/sobre"
-			class="font-inter text-xl font-bold hover:text-orange-500 hover:no-underline">Sobre</Button
+			class="font-inter text-lg  font-bold hover:text-orange-500 hover:no-underline">Sobre</Button
 		>
 		<Button
 			variant="link"
 			href="/trabalhe-conosco"
-			class="font-inter text-xl font-bold hover:text-orange-500 hover:no-underline"
+			class="font-inter text-lg  font-bold hover:text-orange-500 hover:no-underline"
 			>Trabalhe Conosco</Button
 		>
+
+		<Popover.Root>
+			<Popover.Trigger>
+				<Button
+					variant="ghost"
+					class="font-inter text-lg font-bold  hover:no-underline hover:bg-orange-500/20"
+					>Nossos Serviços</Button
+				>
+			</Popover.Trigger>
+			<Popover.Content
+				align="center"
+				class="bg-[#0f1829] flex flex-col border py-3 w-60 rounded shadow-xl justify-center items-start "
+			>
+				<Button
+					variant="link"
+					href="/hiwifi"
+					class="font-inter text-lg font-bold flex gap-2 items-center justify-center hover:text-orange-500 hover:no-underline"
+					><Rss color="#f97316" />Conheça a HIWIFI
+				</Button>
+				<Button
+					variant="link"
+					href="/filiais"
+					class="font-inter text-lg font-bold flex gap-2 items-center justify-center hover:text-orange-500 hover:no-underline"
+					><MapPinned color="#f97316" />Nossas Filiais
+				</Button>
+			</Popover.Content>
+		</Popover.Root>
 	</ul>
-	<div class="flex w-1/3 items-center justify-end gap-8">
+	<div class="flex w-1/4 items-center justify-end gap-8">
 		<Button
 			href="https://himarte.portal.7az.com.br/login"
 			target="_blank"
