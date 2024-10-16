@@ -34,7 +34,7 @@
 	];
 </script>
 
-<div class="py-16 relative flex flex-col items-center justify-between w-full bg-black">
+<div class=" pb-14 flex flex-col items-center justify-between h-full w-full bg-black" id="porque">
 	<h1 class="text-3xl uppercase font-inter mb-5 text-center">
 		<span class="underline underline-offset-4 decoration-1 decoration-orange-500">Por que</span>
 		escolher a <span class="text-orange-500 font-bold">HiWiFi</span>

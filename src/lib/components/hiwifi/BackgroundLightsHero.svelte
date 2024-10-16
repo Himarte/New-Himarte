@@ -12,26 +12,26 @@
 			class="w-full h-full flex flex-col sm:items-center items-start justify-center relative z-[1] animate-moveUp"
 		>
 			<div class="w-full h-auto flex flex-col items-center justify-center mb-5">
-				<img src={hiwifiLogo} alt="HiWiFi" class="w-96 object-contain" />
+				<img src={hiwifiLogo} alt="HiWiFi" class="w-56 md:w-96 object-contain" />
 			</div>
 			<div
-				class="text-transparent mb-1 sm:text-center text-start font-bold sm:text-5xl text-4xl bg-clip-text bg-gradient-to-br from-white/60 via-neutral-300 to-black/[0.6]"
+				class="text-transparent w-full mb-1 sm:text-center text-center font-bold md:text-5xl text-2xl bg-clip-text bg-gradient-to-br from-white/60 via-neutral-300 to-black/[0.6]"
 			>
 				Conectividade revolucionária.
 			</div>
 			<div
-				class="text-transparent sm:text-center text-start font-bold sm:text-5xl text-4xl bg-clip-text bg-gradient-to-br from-white/60 via-neutral-300 to-black/[0.6]"
+				class="text-transparent mb-1 w-full text-center font-bold md:text-5xl text-2xl bg-clip-text bg-gradient-to-br from-white/60 via-neutral-300 to-black/[0.6]"
 			>
 				Segurança incomparável.
 			</div>
-			<div class="text-white/[0.7] sm:text-center text-start mt-3">
-				Foco em Eficiência e Qualidade.
-			</div>
-			<div class="mt-5 w-full flex max-sm:flex-col justify-center sm:gap-10 gap-4 text-white">
+			<div class="text-white/[0.7] text-center w-full mt-3">Foco em Eficiência e Qualidade.</div>
+			<div
+				class="mt-5 w-full flex max-sm:flex-col items-center justify-center sm:gap-10 gap-4 text-white"
+			>
 				<button
-					class="group h-10 sm:h-8 w-full sm:w-36 bg-gradient-to-br from-green-950 to-blue-950 border border-green-900 rounded-lg flex items-center justify-center gap-1.5"
+					class="group h-10 w-[80%] md:w-36 bg-gradient-to-br from-green-950 to-blue-950 border border-green-900 rounded-lg flex items-center justify-center gap-1.5"
 				>
-					<span>Saiba Mais</span>
+					<a href="#porque">Saiba Mais</a>
 					<span class="group-hover:translate-x-0.5 transition-all">&rarr;</span>
 				</button>
 			</div>

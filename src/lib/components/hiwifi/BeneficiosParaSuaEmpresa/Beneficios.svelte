@@ -65,7 +65,7 @@
 				class={cn(
 					'flex flex-col lg:border-r py-10 relative group/feature dark:border-neutral-800',
 					(index === 0 || index === 3) && 'lg:border-l dark:border-neutral-800',
-					index < 3 && 'border-b dark:border-neutral-800'
+					index < 3 && 'md:border-b dark:border-neutral-800'
 				)}
 			>
 				{#if index < 3}
