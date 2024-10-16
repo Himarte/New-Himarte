@@ -16,9 +16,9 @@
 </script>
 
 <nav class="fixed z-50 flex h-16 w-full justify-between bg-[#0f1829] px-[5%]">
-	<Sheet.Root>
+	<Sheet.Root closeOnOutsideClick={true} closeOnEscape={true}>
 		<Sheet.Trigger><Menu size={32} /></Sheet.Trigger>
-		<Sheet.Content side="left" class="flex flex-col justify-between pb-20  ">
+		<Sheet.Content side="left" class="flex flex-col justify-between pb-20 ">
 			<Sheet.Header class=" flex w-full items-center">
 				<Sheet.Title><img src={LogoCompleto} alt="" class="h-14 w-auto" /></Sheet.Title>
 			</Sheet.Header>
@@ -47,6 +47,14 @@
 					class="font-inter text-2xl font-bold hover:text-orange-500 hover:no-underline"
 					>Trabalhe Conosco</Button
 				>
+				<Button
+					variant="link"
+					href="/hiwifi"
+					class="font-inter text-2xl  font-bold flex gap-2 items-center justify-center  hover:no-underline"
+				>
+					Conheça a
+					<span class="text-orange-500">HIWIFI</span>
+				</Button>
 				<Button
 					href="https://himarte.portal.7az.com.br/login"
 					target="_blank"
