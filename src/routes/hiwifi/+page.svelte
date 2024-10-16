@@ -2,13 +2,46 @@
 	import BackgroundLightsHero from '$lib/components/hiwifi/BackgroundLightsHero.svelte';
 	import Beneficios from '$lib/components/hiwifi/BeneficiosParaSuaEmpresa/Beneficios.svelte';
 	import FeatureSelectionDemo from '$lib/components/hiwifi/PorqueEscolher/FeatureSelectionDemo.svelte';
+	import HoverBorderGradient from '$lib/components/HoverBorderGradient.svelte';
+	import Connecting from '$lib/img/extras/Connecting teams-bro.svg';
 </script>
 
 <BackgroundLightsHero />
-<Beneficios />
 <FeatureSelectionDemo />
+
+<Beneficios />
 <div
-	class="w-full h-screen flex items-center justify-center bg-gradient-to-b from-black via-transparent to-transparent"
+	class="w-full h-[28rem] flex items-center justify-center bg-gradient-to-b from-black via-transparent to-transparent"
 >
-	<p>TESTEEEEEEEEEEEEEEEEEEEEEEEEE</p>
+	<div class=" w-full md:w-2/3 flex items-center justify-center">
+		<!-- <img src={Connecting} alt="" class="w-2/5" /> -->
+		<div class="w-full flex flex-col md:w-1/2 gap-5 items-center justify-center">
+			<div class="flex flex-col w-full gap-3 mb-4">
+				<h1
+					class="text-transparent font-inter sm:text-center text-start font-bold sm:text-5xl text-4xl bg-clip-text bg-gradient-to-br from-white/60 via-neutral-300 to-black/[0.6]"
+				>
+					Pronto para começar?
+				</h1>
+				<h4 class="text-white/[0.7] sm:text-center text-start">
+					Temos como propósito entregar <span
+						class="underline underline-offset-4 decoration-1 decoration-orange-500"
+					>
+						excelência e qualidade</span
+					>
+					nos serviços prestados para
+					<span class="underline underline-offset-4 decoration-1 decoration-orange-500"
+						>contribuir positivamente</span
+					>
+					na caminhada de sucesso de sua empresa.
+					<span class="underline underline-offset-4 decoration-1 decoration-orange-500"
+						>Conte conosco!</span
+					>
+				</h4>
+			</div>
+			<HoverBorderGradient className="w-52 text-xl"
+				><a href="https://www.minhaconexao.com.br/?server_id=001805" target="_blank">Saiber Mais!</a
+				></HoverBorderGradient
+			>
+		</div>
+	</div>
 </div>

@@ -100,7 +100,7 @@ const config: Config = {
 
 			// Lukacho UI Effects
 			moveUp: 'moveUp 1.4s ease forwards',
-			appear: 'appear 1s 1s forwards',
+			appear: 'appear 0.5s 1s forwards',
 
 			// Syntax UI
 			'skew-scroll': 'skew-scroll 20s linear infinite',

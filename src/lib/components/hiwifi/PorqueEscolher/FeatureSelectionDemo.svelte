@@ -34,9 +34,19 @@
 	];
 </script>
 
-<div class="py-16 flex flex-col items-center justify-between w-full bg-black">
-	<h1 class="text-3xl uppercase font-inter mb-2">Por que sua empresa precisa da HiWiFi?</h1>
-	<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 md:gap-2 max-w-[60%] mx-auto">
+<div class="py-16 relative flex flex-col items-center justify-between w-full bg-black">
+	<h1 class="text-3xl uppercase font-inter mb-5 text-center">
+		<span class="underline underline-offset-4 decoration-1 decoration-orange-500">Por que</span>
+		escolher a <span class="text-orange-500 font-bold">HiWiFi</span>
+	</h1>
+	<h3 class="text-lg mb-8 text-gray-400 text-center md:px-0 px-3">
+		<span class="text-orange-500">"</span>Conecte-se com desempenho revolucionário e segurança
+		incomparável.<span class="text-orange-500">"</span>
+	</h3>
+
+	<div
+		class="grid grid-cols-1 w-full px-5 md:px-0 sm:grid-cols-2 gap-5 md:grid-cols-3 md:w-2/3 mx-auto"
+	>
 		{#each grid as feature}
 			<div
 				class="relative bg-gradient-to-b dark:from-neutral-900 from-neutral-100 dark:to-neutral-950 to-white p-6 rounded-3xl overflow-hidden"
