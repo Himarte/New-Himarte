@@ -4,7 +4,7 @@
 	import LogoCompleto from '$lib/img/logos/logo-nome-quliadade2.png';
 	import Phone from 'lucide-svelte/icons/phone';
 	import UsersRound from 'lucide-svelte/icons/users-round';
-	import { PhoneCall, MapPinned, Rss } from 'lucide-svelte';
+	import { PhoneCall, MapPinned, Rss, SquareSquare, BriefcaseBusiness } from 'lucide-svelte';
 	import Clock_8 from 'lucide-svelte/icons/clock-8';
 	import Separator from '$lib/components/ui/separator/separator.svelte';
 </script>
@@ -26,31 +26,53 @@
 			href="/sobre"
 			class="font-inter text-lg  font-bold hover:text-orange-500 hover:no-underline">Sobre</Button
 		>
-		<Button
-			variant="link"
-			href="/trabalhe-conosco"
-			class="font-inter text-lg  font-bold hover:text-orange-500 hover:no-underline"
-			>Trabalhe Conosco</Button
-		>
 
 		<Popover.Root>
 			<Popover.Trigger>
-				<Button
-					variant="ghost"
-					class="font-inter text-lg font-bold  hover:no-underline hover:bg-orange-500/20"
-					>Nossos Serviços</Button
+				<span
+					class="font-inter py-2 px-3 rounded-md text-lg font-bold hover:no-underline hover:bg-orange-500/20"
+					>Nossos Serviços</span
 				>
 			</Popover.Trigger>
 			<Popover.Content
-				align="center"
-				class="bg-[#0f1829] flex flex-col border py-3 w-60 rounded shadow-xl justify-center items-start "
+				align="end"
+				class="bg-[#0f1829] flex flex-col border-2 py-3 w-60 rounded shadow-xl justify-center items-start "
 			>
+				<Button
+					variant="link"
+					href="/planos"
+					class="font-inter text-lg font-bold flex gap-2 items-center justify-center hover:text-orange-500 hover:no-underline"
+					><SquareSquare color="#f97316" />
+					Nossos Planos
+				</Button>
 				<Button
 					variant="link"
 					href="/hiwifi"
 					class="font-inter text-lg font-bold flex gap-2 items-center justify-center hover:text-orange-500 hover:no-underline"
-					><Rss color="#f97316" />Conheça a HIWIFI
+					><Rss color="#f97316" />HIWIFI
 				</Button>
+			</Popover.Content>
+		</Popover.Root>
+
+		<!-- OUTROS -->
+		<Popover.Root>
+			<Popover.Trigger>
+				<span
+					class="font-inter py-2 px-3 rounded-md text-lg font-bold hover:no-underline hover:bg-orange-500/20"
+					>Outros</span
+				>
+			</Popover.Trigger>
+			<Popover.Content
+				align="start"
+				class="bg-[#0f1829] flex flex-col border-2 py-3 w-60 rounded shadow-xl justify-center items-start "
+			>
+				<Button
+					variant="link"
+					href="/trabalhe-conosco"
+					class="font-inter text-lg font-bold flex gap-2 items-center justify-center hover:text-orange-500 hover:no-underline"
+					><BriefcaseBusiness color="#f97316" />
+					Trabalhe Conosco</Button
+				>
 				<Button
 					variant="link"
 					href="/filiais"

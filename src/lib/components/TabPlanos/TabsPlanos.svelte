@@ -20,13 +20,14 @@
 			Pessoa Fisica</Tabs.Trigger
 		>
 		<Tabs.Trigger
+			id="CNPJ"
 			value="CNPJ"
 			class="flex h-20 flex-col gap-1 data-[state=active]:rounded-none data-[state=active]:border-b data-[state=active]:border-orange-500  "
 			><Building2 size={30} />
 			CNPJ</Tabs.Trigger
 		>
 	</Tabs.List>
-	<Tabs.Content value="PessoaFisica"
+	<Tabs.Content value="PessoaFisica" id="PessoaFisica"
 		><CardsCPF1 {blipClient} />
 
 		<CardsCPF2 {blipClient} />
