@@ -4,7 +4,14 @@
 	import LogoCompleto from '$lib/img/logos/logo-nome-quliadade2.png';
 	import Phone from 'lucide-svelte/icons/phone';
 	import UsersRound from 'lucide-svelte/icons/users-round';
-	import { PhoneCall, MapPinned, Rss, SquareSquare, BriefcaseBusiness } from 'lucide-svelte';
+	import {
+		PhoneCall,
+		MapPinned,
+		Rss,
+		SquareSquare,
+		BriefcaseBusiness,
+		ChevronDown
+	} from 'lucide-svelte';
 	import Clock_8 from 'lucide-svelte/icons/clock-8';
 	import Separator from '$lib/components/ui/separator/separator.svelte';
 </script>
@@ -30,9 +37,9 @@
 		<Popover.Root>
 			<Popover.Trigger>
 				<span
-					class="font-inter py-2 px-3 rounded-md text-lg font-bold hover:no-underline hover:bg-orange-500/20"
-					>Nossos Serviços</span
-				>
+					class="font-inter py-2 px-3 rounded-md flex items-center gap-1 text-lg font-bold hover:no-underline hover:text-orange-500"
+					>Nossos Serviços <ChevronDown size={20} />
+				</span>
 			</Popover.Trigger>
 			<Popover.Content
 				align="end"
@@ -58,8 +65,8 @@
 		<Popover.Root>
 			<Popover.Trigger>
 				<span
-					class="font-inter py-2 px-3 rounded-md text-lg font-bold hover:no-underline hover:bg-orange-500/20"
-					>Outros</span
+					class="font-inter py-2 px-3 rounded-md flex items-center gap-1 text-lg font-bold hover:no-underline hover:text-orange-500"
+					>Outros <ChevronDown size={20} /></span
 				>
 			</Popover.Trigger>
 			<Popover.Content
