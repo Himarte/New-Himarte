@@ -4,14 +4,13 @@
 	import LogoCompleto from '$lib/img/logos/logo-nome-quliadade2.png';
 	import Phone from 'lucide-svelte/icons/phone';
 	import UsersRound from 'lucide-svelte/icons/users-round';
-	import {
-		PhoneCall,
-		MapPinned,
-		Rss,
-		SquareSquare,
-		BriefcaseBusiness,
-		ChevronDown
-	} from 'lucide-svelte';
+	import PhoneCall from 'lucide-svelte/icons/phone-call';
+	import MapPinned from 'lucide-svelte/icons/map-pinned';
+	import Rss from 'lucide-svelte/icons/rss';
+	import SquareSquare from 'lucide-svelte/icons/square-square';
+	import BriefcaseBusiness from 'lucide-svelte/icons/briefcase';
+	import ChevronDown from 'lucide-svelte/icons/chevron-down';
+
 	import Clock_8 from 'lucide-svelte/icons/clock-8';
 	import Separator from '$lib/components/ui/separator/separator.svelte';
 </script>
