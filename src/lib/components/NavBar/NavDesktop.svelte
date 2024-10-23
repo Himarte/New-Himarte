@@ -29,25 +29,25 @@
 		<Button
 			variant="link"
 			href="/"
-			class="font-inter text-lg font-bold hover:text-orange-500 hover:no-underline"
+			class="font-poppins text-lg font-bold hover:text-orange-500 hover:no-underline"
 		>
-			Home
+			Início
 		</Button>
 		<Button
 			variant="link"
 			href="/sobre"
-			class="font-inter text-lg font-bold hover:text-orange-500 hover:no-underline"
+			class="font-poppins text-lg font-bold hover:text-orange-500 hover:no-underline"
 		>
-			Sobre
+			A Himarte
 		</Button>
 
 		<!-- Popover "Nossos Serviços" -->
 		<Popover.Root bind:open={popoverOpen1}>
 			<Popover.Trigger>
 				<span
-					class="font-inter py-2 px-3 rounded-md flex items-center gap-1 text-lg font-bold hover:no-underline hover:text-orange-500"
+					class="font-poppins py-2 px-3 rounded-md flex items-center gap-1 text-lg font-bold hover:no-underline hover:text-orange-500"
 				>
-					Nossos Serviços <ChevronDown size={20} />
+					Serviços <ChevronDown size={20} />
 				</span>
 			</Popover.Trigger>
 			<Popover.Content
@@ -58,7 +58,7 @@
 					variant="link"
 					href="/planos"
 					onclick={() => (popoverOpen1 = false)}
-					class="font-inter text-lg font-bold flex gap-2 items-center justify-center hover:text-orange-500 hover:no-underline"
+					class="font-poppins text-lg font-bold flex gap-2 items-center justify-center hover:text-orange-500 hover:no-underline"
 				>
 					<SquareSquare color="#f97316" />
 					Nossos Planos
@@ -67,54 +67,37 @@
 					variant="link"
 					href="/hiwifi"
 					onclick={() => (popoverOpen1 = false)}
-					class="font-inter text-lg font-bold flex gap-2 items-center justify-center hover:text-orange-500 hover:no-underline"
+					class="font-poppins text-lg font-bold flex gap-2 items-center justify-center hover:text-orange-500 hover:no-underline"
 				>
 					<Rss color="#f97316" />
-					HIWIFI
+					HiWifi
 				</Button>
 			</Popover.Content>
 		</Popover.Root>
 
-		<!-- Popover "Outros" -->
-		<Popover.Root bind:open={popoverOpen2}>
-			<Popover.Trigger>
-				<span
-					class="font-inter py-2 px-3 rounded-md flex items-center gap-1 text-lg font-bold hover:no-underline hover:text-orange-500"
-				>
-					Outros <ChevronDown size={20} />
-				</span>
-			</Popover.Trigger>
-			<Popover.Content
-				align="start"
-				class="bg-[#0f1829] flex flex-col border-2 py-3 w-60 rounded shadow-xl justify-center items-start"
-			>
-				<Button
-					variant="link"
-					href="/trabalhe-conosco"
-					onclick={() => (popoverOpen2 = false)}
-					class="font-inter text-lg font-bold flex gap-2 items-center justify-center hover:text-orange-500 hover:no-underline"
-				>
-					<BriefcaseBusiness color="#f97316" />
-					Trabalhe Conosco
-				</Button>
-				<Button
-					variant="link"
-					href="/filiais"
-					onclick={() => (popoverOpen2 = false)}
-					class="font-inter text-lg font-bold flex gap-2 items-center justify-center hover:text-orange-500 hover:no-underline"
-				>
-					<MapPinned color="#f97316" />
-					Nossas Filiais
-				</Button>
-			</Popover.Content>
-		</Popover.Root>
+		<Button
+			variant="link"
+			href="/filiais"
+			onclick={() => (popoverOpen2 = false)}
+			class="font-poppins text-lg font-bold flex gap-2 items-center justify-center hover:text-orange-500 hover:no-underline"
+		>
+			Filiais
+		</Button>
+		<Button
+			variant="link"
+			href="/trabalhe-conosco"
+			onclick={() => (popoverOpen2 = false)}
+			class="font-poppins text-lg font-bold flex gap-2 items-center justify-center hover:text-orange-500 hover:no-underline"
+		>
+			Trabalhe Conosco
+		</Button>
 	</ul>
 	<div class="flex w-1/4 items-center justify-end gap-8">
 		<Button
 			href="https://himarte.portal.7az.com.br/login"
 			target="_blank"
 			variant="outline"
-			class="h-10 gap-3 border border-orange-500 bg-[#f97316]/15 font-inter text-lg font-bold hover:bg-[#0f1829] hover:text-orange-500"
+			class="h-10 gap-3 border border-orange-500 bg-[#f97316]/15 font-poppins text-lg font-bold hover:bg-[#0f1829] hover:text-orange-500"
 		>
 			<UsersRound color="white" />
 			Área do Cliente
@@ -128,7 +111,7 @@
 				<Phone />
 			</Popover.Trigger>
 			<Popover.Content align="end" class="ml-36 mt-3 border-2 bg-[#0f1829]" alignOffset={8}>
-				<div class="flex flex-col items-center justify-center gap-2 font-inter">
+				<div class="flex flex-col items-center justify-center gap-2 font-poppins">
 					<div class="flex gap-2 font-bold">
 						<span class="absolute left-8"><Clock_8 /></span> Atendimento Suporte
 					</div>
@@ -148,7 +131,7 @@
 
 				<Separator class="my-3 bg-gray-600" />
 
-				<div class="flex items-center justify-center font-inter">
+				<div class="flex items-center justify-center font-poppins">
 					<PhoneCall />
 					<Button
 						href="https://api.whatsapp.com/send/?phone=555130568251&text=Ola%21+Tudo+bem%3F&type=phone_number&app_absent=0"
