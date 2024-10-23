@@ -13,6 +13,10 @@
 
 	import Clock_8 from 'lucide-svelte/icons/clock-8';
 	import Separator from '$lib/components/ui/separator/separator.svelte';
+
+	// Variáveis para controlar o estado de abertura de cada Popover
+	let popoverOpen1 = false; // Para "Nossos Serviços"
+	let popoverOpen2 = false; // Para "Outros"
 </script>
 
 <nav
@@ -21,69 +25,86 @@
 	<a href="/" class="flex w-1/4 items-center justify-start gap-5">
 		<img src={LogoCompleto} alt="" class="h-10 w-auto" />
 	</a>
-	<ul class=" flex w-2/4 items-center justify-center gap-3">
+	<ul class="flex w-2/4 items-center justify-center gap-3">
 		<Button
 			variant="link"
 			href="/"
-			class="font-inter text-lg  font-bold hover:text-orange-500 hover:no-underline">Home</Button
+			class="font-inter text-lg font-bold hover:text-orange-500 hover:no-underline"
 		>
+			Home
+		</Button>
 		<Button
 			variant="link"
 			href="/sobre"
-			class="font-inter text-lg  font-bold hover:text-orange-500 hover:no-underline">Sobre</Button
+			class="font-inter text-lg font-bold hover:text-orange-500 hover:no-underline"
 		>
+			Sobre
+		</Button>
 
-		<Popover.Root>
+		<!-- Popover "Nossos Serviços" -->
+		<Popover.Root bind:open={popoverOpen1}>
 			<Popover.Trigger>
 				<span
 					class="font-inter py-2 px-3 rounded-md flex items-center gap-1 text-lg font-bold hover:no-underline hover:text-orange-500"
-					>Nossos Serviços <ChevronDown size={20} />
+				>
+					Nossos Serviços <ChevronDown size={20} />
 				</span>
 			</Popover.Trigger>
 			<Popover.Content
 				align="end"
-				class="bg-[#0f1829] flex flex-col border-2 py-3 w-60 rounded shadow-xl justify-center items-start "
+				class="bg-[#0f1829] flex flex-col border-2 py-3 w-60 rounded shadow-xl justify-center items-start"
 			>
 				<Button
 					variant="link"
 					href="/planos"
+					onclick={() => (popoverOpen1 = false)}
 					class="font-inter text-lg font-bold flex gap-2 items-center justify-center hover:text-orange-500 hover:no-underline"
-					><SquareSquare color="#f97316" />
+				>
+					<SquareSquare color="#f97316" />
 					Nossos Planos
 				</Button>
 				<Button
 					variant="link"
 					href="/hiwifi"
+					onclick={() => (popoverOpen1 = false)}
 					class="font-inter text-lg font-bold flex gap-2 items-center justify-center hover:text-orange-500 hover:no-underline"
-					><Rss color="#f97316" />HIWIFI
+				>
+					<Rss color="#f97316" />
+					HIWIFI
 				</Button>
 			</Popover.Content>
 		</Popover.Root>
 
-		<!-- OUTROS -->
-		<Popover.Root>
+		<!-- Popover "Outros" -->
+		<Popover.Root bind:open={popoverOpen2}>
 			<Popover.Trigger>
 				<span
 					class="font-inter py-2 px-3 rounded-md flex items-center gap-1 text-lg font-bold hover:no-underline hover:text-orange-500"
-					>Outros <ChevronDown size={20} /></span
 				>
+					Outros <ChevronDown size={20} />
+				</span>
 			</Popover.Trigger>
 			<Popover.Content
 				align="start"
-				class="bg-[#0f1829] flex flex-col border-2 py-3 w-60 rounded shadow-xl justify-center items-start "
+				class="bg-[#0f1829] flex flex-col border-2 py-3 w-60 rounded shadow-xl justify-center items-start"
 			>
 				<Button
 					variant="link"
 					href="/trabalhe-conosco"
+					onclick={() => (popoverOpen2 = false)}
 					class="font-inter text-lg font-bold flex gap-2 items-center justify-center hover:text-orange-500 hover:no-underline"
-					><BriefcaseBusiness color="#f97316" />
-					Trabalhe Conosco</Button
 				>
+					<BriefcaseBusiness color="#f97316" />
+					Trabalhe Conosco
+				</Button>
 				<Button
 					variant="link"
 					href="/filiais"
+					onclick={() => (popoverOpen2 = false)}
 					class="font-inter text-lg font-bold flex gap-2 items-center justify-center hover:text-orange-500 hover:no-underline"
-					><MapPinned color="#f97316" />Nossas Filiais
+				>
+					<MapPinned color="#f97316" />
+					Nossas Filiais
 				</Button>
 			</Popover.Content>
 		</Popover.Root>
@@ -93,14 +114,16 @@
 			href="https://himarte.portal.7az.com.br/login"
 			target="_blank"
 			variant="outline"
-			class="h-10 gap-3 border border-orange-500 bg-[#f97316]/15 font-inter text-lg font-bold  hover:bg-[#0f1829] hover:text-orange-500 "
-			><UsersRound color="white" />
-			Area do Cliente</Button
+			class="h-10 gap-3 border border-orange-500 bg-[#f97316]/15 font-inter text-lg font-bold hover:bg-[#0f1829] hover:text-orange-500"
 		>
+			<UsersRound color="white" />
+			Área do Cliente
+		</Button>
 
+		<!-- Popover do Telefone -->
 		<Popover.Root>
 			<Popover.Trigger
-				class="flex h-10 w-10 items-center justify-center rounded-3xl border border-orange-500 bg-[#f97316]/15  hover:bg-[#0f1829] hover:text-orange-400"
+				class="flex h-10 w-10 items-center justify-center rounded-3xl border border-orange-500 bg-[#f97316]/15 hover:bg-[#0f1829] hover:text-orange-400"
 			>
 				<Phone />
 			</Popover.Trigger>
@@ -131,8 +154,9 @@
 						href="https://api.whatsapp.com/send/?phone=555130568251&text=Ola%21+Tudo+bem%3F&type=phone_number&app_absent=0"
 						variant="ghost"
 						class="px-2 py-0 text-[1rem] hover:bg-transparent hover:text-[#f97316]"
-						>(51) 3056-8251</Button
 					>
+						(51) 3056-8251
+					</Button>
 				</div>
 			</Popover.Content>
 		</Popover.Root>
