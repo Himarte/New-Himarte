@@ -9,7 +9,7 @@
 </script>
 
 <Tabs.Root
-	value="empresa"
+	value="casa"
 	class="flex min-h-full w-full flex-col gap-5 overflow-x-hidden pb-10 pt-5 md:overflow-x-visible"
 >
 	<Tabs.List class=" flex h-20 gap-5 border-b bg-transparent ">
