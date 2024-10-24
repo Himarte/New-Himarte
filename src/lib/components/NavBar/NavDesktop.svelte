@@ -5,10 +5,8 @@
 	import Phone from 'lucide-svelte/icons/phone';
 	import UsersRound from 'lucide-svelte/icons/users-round';
 	import PhoneCall from 'lucide-svelte/icons/phone-call';
-	import MapPinned from 'lucide-svelte/icons/map-pinned';
 	import Rss from 'lucide-svelte/icons/rss';
 	import SquareSquare from 'lucide-svelte/icons/square-square';
-	import BriefcaseBusiness from 'lucide-svelte/icons/briefcase';
 	import ChevronDown from 'lucide-svelte/icons/chevron-down';
 
 	import Clock_8 from 'lucide-svelte/icons/clock-8';
@@ -16,11 +14,10 @@
 
 	// Variáveis para controlar o estado de abertura de cada Popover
 	let popoverOpen1 = false; // Para "Nossos Serviços"
-	let popoverOpen2 = false; // Para "Outros"
 </script>
 
 <nav
-	class="fixed z-50 flex h-[4rem] w-full items-center justify-center gap-5 bg-[#0f1829] px-[2%] xl:px-[5%] 2xl:px-[10%]"
+	class="fixed z-50 flex backdrop-blur-md bg-transparent h-[4rem] w-full items-center justify-center gap-5 bg-[#0f1829] px-[2%] xl:px-[5%] 2xl:px-[10%]"
 >
 	<a href="/" class="flex w-1/4 items-center justify-start gap-5">
 		<img src={LogoCompleto} alt="" class="h-10 w-auto" />
@@ -78,7 +75,6 @@
 		<Button
 			variant="link"
 			href="/filiais"
-			onclick={() => (popoverOpen2 = false)}
 			class="font-poppins text-lg font-bold flex gap-2 items-center justify-center hover:text-orange-500 hover:no-underline"
 		>
 			Filiais
@@ -86,7 +82,6 @@
 		<Button
 			variant="link"
 			href="/trabalhe-conosco"
-			onclick={() => (popoverOpen2 = false)}
 			class="font-poppins text-lg font-bold flex gap-2 items-center justify-center hover:text-orange-500 hover:no-underline"
 		>
 			Trabalhe Conosco
