@@ -92,7 +92,7 @@
 			href="https://himarte.portal.7az.com.br/login"
 			target="_blank"
 			variant="outline"
-			class="h-10 gap-3 border border-orange-500 bg-[#f97316]/15 font-poppins text-lg font-bold hover:bg-[#0f1829] hover:text-orange-500"
+			class="h-10 gap-3 border border-orange-500 bg-[#f97316]/15 font-poppins text-lg font-bold hover:bg-background hover:text-orange-500"
 		>
 			<UsersRound color="white" />
 			Área do Cliente
@@ -101,7 +101,7 @@
 		<!-- Popover do Telefone -->
 		<Popover.Root>
 			<Popover.Trigger
-				class="flex h-10 w-10 items-center justify-center rounded-3xl border border-orange-500 bg-[#f97316]/15 hover:bg-[#0f1829] hover:text-orange-400"
+				class="flex h-10 w-10 items-center justify-center rounded-3xl border border-orange-500 bg-[#f97316]/15 hover:bg-background hover:text-orange-400"
 			>
 				<Phone />
 			</Popover.Trigger>
