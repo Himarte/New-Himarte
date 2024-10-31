@@ -49,7 +49,7 @@
 			</Popover.Trigger>
 			<Popover.Content
 				align="end"
-				class="bg-[#0f1829] bg-opacity-45 backdrop-blur flex flex-col border-1 py-3 w-60 rounded shadow-xl justify-center items-start"
+				class="bg-[#0f1829] bg-opacity-50 backdrop-blur flex flex-col border-1 py-3 w-60 rounded shadow-xl justify-center items-start"
 			>
 				<Button
 					variant="link"
@@ -92,7 +92,7 @@
 			href="https://himarte.portal.7az.com.br/login"
 			target="_blank"
 			variant="outline"
-			class="h-10 gap-3 border border-orange-500 bg-[#f97316]/15 font-poppins text-lg font-bold hover:bg-background hover:text-orange-500"
+			class="h-10 gap-3 border border-orange-500 bg-[#f97316]/15 font-poppins text-lg font-bold hover:bg-background/5 hover:text-orange-500"
 		>
 			<UsersRound color="white" />
 			Área do Cliente
@@ -101,11 +101,15 @@
 		<!-- Popover do Telefone -->
 		<Popover.Root>
 			<Popover.Trigger
-				class="flex h-10 w-10 items-center justify-center rounded-3xl border border-orange-500 bg-[#f97316]/15 hover:bg-background hover:text-orange-400"
+				class="flex h-10 w-10 items-center justify-center rounded-3xl border border-orange-500 bg-[#f97316]/15 hover:bg-background/5  hover:text-orange-400"
 			>
 				<Phone />
 			</Popover.Trigger>
-			<Popover.Content align="end" class="ml-36 mt-3 border-2 bg-[#0f1829]" alignOffset={8}>
+			<Popover.Content
+				align="end"
+				class="ml-36 mt-3 border-2 bg-[#0f1829] bg-opacity-50"
+				alignOffset={8}
+			>
 				<div class="flex flex-col items-center justify-center gap-2 font-poppins">
 					<div class="flex gap-2 font-bold">
 						<span class="absolute left-8"><Clock_8 /></span> Atendimento Suporte
