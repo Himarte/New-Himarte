@@ -49,7 +49,7 @@
 			</Popover.Trigger>
 			<Popover.Content
 				align="end"
-				class="bg-[#0f1829] flex flex-col border-2 py-3 w-60 rounded shadow-xl justify-center items-start"
+				class="bg-[#0f1829] bg-opacity-45 backdrop-blur flex flex-col border-1 py-3 w-60 rounded shadow-xl justify-center items-start"
 			>
 				<Button
 					variant="link"
