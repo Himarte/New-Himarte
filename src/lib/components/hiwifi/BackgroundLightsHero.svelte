@@ -1,5 +1,5 @@
 <script>
-	import hiwifiLogo from '$lib/img/logos/hiwifi-logo.svg';
+	import hiwifiLogo from '$lib/img/extras/logo_hi_wifi_branco.png';
 
 	import Lights from '$lib/components/BackgroundGridHero/Lights.svelte';
 	// for bg-grid : please scroll to the bottom of the page to see the bg-grid tailwind.config.ts file.
@@ -12,7 +12,7 @@
 			class="w-full h-full flex flex-col sm:items-center items-start justify-center relative z-[1] animate-moveUp"
 		>
 			<div class="w-full h-auto flex flex-col items-center justify-center mb-5">
-				<img src={hiwifiLogo} alt="HiWiFi" class="w-56 md:w-96 object-contain" />
+				<img src={hiwifiLogo} alt="HiWiFi" class="w-48 md:w-80 md:mb-3 object-contain" />
 			</div>
 			<div
 				class="text-transparent w-full mb-1 sm:text-center text-center font-bold md:text-5xl text-2xl bg-clip-text bg-gradient-to-br from-white/60 via-neutral-300 to-black/[0.6]"

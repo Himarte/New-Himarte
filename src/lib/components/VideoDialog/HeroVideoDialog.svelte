@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { writable } from 'svelte/store';
 	import { AnimatePresence, Motion } from 'svelte-motion';
-	import { Play, X } from 'lucide-svelte';
+	import Play from 'lucide-svelte/icons/play';
+	import X from 'lucide-svelte/icons/x';
 
 	type AnimationStyle =
 		| 'from-bottom'

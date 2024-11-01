@@ -62,7 +62,8 @@ const config: Config = {
 				serif: [...fontFamily.serif],
 				mono: [...fontFamily.mono],
 				inter: ['Inter', 'sans-serif'],
-				roboto: ['Roboto', 'sans-serif']
+				roboto: ['Roboto', 'sans-serif'],
+				poppins: ['Poppins', ...fontFamily.sans]
 			}
 		},
 		animation: {

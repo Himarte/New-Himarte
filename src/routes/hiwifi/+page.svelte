@@ -3,7 +3,6 @@
 	import Beneficios from '$lib/components/hiwifi/BeneficiosParaSuaEmpresa/Beneficios.svelte';
 	import FeatureSelectionDemo from '$lib/components/hiwifi/PorqueEscolher/FeatureSelectionDemo.svelte';
 	import HoverBorderGradient from '$lib/components/HoverBorderGradient.svelte';
-	import Connecting from '$lib/img/extras/Connecting teams-bro.svg';
 </script>
 
 <BackgroundLightsHero />
@@ -14,7 +13,6 @@
 	class="w-full h-[60vh] flex items-center justify-center bg-gradient-to-b from-black via-transparent to-transparent"
 >
 	<div class=" w-full md:w-2/3 flex items-center justify-center">
-		<!-- <img src={Connecting} alt="" class="w-2/5" /> -->
 		<div class="w-full flex flex-col md:w-2/3 gap-5 items-center justify-center">
 			<div class="flex flex-col w-full gap-3 mb-4">
 				<h1

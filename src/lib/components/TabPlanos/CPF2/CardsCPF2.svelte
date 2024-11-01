@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Plus } from 'lucide-svelte';
+	import Plus from 'lucide-svelte/icons/plus';
 	import Venus from '$lib/img/planetas/venus.webp';
 	import Plutao from '$lib/img/planetas/plutao.webp';
 	import Urano from '$lib/img/planetas/urano.webp';

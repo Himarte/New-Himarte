@@ -65,10 +65,42 @@
 <section
 	class="mt-16 flex w-full flex-col-reverse items-center gap-5 overflow-hidden md:mt-20 md:w-2/3 md:flex-row md:gap-0"
 >
-	<HeroVideoDialog />
+	<!-- <HeroVideoDialog /> -->
+
+	<div class="flex flex-col w-full h-full items-center justify-center gap-2 md:gap-5 px-0">
+		<div class="w-full md:w-2/3 flex mt-5 md:mt-0 px-5 md:px-0">
+			<div class="iframe-container">
+				<iframe
+					class="md:border-2 border border-primary-500 rounded-md md:rounded-2xl border-opacity-70"
+					src="https://www.youtube-nocookie.com/embed/seGVeab1a-I?si=PoyImY2uxZ11CmHh"
+					title="YouTube video player"
+					frameborder="0"
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+					referrerpolicy="strict-origin-when-cross-origin"
+					allowfullscreen
+				></iframe>
+			</div>
+		</div>
+	</div>
 	<h1
 		class="inline-flex animate-text-gradient bg-gradient-to-r from-[#FF8C42] via-[#FFA94D] to-[#FF7B00] bg-[200%_auto] bg-clip-text text-center font-inter text-3xl font-bold uppercase text-transparent"
 	>
-		Veja um pouco mais <br /> sobre nos!
+		Conheça um pouco da nossa história
 	</h1>
 </section>
+
+<style>
+	.iframe-container {
+		position: relative;
+		width: 100%;
+		padding-bottom: 56.25%;
+		height: 0;
+	}
+	.iframe-container iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>

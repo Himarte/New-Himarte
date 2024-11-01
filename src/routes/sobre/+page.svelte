@@ -1,16 +1,15 @@
 <script lang="ts">
 	import Separator from '$lib/components/ui/separator/separator.svelte';
-	import {
-		Gauge,
-		Headphones,
-		ListChecks,
-		Wifi,
-		Wrench,
-		Zap,
-		Target,
-		UsersRound,
-		MoveRight
-	} from 'lucide-svelte';
+	import Gauge from 'lucide-svelte/icons/gauge';
+	import Headphones from 'lucide-svelte/icons/headphones';
+	import ListChecks from 'lucide-svelte/icons/list-checks';
+	import Wifi from 'lucide-svelte/icons/wifi';
+	import Wrench from 'lucide-svelte/icons/wrench';
+	import Zap from 'lucide-svelte/icons/zap';
+	import Target from 'lucide-svelte/icons/target';
+	import UsersRound from 'lucide-svelte/icons/users';
+	import MoveRight from 'lucide-svelte/icons/move-right';
+
 	import NumberUser from '$lib/components/CounterNumber/NumberTickerUser.svelte';
 	import NumberColab from '$lib/components/CounterNumber/NumberTickerColab.svelte';
 	import NumberEmp from '$lib/components/CounterNumber/NumberTickerEmp.svelte';
