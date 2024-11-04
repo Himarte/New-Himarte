@@ -127,7 +127,6 @@
 						<p>13:00 - 17:00</p>
 					</div>
 				</div>
-
 				<Separator class="my-3 bg-gray-600" />
 
 				<div class="flex items-center justify-center font-poppins">
