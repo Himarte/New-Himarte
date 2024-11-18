@@ -34,7 +34,7 @@
 			plano: 'Saturno',
 			megas: 400,
 			precoReais: 99,
-			precoCentavos: 99,
+			precoCentavos: 90,
 			href: '/',
 			beneficios: ['Roteador', 'Assistência Técnica', 'Suporte', 'Todas as Cidades']
 		},

@@ -5,7 +5,6 @@
 	import HoverBorderGradient from '$lib/components/HoverBorderGradient.svelte';
 	import MenuHome from '$lib/components/MenuHome.svelte';
 	import TabsPlanos from '$lib/components/TabPlanos/TabsPlanos.svelte';
-	import HeroVideoDialog from '$lib/components/VideoDialog/VideoDialogEx.svelte';
 	import notebookImg from '$lib/img/extras/notebook4.webp';
 	import { onMount } from 'svelte';
 
