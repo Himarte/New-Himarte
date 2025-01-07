@@ -64,8 +64,6 @@
 <section
 	class="mt-16 flex w-full flex-col-reverse items-center gap-5 overflow-hidden md:mt-20 md:w-2/3 md:flex-row md:gap-0"
 >
-	<!-- <HeroVideoDialog /> -->
-
 	<div class="flex flex-col w-full h-full items-center justify-center gap-2 md:gap-5 px-0">
 		<div class="w-full md:w-2/3 flex mt-5 md:mt-0 px-5 md:px-0">
 			<div class="iframe-container">

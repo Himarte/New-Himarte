@@ -4,6 +4,7 @@
 	import Building2 from 'lucide-svelte/icons/building-2';
 	import CardsCPF1 from '$lib/components/TabPlanos/CPF1/CardsCPF1.svelte';
 	import CardsCPF2 from '$lib/components/TabPlanos/CPF2/CardsCPF2.svelte';
+	import CardsCPF3 from '$lib/components/TabPlanos/CPF3/CardsCPF3.svelte';
 	import CNPJ from '$lib/components/TabPlanos/CNPJ/CNPJ.svelte';
 	let { blipClient } = $props();
 </script>
@@ -41,8 +42,9 @@
 		<CardsCPF1 {blipClient} />
 
 		<CardsCPF2 {blipClient} />
-		<div class="flex justify-center pt-8">
-			<h5 class="w-3/4 font-inter text-sm text-gray-500">
+		<CardsCPF3 {blipClient} />
+		<div class="flex items-center w-full text-center justify-center pt-8">
+			<h5 class=" font-inter text-sm text-gray-500">
 				*Os valores são válidos apenas para pagamentos realizados até a data de vencimento.
 			</h5>
 		</div>

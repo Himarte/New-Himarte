@@ -1,10 +1,7 @@
 <script lang="ts">
 	import Plus from 'lucide-svelte/icons/plus';
-	import Venus from '$lib/img/planetas/venus.webp';
 	import Plutao from '$lib/img/planetas/plutao.webp';
-	import Urano from '$lib/img/planetas/urano.webp';
-	import Jupiter from '$lib/img/planetas/jupiter.webp';
-
+	import Mercurio from '$lib/img/planetas/Mercurio.svg';
 	let { blipClient } = $props();
 
 	const openChat = (item: any) => {
@@ -17,38 +14,26 @@
 
 	const items = [
 		{
+			id: 1,
+			img: Plutao,
+			plano: 'Plutão',
+			megas: 60,
+			precoReais: 59,
+			precoCentavos: 90,
+			regioes: ['Todas'],
+			href: '/',
+			beneficios: ['Roteador', 'Assistência Técnica', 'Suporte', 'Todas as Cidades']
+		},
+		{
 			id: 2,
-			img: Venus,
-			plano: 'Vênus',
-			megas: 90,
-			precoReais: 79,
-			precoCentavos: 90,
+			img: Mercurio,
+			plano: 'Mercúrio',
+			megas: 50,
+			precoReais: 50,
+			precoCentavos: '00',
 			regioes: ['Todas'],
 			href: '/',
 			beneficios: ['Roteador', 'Assistência Técnica', 'Suporte', 'Todas as Cidades']
-		},
-
-		{
-			id: 3,
-			img: Urano,
-			plano: 'Urano',
-			megas: 120,
-			precoReais: 89,
-			precoCentavos: 90,
-			regioes: ['Todas'],
-			href: '/',
-			beneficios: ['Roteador', 'Assistência Técnica', 'Suporte', 'Todas as Cidades']
-		},
-		{
-			id: 4,
-			img: Jupiter,
-			plano: 'Júpiter',
-			megas: 700,
-			precoReais: 149,
-			precoCentavos: 90,
-			regioes: ['Todas'],
-			href: '/',
-			beneficios: ['Roteador', 'Assistência Técnica', 'Suporte', 'Santa Cruz do Sul e Rio Pardo']
 		}
 	];
 </script>
