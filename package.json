@@ -41,7 +41,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@efstajas/svelte-stepper": "^0.2.2",
 		"@types/facebook-nodejs-business-sdk": "^20.0.2",
 		"@types/node": "^22.12.0",
 		"@types/sanitize-html": "^2.13.0",
