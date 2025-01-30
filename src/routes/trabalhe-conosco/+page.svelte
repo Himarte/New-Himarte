@@ -199,7 +199,7 @@
 				type="reset"
 				variant="outline"
 				class="border border-orange-500  bg-[#f97316]/15 hover:bg-[#0F1829] hover:text-orange-500"
-				on:click={() => {
+				onclick={() => {
 					nome = '';
 					telefone = '';
 				}}
