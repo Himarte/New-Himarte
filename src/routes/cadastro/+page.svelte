@@ -69,17 +69,27 @@
 			</div>
 
 			<div class="w-full p-2">
-				<form action="">
+				<form action="?/novoCadastro" method="post">
 					{#if currentStep === 1}
 						<div class="w-full flex flex-col gap-8 h-full">
 							<div class="flex gap-8">
 								<div class="flex w-full flex-col gap-2">
 									<Label for="name">Nome*</Label>
-									<Input type="text" class="focus-visible:ring-[#F97316]" id="name" />
+									<Input
+										type="text"
+										name="nomeCliente"
+										autocomplete="off"
+										class="focus-visible:ring-[#F97316]"
+									/>
 								</div>
 								<div class="flex w-full flex-col gap-2">
-									<Label for="name">Sobrenome*</Label>
-									<Input class="focus-visible:ring-[#F97316]" type="text" id="lastname" />
+									<Label for="lastname">Sobrenome*</Label>
+									<Input
+										name="sobrenomeCliente"
+										autocomplete="off"
+										class="focus-visible:ring-[#F97316]"
+										type="text"
+									/>
 								</div>
 							</div>
 							<div class="flex gap-8">
@@ -95,27 +105,34 @@
 									</Select.Root>
 								</div>
 								<div class="flex w-full flex-col gap-2">
-									<Label>Data de nascimento*</Label>
-									<Input class="focus-visible:ring-[#F97316]" type="date" id="date" />
+									<Label for="date">Data de nascimento*</Label>
+									<Input
+										name="dataNascimento"
+										autocomplete="off"
+										class="focus-visible:ring-[#F97316]"
+										type="date"
+									/>
 								</div>
 							</div>
 							<div class="flex gap-8">
 								<div class="flex w-full flex-col gap-2">
-									<Label for="tel">Telefone*</Label>
+									<Label for="phone">Telefone*</Label>
 									<Input
+										name="telefoneCliente"
+										autocomplete="off"
 										class="focus-visible:ring-[#F97316]"
 										placeholder="(51) 999999999"
 										type="tel"
-										id="tel"
 									/>
 								</div>
 								<div class="flex w-full flex-col gap-2">
 									<Label for="email">E-mail*</Label>
 									<Input
+										name="emailCliente"
+										autocomplete="off"
 										class="focus-visible:ring-[#F97316]"
 										placeholder="luke@himarte.com"
 										type="email"
-										id="email"
 									/>
 								</div>
 							</div>
@@ -126,19 +143,21 @@
 								<div class="flex w-full flex-col gap-2">
 									<Label for="cep">CEP*</Label>
 									<Input
+										name="cep"
+										autocomplete="off"
 										placeholder="96825-000"
 										type="text"
 										class="focus-visible:ring-[#F97316]"
-										id="cep"
 									/>
 								</div>
 								<div class="flex w-full flex-col gap-2">
 									<Label for="city">Cidade*</Label>
 									<Input
+										name="cidade"
+										autocomplete="off"
 										placeholder="Santa Cruz do Sul"
 										class="focus-visible:ring-[#F97316]"
 										type="text"
-										id="city"
 									/>
 								</div>
 							</div>
@@ -146,54 +165,64 @@
 								<div class="flex w-full flex-col gap-2">
 									<Label for="street">Rua/Avenida*</Label>
 									<Input
+										name="rua"
+										autocomplete="off"
 										placeholder=" Rua Manoel Antônio de Barros"
 										class="focus-visible:ring-[#F97316]"
 										type="text"
-										id="street"
 									/>
 								</div>
 								<div class="flex w-full flex-col gap-2">
-									<Label>Bairro*</Label>
+									<Label for="district">Bairro*</Label>
 									<Input
+										name="bairro"
+										autocomplete="off"
 										placeholder="Centro"
 										class="focus-visible:ring-[#F97316]"
 										type="text"
-										id="district"
 									/>
 								</div>
 							</div>
 							<div class="flex gap-8">
 								<div class="flex w-full flex-col gap-2">
-									<Label for="tel">Estado*</Label>
+									<Label for="state">Estado*</Label>
 									<Input
+										name="estado"
+										autocomplete="off"
 										placeholder="RS"
 										class="focus-visible:ring-[#F97316]"
 										type="text"
-										id="date"
 									/>
 								</div>
 								<div class="flex w-full flex-col gap-2">
-									<Label for="email">Número*</Label>
+									<Label for="number">Número*</Label>
 									<Input
+										name="numero"
+										autocomplete="off"
 										placeholder="290"
 										class="focus-visible:ring-[#F97316]"
-										type="text"
-										id="date"
+										type="number"
 									/>
 								</div>
 							</div>
 							<div class="flex gap-8">
 								<div class="flex w-full flex-col gap-2">
-									<Label for="tel">Complemento*</Label>
-									<Input class="focus-visible:ring-[#F97316]" type="text" id="date" />
+									<Label for="complement">Complemento*</Label>
+									<Input
+										name="complemento"
+										autocomplete="off"
+										class="focus-visible:ring-[#F97316]"
+										type="text"
+									/>
 								</div>
 								<div class="flex w-full flex-col gap-2">
-									<Label for="email">Ponto de referência (opcional)</Label>
+									<Label for="reference">Ponto de referência (opcional)</Label>
 									<Input
+										name="pontoReferencia"
+										autocomplete="off"
 										placeholder="Himarte"
 										class="focus-visible:ring-[#F97316]"
 										type="text"
-										id="date"
 									/>
 								</div>
 							</div>
@@ -202,7 +231,7 @@
 						<div class="w-full flex flex-col gap-8 h-full">
 							<div class="flex gap-8">
 								<div class="flex w-full flex-col gap-2">
-									<Label for="name">Selecione o plano*</Label>
+									<Label for="plano">Selecione o plano*</Label>
 									<Select.Root type="single">
 										<Select.Trigger class="focus:ring-[#F97316]">Selecione</Select.Trigger>
 										<Select.Content>
@@ -218,14 +247,24 @@
 									</Select.Root>
 								</div>
 								<div class="flex w-full flex-col gap-2">
-									<Label for="name">Megas</Label>
-									<Input class="focus-visible:ring-[#F97316]" type="text" id="megas" />
+									<Label for="megas">Megas</Label>
+									<Input
+										name="megasPlano"
+										autocomplete="off"
+										class="focus-visible:ring-[#F97316]"
+										type="text"
+									/>
 								</div>
 							</div>
 							<div class="flex gap-8">
 								<div class="flex w-full flex-col gap-2">
-									<Label for="gender">Valor mensal</Label>
-									<Input class="focus-visible:ring-[#F97316]" type="text" id="value" />
+									<Label for="value">Valor mensal</Label>
+									<Input
+										name="valorPlano"
+										autocomplete="off"
+										class="focus-visible:ring-[#F97316]"
+										type="number"
+									/>
 								</div>
 								<div class="flex w-full flex-col gap-2">
 									<Label>Método de pagamento*</Label>
@@ -242,21 +281,23 @@
 							</div>
 							<div class="flex gap-8">
 								<div class="flex w-full flex-col gap-2">
-									<Label>CPF*</Label>
+									<Label for="cpf">CPF*</Label>
 									<Input
+										name="cpf"
+										autocomplete="off"
 										placeholder="999.999.999-99"
 										class="focus-visible:ring-[#F97316]"
 										type="number"
-										id="cpf"
 									/>
 								</div>
 								<div class="flex w-full flex-col gap-2">
 									<Label for="code">Possui código promocional?</Label>
 									<Input
+										name="codigoDesconto"
+										autocomplete="off"
 										class="focus-visible:ring-[#F97316]"
 										placeholder="himarte15"
 										type="text"
-										id="code"
 									/>
 								</div>
 							</div>
@@ -280,6 +321,8 @@
 							</Button>
 						{:else}
 							<Button
+								type="submit"
+								formaction="?/novoCadastro"
 								class="px-4 py-2 bg-orange-600 text-white font-semibold hover:bg-orange-700"
 								onclick={nextStep}
 							>
