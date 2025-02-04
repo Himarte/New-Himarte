@@ -21,31 +21,32 @@
 	}
 </script>
 
-<div class="h-screen flex items-center justify-center">
-	<div class="w-[100hv] p-6">
+<div class="h-full pt-20 md:pt-24 md:pb-3 w-full md:w-fit flex items-center justify-center">
+	<div class="w-full md:w-[100hv] p-6">
 		<div class="flex flex-col w-full h-full gap-10 justify-center items-center">
 			<div class="flex flex-col gap-1 items-center">
-				<h1 class="font-bold text-4xl">Quase lá! Complete seu cadastro</h1>
-				<p class="text-sm text-gray-400">
+				<h1 class="font-bold text-center text-4xl">Quase lá! Complete seu cadastro</h1>
+				<p class="text-sm text-center text-gray-400">
 					Preencha os dados para finalizar e aproveitar seu plano de internet.
 				</p>
 			</div>
-			<div class="flex justify-center items-center gap-10">
+			<div class="flex justify-center gap-3 items-center md:gap-10">
 				<div
-					class="flex gap-1 items-center select-none {currentStep >= 1
+					class="flex text-xs text-center md:text-lg gap-1 items-center select-none {currentStep >=
+					1
 						? 'text-[#F97316]'
 						: ''} {currentStep === 1 ? 'font-semibold' : ''}"
 				>
 					{#if currentStep > 1}
-						<CheckCircle2 class="w-5 h-5 text-[#F97316]" />
+						<CheckCircle2 class="md:w-5 md:h-5 w-4 h-4 text-[#F97316]" />
 					{:else}
 						<p>1</p>
 					{/if}
 					<p>Cadastro Pessoal</p>
 				</div>
-				<Separator class="w-32 border-[0.05rem] {currentStep === 2 ? 'bg-[#F97316]' : ''}" />
+				<Separator class="md:w-32 w-6 border-[0.05rem] {currentStep === 2 ? 'bg-[#F97316]' : ''}" />
 				<div
-					class="flex select-none gap-1 items-center {currentStep >= 2
+					class="flex md:text-lg text-xs select-none gap-1 items-center {currentStep >= 2
 						? 'text-[#F97316]'
 						: ''} {currentStep === 2 ? 'font-semibold' : ''}"
 				>
@@ -57,9 +58,9 @@
 					<p>Endereço</p>
 				</div>
 
-				<Separator class="w-32 border-[0.02rem]" />
+				<Separator class="md:w-32 w-6 border-[0.02rem]" />
 				<div
-					class="flex select-none gap-1 items-center {currentStep === 3
+					class="flex md:text-lg text-xs select-none gap-1 items-center {currentStep === 3
 						? 'text-[#F97316] font-semibold'
 						: ''}"
 				>
@@ -72,25 +73,14 @@
 				<form action="?/novoCadastro" method="post">
 					{#if currentStep === 1}
 						<div class="w-full flex flex-col gap-8 h-full">
-							<div class="flex gap-8">
-								<div class="flex w-full flex-col gap-2">
-									<Label for="name">Nome*</Label>
-									<Input
-										type="text"
-										name="nomeCliente"
-										autocomplete="off"
-										class="focus-visible:ring-[#F97316]"
-									/>
-								</div>
-								<div class="flex w-full flex-col gap-2">
-									<Label for="lastname">Sobrenome*</Label>
-									<Input
-										name="sobrenomeCliente"
-										autocomplete="off"
-										class="focus-visible:ring-[#F97316]"
-										type="text"
-									/>
-								</div>
+							<div class="flex flex-col gap-2">
+								<Label for="name">Nome completo*</Label>
+								<Input
+									type="text"
+									name="fullname"
+									autocomplete="off"
+									class="focus-visible:ring-[#F97316]"
+								/>
 							</div>
 							<div class="flex gap-8">
 								<div class="flex w-full flex-col gap-2">
@@ -216,7 +206,9 @@
 									/>
 								</div>
 								<div class="flex w-full flex-col gap-2">
-									<Label for="reference">Ponto de referência (opcional)</Label>
+									<Label class="flex gap-1" for="reference"
+										>Ponto de referência <span class="md:flex hidden">(opcional)</span></Label
+									>
 									<Input
 										name="pontoReferencia"
 										autocomplete="off"
@@ -291,7 +283,7 @@
 									/>
 								</div>
 								<div class="flex w-full flex-col gap-2">
-									<Label for="code">Possui código promocional?</Label>
+									<Label for="code">Código promocional</Label>
 									<Input
 										name="codigoDesconto"
 										autocomplete="off"
