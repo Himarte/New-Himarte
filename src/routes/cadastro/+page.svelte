@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Button from '$lib/components/ui/button/button.svelte';
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
@@ -7,9 +7,48 @@
 	import { CheckCircle2 } from 'lucide-svelte';
 
 	let currentStep = $state(1);
+	let formData = $state({
+		// Dados pessoais (Step 1)
+		fullname: '',
+		genero: '',
+		dataNascimento: '',
+		telefoneCliente: '',
+		emailCliente: '',
+
+		// Endereço (Step 2)
+		cep: '',
+		cidade: '',
+		rua: '',
+		bairro: '',
+		estado: '',
+		numero: '',
+		complemento: '',
+		pontoReferencia: '',
+
+		// Plano (Step 3)
+		planoSelecionado: '',
+		megasPlano: '',
+		valorPlano: '',
+		metodoPagamento: '',
+		cpf: '',
+		codigoDesconto: ''
+	});
 
 	function nextStep() {
 		if (currentStep < 3) {
+			// Salvar dados do step atual
+			const form = document.querySelector('form');
+			const formElements = form?.elements;
+			if (formElements) {
+				for (let element of formElements) {
+					if (element instanceof HTMLInputElement && element.name) {
+						// Verifica se a propriedade existe no objeto formData antes de atribuir
+						if (element.name in formData) {
+							formData[element.name as keyof typeof formData] = element.value;
+						}
+					}
+				}
+			}
 			currentStep++;
 		}
 	}
@@ -19,30 +58,58 @@
 			currentStep--;
 		}
 	}
+
+	async function handleSubmit(event: Event) {
+		event.preventDefault();
+
+		// Atualizar dados do último step antes de enviar
+		const form = event.target as HTMLFormElement;
+		const formElements = form.elements;
+		if (formElements) {
+			for (let element of formElements) {
+				if (element instanceof HTMLInputElement && element.name) {
+					formData[element.name as keyof typeof formData] = element.value;
+				}
+			}
+		}
+
+		// Criar FormData com todos os dados
+		const submitFormData = new FormData();
+		for (let key in formData) {
+			submitFormData.append(key, formData[key as keyof typeof formData]);
+		}
+
+		// Enviar formulário
+		const response = await fetch('?/novoCadastro', {
+			method: 'POST',
+			body: submitFormData
+		});
+
+		// Tratar resposta...
+	}
 </script>
 
-<div class="h-full pt-20 md:pt-24 md:pb-3 w-full md:w-fit flex items-center justify-center">
+<div class="min-h-full pt-20 md:pt-24 md:pb-3 w-full md:w-fit flex items-center justify-center">
 	<div class="w-full md:w-[100hv] p-6">
-		<div class="flex flex-col w-full h-full gap-10 justify-center items-center">
+		<div class="flex flex-col min-w-full h-full gap-10 justify-center items-center">
 			<div class="flex flex-col gap-1 items-center">
 				<h1 class="font-bold text-center text-4xl">Quase lá! Complete seu cadastro</h1>
 				<p class="text-sm text-center text-gray-400">
 					Preencha os dados para finalizar e aproveitar seu plano de internet.
 				</p>
 			</div>
-			<div class="flex justify-center gap-3 items-center md:gap-10">
+			<div class="flex justify-center gap-2 items-center md:gap-10">
 				<div
-					class="flex text-xs text-center md:text-lg gap-1 items-center select-none {currentStep >=
-					1
+					class="flex text-xs md:text-lg gap-1 items-center select-none {currentStep >= 1
 						? 'text-[#F97316]'
 						: ''} {currentStep === 1 ? 'font-semibold' : ''}"
 				>
 					{#if currentStep > 1}
 						<CheckCircle2 class="md:w-5 md:h-5 w-4 h-4 text-[#F97316]" />
 					{:else}
-						<p>1</p>
+						<p class="md:flex hidden">1</p>
 					{/if}
-					<p>Cadastro Pessoal</p>
+					<p>Dados pessoais</p>
 				</div>
 				<Separator class="md:w-32 w-6 border-[0.05rem] {currentStep === 2 ? 'bg-[#F97316]' : ''}" />
 				<div
@@ -51,9 +118,9 @@
 						: ''} {currentStep === 2 ? 'font-semibold' : ''}"
 				>
 					{#if currentStep > 2}
-						<CheckCircle2 class="w-5 h-5 text-[#F97316]" />
+						<CheckCircle2 class="md:w-5 md:h-5 w-4 h-4 text-[#F97316]" />
 					{:else}
-						<p>2</p>
+						<p class="md:flex hidden">2</p>
 					{/if}
 					<p>Endereço</p>
 				</div>
@@ -64,15 +131,15 @@
 						? 'text-[#F97316] font-semibold'
 						: ''}"
 				>
-					<p>3</p>
-					<p>Escolha seu plano</p>
+					<p class="md:flex hidden">3</p>
+					<p>Nossos planos</p>
 				</div>
 			</div>
 
-			<div class="w-full p-2">
-				<form action="?/novoCadastro" method="post">
+			<div class="min-h-full w-full p-2">
+				<form onsubmit={handleSubmit} action="?/novoCadastro" method="post">
 					{#if currentStep === 1}
-						<div class="w-full flex flex-col gap-8 h-full">
+						<div class="w-full flex flex-col gap-5 md:gap-8 min-h-full">
 							<div class="flex flex-col gap-2">
 								<Label for="name">Nome completo*</Label>
 								<Input
@@ -80,9 +147,10 @@
 									name="fullname"
 									autocomplete="off"
 									class="focus-visible:ring-[#F97316]"
+									bind:value={formData.fullname}
 								/>
 							</div>
-							<div class="flex gap-8">
+							<div class=" flex flex-col md:flex-row gap-5 md:gap-8">
 								<div class="flex w-full flex-col gap-2">
 									<Label for="gender">Gênero*</Label>
 									<Select.Root type="single">
@@ -101,10 +169,11 @@
 										autocomplete="off"
 										class="focus-visible:ring-[#F97316]"
 										type="date"
+										bind:value={formData.dataNascimento}
 									/>
 								</div>
 							</div>
-							<div class="flex gap-8">
+							<div class="flex flex-col md:flex-row gap-5 md:gap-8">
 								<div class="flex w-full flex-col gap-2">
 									<Label for="phone">Telefone*</Label>
 									<Input
@@ -113,6 +182,7 @@
 										class="focus-visible:ring-[#F97316]"
 										placeholder="(51) 999999999"
 										type="tel"
+										bind:value={formData.telefoneCliente}
 									/>
 								</div>
 								<div class="flex w-full flex-col gap-2">
@@ -123,13 +193,14 @@
 										class="focus-visible:ring-[#F97316]"
 										placeholder="luke@himarte.com"
 										type="email"
+										bind:value={formData.emailCliente}
 									/>
 								</div>
 							</div>
 						</div>
 					{:else if currentStep === 2}
 						<div class="w-full flex flex-col gap-8 h-full">
-							<div class="flex gap-8">
+							<div class="flex flex-col md:flex-row gap-5 md:gap-8">
 								<div class="flex w-full flex-col gap-2">
 									<Label for="cep">CEP*</Label>
 									<Input
@@ -138,6 +209,7 @@
 										placeholder="96825-000"
 										type="text"
 										class="focus-visible:ring-[#F97316]"
+										bind:value={formData.cep}
 									/>
 								</div>
 								<div class="flex w-full flex-col gap-2">
@@ -148,10 +220,11 @@
 										placeholder="Santa Cruz do Sul"
 										class="focus-visible:ring-[#F97316]"
 										type="text"
+										bind:value={formData.cidade}
 									/>
 								</div>
 							</div>
-							<div class="flex gap-8">
+							<div class="flex flex-col md:flex-row gap-5 md:gap-8">
 								<div class="flex w-full flex-col gap-2">
 									<Label for="street">Rua/Avenida*</Label>
 									<Input
@@ -160,6 +233,7 @@
 										placeholder=" Rua Manoel Antônio de Barros"
 										class="focus-visible:ring-[#F97316]"
 										type="text"
+										bind:value={formData.rua}
 									/>
 								</div>
 								<div class="flex w-full flex-col gap-2">
@@ -170,10 +244,11 @@
 										placeholder="Centro"
 										class="focus-visible:ring-[#F97316]"
 										type="text"
+										bind:value={formData.bairro}
 									/>
 								</div>
 							</div>
-							<div class="flex gap-8">
+							<div class="flex flex-col md:flex-row gap-5 md:gap-8">
 								<div class="flex w-full flex-col gap-2">
 									<Label for="state">Estado*</Label>
 									<Input
@@ -182,6 +257,7 @@
 										placeholder="RS"
 										class="focus-visible:ring-[#F97316]"
 										type="text"
+										bind:value={formData.estado}
 									/>
 								</div>
 								<div class="flex w-full flex-col gap-2">
@@ -192,10 +268,11 @@
 										placeholder="290"
 										class="focus-visible:ring-[#F97316]"
 										type="number"
+										bind:value={formData.numero}
 									/>
 								</div>
 							</div>
-							<div class="flex gap-8">
+							<div class="flex flex-col md:flex-row gap-5 md:gap-8">
 								<div class="flex w-full flex-col gap-2">
 									<Label for="complement">Complemento*</Label>
 									<Input
@@ -203,6 +280,7 @@
 										autocomplete="off"
 										class="focus-visible:ring-[#F97316]"
 										type="text"
+										bind:value={formData.complemento}
 									/>
 								</div>
 								<div class="flex w-full flex-col gap-2">
@@ -215,17 +293,24 @@
 										placeholder="Himarte"
 										class="focus-visible:ring-[#F97316]"
 										type="text"
+										bind:value={formData.pontoReferencia}
 									/>
 								</div>
 							</div>
 						</div>
 					{:else}
 						<div class="w-full flex flex-col gap-8 h-full">
-							<div class="flex gap-8">
+							<div class="flex flex-col md:flex-row gap-5 md:gap-8">
 								<div class="flex w-full flex-col gap-2">
 									<Label for="plano">Selecione o plano*</Label>
-									<Select.Root type="single">
-										<Select.Trigger class="focus:ring-[#F97316]">Selecione</Select.Trigger>
+									<Select.Root
+										type="single"
+										onValueChange={(value) => (formData.planoSelecionado = value)}
+										value={formData.planoSelecionado}
+									>
+										<Select.Trigger class="focus:ring-[#F97316]">
+											{formData.planoSelecionado || 'Selecione'}
+										</Select.Trigger>
 										<Select.Content>
 											<Select.Item value="saturno">Saturno</Select.Item>
 											<Select.Item value="netuno">Netuno</Select.Item>
@@ -245,10 +330,11 @@
 										autocomplete="off"
 										class="focus-visible:ring-[#F97316]"
 										type="text"
+										bind:value={formData.megasPlano}
 									/>
 								</div>
 							</div>
-							<div class="flex gap-8">
+							<div class="flex flex-col md:flex-row gap-5 md:gap-8">
 								<div class="flex w-full flex-col gap-2">
 									<Label for="value">Valor mensal</Label>
 									<Input
@@ -256,6 +342,7 @@
 										autocomplete="off"
 										class="focus-visible:ring-[#F97316]"
 										type="number"
+										bind:value={formData.valorPlano}
 									/>
 								</div>
 								<div class="flex w-full flex-col gap-2">
@@ -271,7 +358,7 @@
 									</Select.Root>
 								</div>
 							</div>
-							<div class="flex gap-8">
+							<div class="flex flex-col md:flex-row gap-5 md:gap-8">
 								<div class="flex w-full flex-col gap-2">
 									<Label for="cpf">CPF*</Label>
 									<Input
@@ -280,6 +367,7 @@
 										placeholder="999.999.999-99"
 										class="focus-visible:ring-[#F97316]"
 										type="number"
+										bind:value={formData.cpf}
 									/>
 								</div>
 								<div class="flex w-full flex-col gap-2">
@@ -290,6 +378,7 @@
 										class="focus-visible:ring-[#F97316]"
 										placeholder="himarte15"
 										type="text"
+										bind:value={formData.codigoDesconto}
 									/>
 								</div>
 							</div>
