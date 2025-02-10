@@ -1,13 +1,16 @@
 <script lang="ts">
 	import Button from '$lib/components/ui/button/button.svelte';
-	import { Input } from '$lib/components/ui/input';
-	import { Label } from '$lib/components/ui/label';
-	import * as Select from '$lib/components/ui/select';
 	import Separator from '$lib/components/ui/separator/separator.svelte';
 	import { CheckCircle2 } from 'lucide-svelte';
+	import { toast } from 'svelte-sonner';
+	import StepOne from '$lib/components/Cadastro/StepOne.svelte';
+	import StepTwo from '$lib/components/Cadastro/StepTwo.svelte';
+	import StepThree from '$lib/components/Cadastro/StepThree.svelte';
+	import type { FormData } from '$lib/components/Cadastro/types';
 
+	// Estado do formulário usando $state
 	let currentStep = $state(1);
-	let formData = $state({
+	let formData = $state<FormData>({
 		// Dados pessoais (Step 1)
 		fullname: '',
 		genero: '',
@@ -34,385 +37,127 @@
 		codigoDesconto: ''
 	});
 
-	function nextStep() {
-		if (currentStep < 3) {
-			// Salvar dados do step atual
-			const form = document.querySelector('form');
-			const formElements = form?.elements;
-			if (formElements) {
-				for (let element of formElements) {
-					if (element instanceof HTMLInputElement && element.name) {
-						// Verifica se a propriedade existe no objeto formData antes de atribuir
-						if (element.name in formData) {
-							formData[element.name as keyof typeof formData] = element.value;
-						}
-					}
-				}
-			}
-			currentStep++;
+	// Validação por etapa
+	const stepValidation = {
+		1: (data: FormData) => {
+			return (
+				data.fullname &&
+				data.genero &&
+				data.dataNascimento &&
+				data.telefoneCliente &&
+				data.emailCliente
+			);
+		},
+		2: (data: FormData) => {
+			return data.cep && data.cidade && data.rua && data.bairro && data.estado && data.numero;
+		},
+		3: (data: FormData) => {
+			return data.planoSelecionado && data.cpf && data.metodoPagamento;
 		}
-	}
+	};
 
-	function previousStep() {
-		if (currentStep > 1) {
+	// Função para navegar entre as etapas
+	function navigateStep(direction: 'next' | 'prev') {
+		if (direction === 'next' && currentStep < 3) {
+			if (stepValidation[currentStep as keyof typeof stepValidation](formData)) {
+				currentStep++;
+			} else {
+				toast.error('Por favor, preencha todos os campos obrigatórios');
+			}
+		} else if (direction === 'prev' && currentStep > 1) {
 			currentStep--;
 		}
 	}
-
-	async function handleSubmit(event: Event) {
-		event.preventDefault();
-
-		// Atualizar dados do último step antes de enviar
-		const form = event.target as HTMLFormElement;
-		const formElements = form.elements;
-		if (formElements) {
-			for (let element of formElements) {
-				if (element instanceof HTMLInputElement && element.name) {
-					formData[element.name as keyof typeof formData] = element.value;
-				}
-			}
-		}
-
-		// Criar FormData com todos os dados
-		const submitFormData = new FormData();
-		for (let key in formData) {
-			submitFormData.append(key, formData[key as keyof typeof formData]);
-		}
-
-		// Enviar formulário
-		const response = await fetch('?/novoCadastro', {
-			method: 'POST',
-			body: submitFormData
-		});
-
-		// Tratar resposta...
-	}
 </script>
 
-<div class="min-h-full pt-20 md:pt-24 md:pb-3 w-full md:w-fit flex items-center justify-center">
-	<div class="w-full md:w-[100hv] p-6">
-		<div class="flex flex-col min-w-full h-full gap-10 justify-center items-center">
-			<div class="flex flex-col gap-1 items-center">
-				<h1 class="font-bold text-center text-4xl">Quase lá! Complete seu cadastro</h1>
-				<p class="text-sm text-center text-gray-400">
-					Preencha os dados para finalizar e aproveitar seu plano de internet.
-				</p>
-			</div>
-			<div class="flex justify-center gap-2 items-center md:gap-10">
-				<div
-					class="flex text-xs md:text-lg gap-1 items-center select-none {currentStep >= 1
-						? 'text-[#F97316]'
-						: ''} {currentStep === 1 ? 'font-semibold' : ''}"
-				>
-					{#if currentStep > 1}
-						<CheckCircle2 class="md:w-5 md:h-5 w-4 h-4 text-[#F97316]" />
-					{:else}
-						<p class="md:flex hidden">1</p>
-					{/if}
-					<p>Dados pessoais</p>
-				</div>
-				<Separator class="md:w-32 w-6 border-[0.05rem] {currentStep === 2 ? 'bg-[#F97316]' : ''}" />
-				<div
-					class="flex md:text-lg text-xs select-none gap-1 items-center {currentStep >= 2
-						? 'text-[#F97316]'
-						: ''} {currentStep === 2 ? 'font-semibold' : ''}"
-				>
-					{#if currentStep > 2}
-						<CheckCircle2 class="md:w-5 md:h-5 w-4 h-4 text-[#F97316]" />
-					{:else}
-						<p class="md:flex hidden">2</p>
-					{/if}
-					<p>Endereço</p>
-				</div>
-
-				<Separator class="md:w-32 w-6 border-[0.02rem]" />
-				<div
-					class="flex md:text-lg text-xs select-none gap-1 items-center {currentStep === 3
-						? 'text-[#F97316] font-semibold'
-						: ''}"
-				>
-					<p class="md:flex hidden">3</p>
-					<p>Nossos planos</p>
-				</div>
-			</div>
-
-			<div class="min-h-full w-full p-2">
-				<form onsubmit={handleSubmit} action="?/novoCadastro" method="post">
-					{#if currentStep === 1}
-						<div class="w-full flex flex-col gap-5 md:gap-8 min-h-full">
-							<div class="flex flex-col gap-2">
-								<Label for="name">Nome completo*</Label>
-								<Input
-									type="text"
-									name="fullname"
-									autocomplete="off"
-									class="focus-visible:ring-[#F97316]"
-									bind:value={formData.fullname}
-								/>
-							</div>
-							<div class=" flex flex-col md:flex-row gap-5 md:gap-8">
-								<div class="flex w-full flex-col gap-2">
-									<Label for="gender">Gênero*</Label>
-									<Select.Root type="single">
-										<Select.Trigger class="focus:ring-[#F97316]">Selecione</Select.Trigger>
-										<Select.Content>
-											<Select.Item value="light">Homem</Select.Item>
-											<Select.Item value="dark">Mulher</Select.Item>
-											<Select.Item value="system">Outro</Select.Item>
-										</Select.Content>
-									</Select.Root>
-								</div>
-								<div class="flex w-full flex-col gap-2">
-									<Label for="date">Data de nascimento*</Label>
-									<Input
-										name="dataNascimento"
-										autocomplete="off"
-										class="focus-visible:ring-[#F97316]"
-										type="date"
-										bind:value={formData.dataNascimento}
-									/>
-								</div>
-							</div>
-							<div class="flex flex-col md:flex-row gap-5 md:gap-8">
-								<div class="flex w-full flex-col gap-2">
-									<Label for="phone">Telefone*</Label>
-									<Input
-										name="telefoneCliente"
-										autocomplete="off"
-										class="focus-visible:ring-[#F97316]"
-										placeholder="(51) 999999999"
-										type="tel"
-										bind:value={formData.telefoneCliente}
-									/>
-								</div>
-								<div class="flex w-full flex-col gap-2">
-									<Label for="email">E-mail*</Label>
-									<Input
-										name="emailCliente"
-										autocomplete="off"
-										class="focus-visible:ring-[#F97316]"
-										placeholder="luke@himarte.com"
-										type="email"
-										bind:value={formData.emailCliente}
-									/>
-								</div>
-							</div>
-						</div>
-					{:else if currentStep === 2}
-						<div class="w-full flex flex-col gap-8 h-full">
-							<div class="flex flex-col md:flex-row gap-5 md:gap-8">
-								<div class="flex w-full flex-col gap-2">
-									<Label for="cep">CEP*</Label>
-									<Input
-										name="cep"
-										autocomplete="off"
-										placeholder="96825-000"
-										type="text"
-										class="focus-visible:ring-[#F97316]"
-										bind:value={formData.cep}
-									/>
-								</div>
-								<div class="flex w-full flex-col gap-2">
-									<Label for="city">Cidade*</Label>
-									<Input
-										name="cidade"
-										autocomplete="off"
-										placeholder="Santa Cruz do Sul"
-										class="focus-visible:ring-[#F97316]"
-										type="text"
-										bind:value={formData.cidade}
-									/>
-								</div>
-							</div>
-							<div class="flex flex-col md:flex-row gap-5 md:gap-8">
-								<div class="flex w-full flex-col gap-2">
-									<Label for="street">Rua/Avenida*</Label>
-									<Input
-										name="rua"
-										autocomplete="off"
-										placeholder=" Rua Manoel Antônio de Barros"
-										class="focus-visible:ring-[#F97316]"
-										type="text"
-										bind:value={formData.rua}
-									/>
-								</div>
-								<div class="flex w-full flex-col gap-2">
-									<Label for="district">Bairro*</Label>
-									<Input
-										name="bairro"
-										autocomplete="off"
-										placeholder="Centro"
-										class="focus-visible:ring-[#F97316]"
-										type="text"
-										bind:value={formData.bairro}
-									/>
-								</div>
-							</div>
-							<div class="flex flex-col md:flex-row gap-5 md:gap-8">
-								<div class="flex w-full flex-col gap-2">
-									<Label for="state">Estado*</Label>
-									<Input
-										name="estado"
-										autocomplete="off"
-										placeholder="RS"
-										class="focus-visible:ring-[#F97316]"
-										type="text"
-										bind:value={formData.estado}
-									/>
-								</div>
-								<div class="flex w-full flex-col gap-2">
-									<Label for="number">Número*</Label>
-									<Input
-										name="numero"
-										autocomplete="off"
-										placeholder="290"
-										class="focus-visible:ring-[#F97316]"
-										type="number"
-										bind:value={formData.numero}
-									/>
-								</div>
-							</div>
-							<div class="flex flex-col md:flex-row gap-5 md:gap-8">
-								<div class="flex w-full flex-col gap-2">
-									<Label for="complement">Complemento*</Label>
-									<Input
-										name="complemento"
-										autocomplete="off"
-										class="focus-visible:ring-[#F97316]"
-										type="text"
-										bind:value={formData.complemento}
-									/>
-								</div>
-								<div class="flex w-full flex-col gap-2">
-									<Label class="flex gap-1" for="reference"
-										>Ponto de referência <span class="md:flex hidden">(opcional)</span></Label
-									>
-									<Input
-										name="pontoReferencia"
-										autocomplete="off"
-										placeholder="Himarte"
-										class="focus-visible:ring-[#F97316]"
-										type="text"
-										bind:value={formData.pontoReferencia}
-									/>
-								</div>
-							</div>
-						</div>
-					{:else}
-						<div class="w-full flex flex-col gap-8 h-full">
-							<div class="flex flex-col md:flex-row gap-5 md:gap-8">
-								<div class="flex w-full flex-col gap-2">
-									<Label for="plano">Selecione o plano*</Label>
-									<Select.Root
-										type="single"
-										onValueChange={(value) => (formData.planoSelecionado = value)}
-										value={formData.planoSelecionado}
-									>
-										<Select.Trigger class="focus:ring-[#F97316]">
-											{formData.planoSelecionado || 'Selecione'}
-										</Select.Trigger>
-										<Select.Content>
-											<Select.Item value="saturno">Saturno</Select.Item>
-											<Select.Item value="netuno">Netuno</Select.Item>
-											<Select.Item value="marte">Marte</Select.Item>
-											<Select.Item value="venus">Vênus</Select.Item>
-											<Select.Item value="urano">Urano</Select.Item>
-											<Select.Item value="jupiter">Júpiter</Select.Item>
-											<Select.Item value="plutao">Plutão</Select.Item>
-											<Select.Item value="mercurio">Mercúrio</Select.Item>
-										</Select.Content>
-									</Select.Root>
-								</div>
-								<div class="flex w-full flex-col gap-2">
-									<Label for="megas">Megas</Label>
-									<Input
-										name="megasPlano"
-										autocomplete="off"
-										class="focus-visible:ring-[#F97316]"
-										type="text"
-										bind:value={formData.megasPlano}
-									/>
-								</div>
-							</div>
-							<div class="flex flex-col md:flex-row gap-5 md:gap-8">
-								<div class="flex w-full flex-col gap-2">
-									<Label for="value">Valor mensal</Label>
-									<Input
-										name="valorPlano"
-										autocomplete="off"
-										class="focus-visible:ring-[#F97316]"
-										type="number"
-										bind:value={formData.valorPlano}
-									/>
-								</div>
-								<div class="flex w-full flex-col gap-2">
-									<Label>Método de pagamento*</Label>
-									<Select.Root type="single">
-										<Select.Trigger class="focus:ring-[#F97316]">Selecione</Select.Trigger>
-										<Select.Content>
-											<Select.Item value="boleto">Boleto</Select.Item>
-											<Select.Item value="pix">Pix</Select.Item>
-											<Select.Item value="credito">Cartão de crédito</Select.Item>
-											<Select.Item value="debito">Cartão de débito</Select.Item>
-										</Select.Content>
-									</Select.Root>
-								</div>
-							</div>
-							<div class="flex flex-col md:flex-row gap-5 md:gap-8">
-								<div class="flex w-full flex-col gap-2">
-									<Label for="cpf">CPF*</Label>
-									<Input
-										name="cpf"
-										autocomplete="off"
-										placeholder="999.999.999-99"
-										class="focus-visible:ring-[#F97316]"
-										type="number"
-										bind:value={formData.cpf}
-									/>
-								</div>
-								<div class="flex w-full flex-col gap-2">
-									<Label for="code">Código promocional</Label>
-									<Input
-										name="codigoDesconto"
-										autocomplete="off"
-										class="focus-visible:ring-[#F97316]"
-										placeholder="himarte15"
-										type="text"
-										bind:value={formData.codigoDesconto}
-									/>
-								</div>
-							</div>
-						</div>
-					{/if}
-
-					<div class="flex justify-between mt-5">
-						<Button
-							class="px-4 py-2 bg-gray-200 hover:bg-gray-300"
-							onclick={previousStep}
-							disabled={currentStep === 1}
-						>
-							Anterior
-						</Button>
-						{#if currentStep < 3}
-							<Button
-								class="px-4 py-2 bg-orange-600 text-white font-semibold hover:bg-orange-700"
-								onclick={nextStep}
-							>
-								Próximo
-							</Button>
-						{:else}
-							<Button
-								type="submit"
-								formaction="?/novoCadastro"
-								class="px-4 py-2 bg-orange-600 text-white font-semibold hover:bg-orange-700"
-								onclick={nextStep}
-							>
-								Finalizar
-							</Button>
-						{/if}
-					</div>
-				</form>
-			</div>
+<div class="min-h-full w-full flex items-center justify-center pt-28">
+	<form action="?/novoCadastro" method="post" class="w-fit flex h-full flex-col gap-7">
+		<div class="flex flex-col gap-1 items-center">
+			<h1 class="font-bold text-center text-4xl">Quase lá! Complete seu cadastro</h1>
+			<p class="text-sm text-center text-gray-400">
+				Preencha os dados para finalizar e aproveitar seu plano de internet.
+			</p>
 		</div>
-	</div>
+
+		<!-- Indicador de progresso -->
+		<div class="flex items-center justify-center w-full gap-2">
+			{#each ['Dados Pessoais', 'Endereço', 'Plano'] as step, index}
+				{@const stepNum = index + 1}
+				<div class="flex items-center gap-2">
+					<!-- Número/Ícone e Label do Step -->
+					<div
+						class="flex items-center transition-colors duration-200 {currentStep >= stepNum
+							? 'text-orange-500'
+							: 'text-gray-400'}
+							{currentStep === stepNum ? 'font-semibold' : ''}"
+					>
+						{#if currentStep > stepNum}
+							<CheckCircle2 class="h-4 w-4 md:h-5 md:w-5 text-orange-500 transition-all" />
+						{:else}
+							<span
+								class="hidden md:flex h-6 w-6 items-center justify-center rounded-full border border-current"
+							>
+								{stepNum}
+							</span>
+						{/if}
+
+						<span class="ml-2 text-base">
+							{step}
+						</span>
+					</div>
+
+					<!-- Separador entre os steps -->
+					{#if stepNum < 3}
+						<Separator
+							class="w-32 border-[0.05rem] transition-colors duration-200
+								{currentStep === stepNum + 1 ? 'bg-orange-300' : 'bg-gray-200'}"
+						/>
+					{/if}
+				</div>
+			{/each}
+		</div>
+
+		<!-- Conteúdo do formulário -->
+		<div class="min-h-96 w-full">
+			{#if currentStep === 1}
+				<StepOne bind:formData />
+			{:else if currentStep === 2}
+				<StepTwo bind:formData />
+			{:else}
+				<StepThree bind:formData />
+			{/if}
+		</div>
+
+		<!-- Botões de navegação -->
+		<div class="flex justify-between w-full">
+			<Button
+				type="button"
+				variant="secondary"
+				class="w-28"
+				onclick={() => navigateStep('prev')}
+				disabled={currentStep === 1}
+			>
+				Voltar
+			</Button>
+
+			{#if currentStep < 3}
+				<Button
+					type="button"
+					variant="default"
+					class="w-28 bg-orange-600 text-white font-semibold hover:bg-orange-700"
+					onclick={() => navigateStep('next')}
+				>
+					Continuar
+				</Button>
+			{:else}
+				<Button
+					type="submit"
+					variant="default"
+					class="w-28 bg-orange-600 text-white font-semibold hover:bg-orange-700"
+				>
+					Finalizar
+				</Button>
+			{/if}
+		</div>
+	</form>
 </div>
