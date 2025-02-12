@@ -3,6 +3,7 @@
 	import Separator from '$lib/components/ui/separator/separator.svelte';
 	import { CheckCircle2 } from 'lucide-svelte';
 	import { toast } from 'svelte-sonner';
+	import { enhance } from '$app/forms';
 	import StepOne from '$lib/components/Cadastro/StepOne.svelte';
 	import StepTwo from '$lib/components/Cadastro/StepTwo.svelte';
 	import StepThree from '$lib/components/Cadastro/StepThree.svelte';
@@ -12,10 +13,10 @@
 	let currentStep = $state(1);
 	let formData = $state<FormData>({
 		// Dados pessoais (Step 1)
-		fullname: '',
+		fullName: '',
 		genero: '',
 		dataNascimento: '',
-		telefoneCliente: '',
+		telefone: '',
 		emailCliente: '',
 
 		// Endereço (Step 2)
@@ -29,30 +30,32 @@
 		pontoReferencia: '',
 
 		// Plano (Step 3)
-		planoSelecionado: '',
-		megasPlano: '',
+		planoNome: '',
+		planoMegas: '',
 		valorPlano: '',
-		metodoPagamento: '',
+		planoModelo: 'CPF',
 		cpf: '',
-		codigoDesconto: ''
+		cnpj: '',
+		promoCode: ''
 	});
 
 	// Validação por etapa
 	const stepValidation = {
 		1: (data: FormData) => {
 			return (
-				data.fullname &&
-				data.genero &&
-				data.dataNascimento &&
-				data.telefoneCliente &&
-				data.emailCliente
+				data.fullName && data.genero && data.dataNascimento && data.telefone && data.emailCliente
 			);
 		},
 		2: (data: FormData) => {
 			return data.cep && data.cidade && data.rua && data.bairro && data.estado && data.numero;
 		},
 		3: (data: FormData) => {
-			return data.planoSelecionado && data.cpf && data.metodoPagamento;
+			return (
+				data.planoNome &&
+				data.planoMegas &&
+				data.planoModelo &&
+				((data.planoModelo === 'CPF' && data.cpf) || (data.planoModelo === 'CNPJ' && data.cnpj))
+			);
 		}
 	};
 
@@ -68,10 +71,70 @@
 			currentStep--;
 		}
 	}
+
+	let isSubmitting = $state(false);
 </script>
 
 <div class="min-h-full w-full flex items-center justify-center pt-28">
-	<form action="?/novoCadastro" method="post" class="w-fit flex h-full flex-col gap-7">
+	<form
+		method="POST"
+		action="?/novoCadastro"
+		class="w-fit flex h-full flex-col gap-7"
+		use:enhance={({ formData: submitFormData, cancel }) => {
+			// Validação antes de enviar
+			if (!stepValidation[3](formData)) {
+				toast.error('Por favor, preencha todos os campos obrigatórios');
+				cancel();
+				return;
+			}
+
+			isSubmitting = true;
+			toast.loading('Enviando cadastro...');
+
+			// Adiciona os dados do formData ao submitFormData
+			Object.entries(formData).forEach(([key, value]) => {
+				if (value) {
+					submitFormData.set(key, value.toString());
+				}
+			});
+
+			return async ({ result }) => {
+				isSubmitting = false;
+
+				if (result.type === 'success') {
+					toast.success('Cadastro realizado com sucesso!');
+					// Limpa o formulário
+					formData = {
+						fullName: '',
+						genero: '',
+						dataNascimento: '',
+						telefone: '',
+						emailCliente: '',
+						cep: '',
+						cidade: '',
+						rua: '',
+						bairro: '',
+						estado: '',
+						numero: '',
+						complemento: '',
+						pontoReferencia: '',
+						planoNome: '',
+						planoMegas: '',
+						valorPlano: '',
+						planoModelo: 'CPF',
+						cpf: '',
+						cnpj: '',
+						promoCode: ''
+					};
+					currentStep = 1;
+				} else if (result.type === 'failure') {
+					toast.error(result.data?.mensagem || 'Erro ao processar o cadastro');
+				} else {
+					toast.error('Erro ao processar o cadastro');
+				}
+			};
+		}}
+	>
 		<div class="flex flex-col gap-1 items-center">
 			<h1 class="font-bold text-center text-4xl">Quase lá! Complete seu cadastro</h1>
 			<p class="text-sm text-center text-gray-400">
@@ -135,7 +198,7 @@
 				variant="secondary"
 				class="w-28"
 				onclick={() => navigateStep('prev')}
-				disabled={currentStep === 1}
+				disabled={currentStep === 1 || isSubmitting}
 			>
 				Voltar
 			</Button>
@@ -146,6 +209,7 @@
 					variant="default"
 					class="w-28 bg-orange-600 text-white font-semibold hover:bg-orange-700"
 					onclick={() => navigateStep('next')}
+					disabled={isSubmitting}
 				>
 					Continuar
 				</Button>
@@ -154,8 +218,9 @@
 					type="submit"
 					variant="default"
 					class="w-28 bg-orange-600 text-white font-semibold hover:bg-orange-700"
+					disabled={isSubmitting}
 				>
-					Finalizar
+					{isSubmitting ? 'Enviando...' : 'Finalizar'}
 				</Button>
 			{/if}
 		</div>

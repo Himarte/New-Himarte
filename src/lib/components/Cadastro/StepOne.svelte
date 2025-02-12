@@ -2,11 +2,11 @@
 	import { Label } from '$lib/components/ui/label';
 	import { Input } from '$lib/components/ui/input';
 	import * as Select from '$lib/components/ui/select';
-	import type { FormData } from './types';
+	import type { FormData, Genero } from './types';
 
 	export let formData: FormData;
 
-	const generos = [
+	const generos: { value: Genero; label: string }[] = [
 		{ value: 'masculino', label: 'Masculino' },
 		{ value: 'feminino', label: 'Feminino' },
 		{ value: 'outro', label: 'Outro' }
@@ -42,11 +42,14 @@
 	function handleTelefoneInput(event: Event) {
 		const input = event.target as HTMLInputElement;
 		const valorFormatado = formatarTelefone(input.value);
-		formData.telefoneCliente = valorFormatado;
+		formData.telefone = valorFormatado;
 
 		// Atualiza o valor do input para manter o cursor na posição correta
 		input.value = valorFormatado;
 	}
+
+	// Validação de data máxima (hoje)
+	const hoje = new Date().toISOString().split('T')[0];
 </script>
 
 <div class="w-full flex flex-col gap-5 h-full">
@@ -54,11 +57,11 @@
 		<Label for="name">Nome completo*</Label>
 		<Input
 			type="text"
-			name="fullname"
+			name="fullName"
 			autocomplete="off"
 			placeholder="Marcos Silva"
 			class="focus-visible:ring-[#F97316] placeholder:text-sm"
-			bind:value={formData.fullname}
+			bind:value={formData.fullName}
 		/>
 	</div>
 
@@ -67,11 +70,11 @@
 			<Label for="telefone">Telefone*</Label>
 			<Input
 				type="tel"
-				name="telefoneCliente"
+				name="telefone"
 				autocomplete="off"
 				placeholder="(51) 99999-9999"
 				class="focus-visible:ring-[#F97316] placeholder:text-sm"
-				value={formData.telefoneCliente}
+				value={formData.telefone}
 				on:input={handleTelefoneInput}
 			/>
 		</div>
@@ -79,7 +82,7 @@
 			<Label for="genero">Gênero*</Label>
 			<Select.Root
 				type="single"
-				onValueChange={(value) => (formData.genero = value)}
+				onValueChange={(value) => (formData.genero = value as Genero)}
 				value={formData.genero}
 			>
 				<Select.Trigger class="focus:ring-[#F97316]">
@@ -99,7 +102,7 @@
 				type="date"
 				name="dataNascimento"
 				autocomplete="off"
-				placeholder="01/01/2000"
+				max={hoje}
 				class="focus-visible:ring-[#F97316] placeholder:text-sm"
 				bind:value={formData.dataNascimento}
 			/>

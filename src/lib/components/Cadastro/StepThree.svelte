@@ -2,7 +2,7 @@
 	import { Label } from '$lib/components/ui/label';
 	import { Input } from '$lib/components/ui/input';
 	import * as Select from '$lib/components/ui/select';
-	import type { FormData } from './types';
+	import type { FormData, PlanoModelo } from './types';
 
 	export let formData: FormData;
 
@@ -17,12 +17,27 @@
 		{ value: 'mercurio', label: 'Mercúrio', megas: '50', valor: '50,00' }
 	];
 
-	const metodoPagamento = [
-		{ value: 'boleto', label: 'Boleto' },
-		{ value: 'pix', label: 'Pix' },
-		{ value: 'credito', label: 'Cartão de crédito' },
-		{ value: 'debito', label: 'Cartão de débito' }
-	];
+	function formatarCPF(cpf: string): string {
+		const apenasNumeros = cpf.replace(/\D/g, '').slice(0, 11);
+		return apenasNumeros.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+	}
+
+	function formatarCNPJ(cnpj: string): string {
+		const apenasNumeros = cnpj.replace(/\D/g, '').slice(0, 14);
+		return apenasNumeros.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
+	}
+
+	function handleCPFInput(event: Event) {
+		const input = event.target as HTMLInputElement;
+		formData.cpf = formatarCPF(input.value);
+		input.value = formData.cpf;
+	}
+
+	function handleCNPJInput(event: Event) {
+		const input = event.target as HTMLInputElement;
+		formData.cnpj = formatarCNPJ(input.value);
+		input.value = formData.cnpj;
+	}
 </script>
 
 <div class="w-full flex flex-col gap-8 h-full">
@@ -31,11 +46,18 @@
 			<Label for="plano">Selecione o plano*</Label>
 			<Select.Root
 				type="single"
-				onValueChange={(value) => (formData.planoSelecionado = value)}
-				value={formData.planoSelecionado}
+				onValueChange={(value) => {
+					const planoSelecionado = planos.find((p) => p.value === value);
+					if (planoSelecionado) {
+						formData.planoNome = planoSelecionado.label;
+						formData.planoMegas = planoSelecionado.megas;
+						formData.valorPlano = planoSelecionado.valor;
+					}
+				}}
+				value={planos.find((p) => p.label === formData.planoNome)?.value || ''}
 			>
 				<Select.Trigger class="focus:ring-[#F97316]">
-					{formData.planoSelecionado || 'Selecione'}
+					{formData.planoNome || 'Selecione'}
 				</Select.Trigger>
 				<Select.Content>
 					{#each planos as plano}
@@ -47,11 +69,12 @@
 		<div class="flex w-full flex-col gap-2">
 			<Label for="megas">Megas</Label>
 			<Input
-				name="megasPlano"
+				name="planoMegas"
 				autocomplete="off"
 				class="focus-visible:ring-[#F97316]"
 				type="text"
-				bind:value={formData.megasPlano}
+				bind:value={formData.planoMegas}
+				readonly
 			/>
 		</div>
 	</div>
@@ -63,50 +86,66 @@
 				name="valorPlano"
 				autocomplete="off"
 				class="focus-visible:ring-[#F97316]"
-				type="number"
+				type="text"
 				bind:value={formData.valorPlano}
+				readonly
 			/>
 		</div>
 		<div class="flex w-full flex-col gap-2">
-			<Label>Método de pagamento*</Label>
+			<Label>Tipo de Pessoa*</Label>
 			<Select.Root
 				type="single"
-				onValueChange={(value) => (formData.metodoPagamento = value)}
-				value={formData.metodoPagamento}
+				onValueChange={(value) => (formData.planoModelo = value as PlanoModelo)}
+				value={formData.planoModelo}
 			>
 				<Select.Trigger class="focus:ring-[#F97316]">
-					{formData.metodoPagamento || 'Selecione'}
+					{formData.planoModelo || 'Selecione'}
 				</Select.Trigger>
 				<Select.Content>
-					{#each metodoPagamento as metodo}
-						<Select.Item value={metodo.value}>{metodo.label}</Select.Item>
-					{/each}
+					<Select.Item value="CPF">Pessoa Física (CPF)</Select.Item>
+					<Select.Item value="CNPJ">Pessoa Jurídica (CNPJ)</Select.Item>
 				</Select.Content>
 			</Select.Root>
 		</div>
 	</div>
 
 	<div class="flex flex-col md:flex-row gap-5 md:gap-8">
-		<div class="flex w-full flex-col gap-2">
-			<Label for="cpf">CPF*</Label>
-			<Input
-				name="cpf"
-				autocomplete="off"
-				placeholder="999.999.999-99"
-				class="focus-visible:ring-[#F97316]"
-				type="text"
-				bind:value={formData.cpf}
-			/>
-		</div>
+		{#if formData.planoModelo === 'CPF'}
+			<div class="flex w-full flex-col gap-2">
+				<Label for="cpf">CPF*</Label>
+				<Input
+					name="cpf"
+					autocomplete="off"
+					placeholder="999.999.999-99"
+					class="focus-visible:ring-[#F97316]"
+					type="text"
+					value={formData.cpf}
+					on:input={handleCPFInput}
+				/>
+			</div>
+		{:else if formData.planoModelo === 'CNPJ'}
+			<div class="flex w-full flex-col gap-2">
+				<Label for="cnpj">CNPJ*</Label>
+				<Input
+					name="cnpj"
+					autocomplete="off"
+					placeholder="99.999.999/9999-99"
+					class="focus-visible:ring-[#F97316]"
+					type="text"
+					value={formData.cnpj}
+					on:input={handleCNPJInput}
+				/>
+			</div>
+		{/if}
 		<div class="flex w-full flex-col gap-2">
 			<Label for="code">Código promocional</Label>
 			<Input
-				name="codigoDesconto"
+				name="promoCode"
 				autocomplete="off"
 				class="focus-visible:ring-[#F97316]"
 				placeholder="himarte15"
 				type="text"
-				bind:value={formData.codigoDesconto}
+				bind:value={formData.promoCode}
 			/>
 		</div>
 	</div>

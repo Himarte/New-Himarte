@@ -1,9 +1,12 @@
+export type Genero = 'masculino' | 'feminino' | 'outro';
+export type PlanoModelo = 'CPF' | 'CNPJ';
+
 export type FormData = {
 	// Dados pessoais
-	fullname: string;
-	genero: string;
+	fullName: string;
+	genero: Genero | '';
 	dataNascimento: string;
-	telefoneCliente: string;
+	telefone: string;
 	emailCliente: string;
 
 	// Endereço
@@ -17,10 +20,11 @@ export type FormData = {
 	pontoReferencia: string;
 
 	// Plano
-	planoSelecionado: string;
-	megasPlano: string;
+	planoNome: string;
+	planoMegas: string;
 	valorPlano: string;
-	metodoPagamento: string;
+	planoModelo: PlanoModelo;
 	cpf: string;
-	codigoDesconto: string;
+	cnpj: string;
+	promoCode: string;
 };
