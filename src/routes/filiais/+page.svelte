@@ -12,7 +12,7 @@
 			schedule: 'Segunda a Sexta: 08:30 - 12:00 | 13:30 - 18:00',
 			days: 'Segunda a Sexta',
 			schedule2: 'Sábado: 08:00 - 12:00',
-			link: 'https://maps.app.goo.gl/gcn9whgELU6MuAuR7'
+			link: 'https://maps.app.goo.gl/A2hcjcEgCabZYTah7'
 		},
 		{
 			url: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3465.1010305099617!2d-52.5019599!3d-29.7168326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x951cbacfad314b5f%3A0x21c08751489fdd15!2sR.%20Cl%C3%A1udio%20Manoel%2C%2034%20-%20Centro%2C%20Vera%20Cruz%20-%20RS%2C%2096880-000!5e0!3m2!1spt-BR!2sbr!4v1704916342959!5m2!1spt-BR!2sbr',
