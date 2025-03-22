@@ -5,15 +5,6 @@
 	import Urano from '$lib/img/planetas/urano.webp';
 	import Jupiter from '$lib/img/planetas/jupiter.webp';
 
-	let { blipClient } = $props();
-
-	const openChat = (item: any) => {
-		blipClient.toogleChat();
-		blipClient.sendMessage({
-			type: 'text/plain',
-			content: `Olá, gostaria de saber mais sobre o plano ${item.plano} de Fibra dedicada.`
-		});
-	};
 
 	const items = [
 		{
@@ -83,9 +74,12 @@
 					<span class="text-2xl font-extrabold tracking-tight">{item.precoCentavos}</span>
 					<span class="mx-1 text-xl text-gray-400">/Mês*</span>
 				</div>
-				<button onclick={() => openChat(item)} class="card-button overflow-visible text-background"
-					>Saiba Mais</button
+				<a 
+					href={`/cadastro?plano=${item.plano.toLowerCase()}&tipo=CPF&megas=${item.megas}&valor=${item.precoReais},${item.precoCentavos}`} 
+					class="card-button justify-center flex items-center text-background no-underline hover:no-underline"
 				>
+					Saiba Mais
+				</a>
 			</div>
 		{/each}
 	</div>

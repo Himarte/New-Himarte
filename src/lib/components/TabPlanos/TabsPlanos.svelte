@@ -6,7 +6,6 @@
 	import CardsCPF2 from '$lib/components/TabPlanos/CPF2/CardsCPF2.svelte';
 	import CardsCPF3 from '$lib/components/TabPlanos/CPF3/CardsCPF3.svelte';
 	import CNPJ from '$lib/components/TabPlanos/CNPJ/CNPJ.svelte';
-	let { blipClient } = $props();
 </script>
 
 <Tabs.Root
@@ -39,10 +38,10 @@
 				faça downloads sem interrupções.
 			</p>
 		</div>
-		<CardsCPF1 {blipClient} />
+		<CardsCPF1 />
 
-		<CardsCPF2 {blipClient} />
-		<CardsCPF3 {blipClient} />
+		<CardsCPF2 />
+		<CardsCPF3 />
 		<div class="flex items-center w-full text-center justify-center pt-8">
 			<h5 class=" font-inter text-sm text-gray-500">
 				*Os valores são válidos apenas para pagamentos realizados até a data de vencimento.
@@ -59,6 +58,6 @@
 				comunicação e aumentando a eficiência nos processos digitais do seu dia a dia.
 			</p>
 		</div>
-		<CNPJ {blipClient} /></Tabs.Content
-	>
+		<CNPJ />
+	</Tabs.Content>
 </Tabs.Root>

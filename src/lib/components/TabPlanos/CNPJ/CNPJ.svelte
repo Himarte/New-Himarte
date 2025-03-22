@@ -8,16 +8,6 @@
 	import Urano from '$lib/img/planetas/urano.webp';
 	import Jupiter from '$lib/img/planetas/jupiter.webp';
 
-	let { blipClient } = $props();
-
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const openChat = (item: any) => {
-		blipClient.toogleChat();
-		blipClient.sendMessage({
-			type: 'text/plain',
-			content: `Olá, gostaria de saber mais sobre o plano ${item.plano} de Fibra profissional.`
-		});
-	};
 
 	const items = [
 		{
@@ -94,9 +84,12 @@
 					{/each}
 				</ul>
 
-				<button onclick={() => openChat(item)} class="card-button text-background"
-					>Saiba Mais</button
+				<a 
+					href={`/cadastro?plano=${item.plano.toLowerCase()}&tipo=CNPJ&megas=${item.megas || 'ilimitado'}`} 
+					class="card-button justify-center flex items-center text-background no-underline hover:no-underline"
 				>
+					Saiba Mais
+				</a>
 			</div>
 		{/each}
 	</div>
@@ -133,9 +126,12 @@
 					{/each}
 				</ul>
 
-				<button onclick={() => openChat(item)} class="card-button text-background"
-					>Saiba Mais</button
+				<a 
+					href={`/cadastro?plano=${item.plano.toLowerCase()}&tipo=CNPJ&megas=${item.megas || 'ilimitado'}`} 
+					class="card-button justify-center flex items-center text-background no-underline hover:no-underline"
 				>
+					Saiba Mais
+				</a>
 			</div>
 		{/each}
 	</div>

@@ -30,7 +30,7 @@
 
 <MenuHome />
 
-<TabsPlanos {blipClient} />
+<TabsPlanos />
 
 <section
 	class="relative mt-10 flex min-h-[22rem] w-full flex-col-reverse items-center justify-center overflow-hidden md:mt-16 md:w-2/3 md:flex-row"

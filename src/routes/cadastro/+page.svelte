@@ -47,6 +47,11 @@
 			);
 		},
 		2: (data: FormData) => {
+			// Será substituída pela função personalizada do StepTwo
+			if (validarStep2) {
+				return validarStep2();
+			}
+			// Fallback para a validação padrão
 			return data.cep && data.cidade && data.rua && data.bairro && data.estado && data.numero;
 		},
 		3: (data: FormData) => {
@@ -58,6 +63,14 @@
 			);
 		}
 	};
+
+	// Função de validação personalizada do StepTwo
+	let validarStep2: (() => boolean) | null = $state(null);
+	
+	// Manipulador para receber a função de validação
+	function handleValidationChange(detail: { validarStep2: () => boolean }) {
+		validarStep2 = detail.validarStep2;
+	}
 
 	// Função para navegar entre as etapas
 	function navigateStep(direction: 'next' | 'prev') {
@@ -128,7 +141,8 @@
 					};
 					currentStep = 1;
 				} else if (result.type === 'failure') {
-					toast.error(result.data?.mensagem || 'Erro ao processar o cadastro');
+					const mensagemErro = result.data?.mensagem ? result.data.mensagem.toString() : 'Erro ao processar o cadastro';
+					toast.error(mensagemErro);
 				} else {
 					toast.error('Erro ao processar o cadastro');
 				}
@@ -144,7 +158,7 @@
 
 		<!-- Indicador de progresso -->
 		<div class="flex items-center justify-center w-full gap-2">
-			{#each ['Dados Pessoais', 'Endereço', 'Plano'] as step, index}
+			{#each ['Dados Pessoais', 'Endereço', 'Dados Contratuais'] as step, index}
 				{@const stepNum = index + 1}
 				<div class="flex items-center gap-2">
 					<!-- Número/Ícone e Label do Step -->
@@ -185,7 +199,10 @@
 			{#if currentStep === 1}
 				<StepOne bind:formData />
 			{:else if currentStep === 2}
-				<StepTwo bind:formData />
+				<StepTwo 
+					bind:formData
+					validationChange={handleValidationChange} 
+				/>
 			{:else}
 				<StepThree bind:formData />
 			{/if}
