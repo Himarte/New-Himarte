@@ -5,25 +5,16 @@
 	import { browser } from '$app/environment';
 	import { toast } from 'svelte-sonner';
 
-	let { 
-		formData = $bindable(),
-		validationChange
-	} = $props<{ 
-		formData: FormData,
-		validationChange: (detail: { validarStep2: () => boolean }) => void
+	let { formData = $bindable(), validationChange } = $props<{
+		formData: FormData;
+		validationChange: (detail: { validarStep2: () => boolean }) => void;
 	}>();
-	
-	// Estados para controlar a visibilidade e status do formulário
+
+	// Estados reativos com runes
 	let cepConsultado = $state(false);
 	let carregando = $state(false);
 
-	// Função para formatar o CEP (99999-999)
-	function formatarCEP(cep: string): string {
-		const apenasNumeros = cep.replace(/\D/g, '').slice(0, 8);
-		return apenasNumeros.replace(/(\d{5})(\d{3})/, '$1-$2');
-	}
-
-	// Mapa de campos obrigatórios e disponíveis
+	// Mapa de campos disponíveis na API
 	const camposDisponiveis = $state({
 		rua: false,
 		bairro: false,
@@ -31,91 +22,83 @@
 		estado: true
 	});
 
-	// Função para validar step 2 considerando os campos disponíveis
-	function validarStep2() {
-		const todosCamposNecessariosPreenchidos = 
-			formData.cep && 
-			formData.numero && 
-			formData.cidade && 
-			formData.estado &&
-			// Se o campo não está disponível na API, verifica se foi preenchido manualmente
-			(camposDisponiveis.rua || formData.rua) &&
-			(camposDisponiveis.bairro || formData.bairro);
-		
-		return todosCamposNecessariosPreenchidos;
+	// Formatar CEP (99999-999)
+	function formatarCEP(cep: string): string {
+		const apenasNumeros = cep.replace(/\D/g, '').slice(0, 8);
+		return apenasNumeros.replace(/(\d{5})(\d{3})/, '$1-$2');
 	}
 
-	// Manipulador de evento para o CEP
+	// Função para validar os campos do step 2
+	function validarStep2() {
+		return Boolean(
+			formData.cep &&
+				formData.numero &&
+				formData.cidade &&
+				formData.estado &&
+				(camposDisponiveis.rua || formData.rua) &&
+				(camposDisponiveis.bairro || formData.bairro)
+		);
+	}
+
+	// Manipulador de evento para consulta do CEP
 	async function handleCEPInput(event: Event) {
 		const input = event.target as HTMLInputElement;
 		const cepAnterior = formData.cep;
-		const cepDigitado = input.value;
-		
+
 		// Formata o CEP
-		formData.cep = formatarCEP(cepDigitado);
+		formData.cep = formatarCEP(input.value);
 		input.value = formData.cep;
-		
-		// Verifica se o CEP tem 8 dígitos (completo) e se mudou
+
+		// Verifica se o CEP está completo e foi alterado
 		const cepNumeros = formData.cep.replace(/\D/g, '');
-		
+
 		if (cepNumeros.length === 8 && cepAnterior !== formData.cep && browser) {
 			try {
-				// Reset de estados
 				cepConsultado = false;
 				carregando = true;
-				
-				// Busca dados na API do ViaCEP
+
+				// Consulta API do ViaCEP
 				const response = await fetch(`https://viacep.com.br/ws/${cepNumeros}/json/`);
-				
+
 				if (!response.ok) {
 					throw new Error('Erro ao buscar CEP');
 				}
-				
+
 				const data = await response.json();
-				
-				// Verifica se a API retornou erro
+
 				if (data.erro) {
 					toast.error('CEP não encontrado');
 					carregando = false;
 					return;
 				}
-				
-				// Identifica quais campos estão disponíveis
+
+				// Identifica campos disponíveis
 				camposDisponiveis.rua = !!data.logradouro;
 				camposDisponiveis.bairro = !!data.bairro;
 				camposDisponiveis.cidade = !!data.localidade;
 				camposDisponiveis.estado = !!data.uf;
-				
-				// Preenche os campos com os dados retornados
+
+				// Preenche campos com dados da API
 				formData.cidade = data.localidade || '';
 				formData.bairro = data.bairro || '';
 				formData.rua = data.logradouro || '';
 				formData.estado = data.uf || '';
-				
-				// Marca como consultado e remove o carregamento
+
 				cepConsultado = true;
 				carregando = false;
-				
-				// Move o foco para o próximo campo a ser preenchido
+
+				// Foco no próximo campo
 				setTimeout(() => {
-					let nextInput: HTMLElement | null = null;
-					
-					if (!camposDisponiveis.rua) {
-						nextInput = document.querySelector('input[name="rua"]');
-					} else if (!camposDisponiveis.bairro) {
-						nextInput = document.querySelector('input[name="bairro"]');
-					} else {
-						nextInput = document.querySelector('input[name="numero"]');
-					}
-					
+					const nextInput = !camposDisponiveis.rua
+						? document.querySelector('input[name="rua"]')
+						: !camposDisponiveis.bairro
+							? document.querySelector('input[name="bairro"]')
+							: document.querySelector('input[name="numero"]');
+
 					if (nextInput) {
 						(nextInput as HTMLInputElement).focus();
 					}
 				}, 100);
-				
-				// Emite evento com função personalizada de validação
-				validationChange({ validarStep2 });
-				
 			} catch (error) {
 				console.error('Erro ao buscar CEP:', error);
 				toast.error('Erro ao buscar informações do CEP');
@@ -123,8 +106,8 @@
 			}
 		}
 	}
-	
-	// Emite evento inicial com função personalizada de validação
+
+	// Emite evento com a função de validação
 	$effect(() => {
 		validationChange({ validarStep2 });
 	});
@@ -165,7 +148,7 @@
 					/>
 				</div>
 			{/if}
-			
+
 			{#if camposDisponiveis.estado}
 				<div class="flex w-full flex-col gap-2">
 					<Label for="state">Estado*</Label>
@@ -188,7 +171,9 @@
 				<Input
 					name="rua"
 					autocomplete="off"
-					placeholder={camposDisponiveis.rua ? "Preenchido automaticamente" : "Digite a rua/avenida"}
+					placeholder={camposDisponiveis.rua
+						? 'Preenchido automaticamente'
+						: 'Digite a rua/avenida'}
 					class="focus-visible:ring-[#F97316] placeholder:text-sm"
 					type="text"
 					bind:value={formData.rua}
@@ -200,7 +185,7 @@
 				<Input
 					name="bairro"
 					autocomplete="off"
-					placeholder={camposDisponiveis.bairro ? "Preenchido automaticamente" : "Digite o bairro"}
+					placeholder={camposDisponiveis.bairro ? 'Preenchido automaticamente' : 'Digite o bairro'}
 					class="focus-visible:ring-[#F97316] placeholder:text-sm"
 					type="text"
 					bind:value={formData.bairro}

@@ -4,7 +4,9 @@
 	import * as Select from '$lib/components/ui/select';
 	import type { FormData, Genero } from './types';
 
-	export let formData: FormData;
+	let { formData = $bindable() } = $props<{
+		formData: FormData;
+	}>();
 
 	const generos: { value: Genero; label: string }[] = [
 		{ value: 'masculino', label: 'Masculino' },
@@ -13,13 +15,7 @@
 	];
 
 	function formatarTelefone(telefone: string): string {
-		// Remove tudo que não for número
-		let apenasNumeros = telefone.replace(/\D/g, '');
-
-		// Limita a 11 dígitos
-		apenasNumeros = apenasNumeros.slice(0, 11);
-
-		// Aplica a máscara conforme vai digitando
+		const apenasNumeros = telefone.replace(/\D/g, '').slice(0, 11);
 		let telefoneFormatado = apenasNumeros;
 
 		if (apenasNumeros.length > 2) {
@@ -41,14 +37,11 @@
 
 	function handleTelefoneInput(event: Event) {
 		const input = event.target as HTMLInputElement;
-		const valorFormatado = formatarTelefone(input.value);
-		formData.telefone = valorFormatado;
-
-		// Atualiza o valor do input para manter o cursor na posição correta
-		input.value = valorFormatado;
+		formData.telefone = formatarTelefone(input.value);
+		input.value = formData.telefone;
 	}
 
-	// Validação de data máxima (hoje)
+	// Data máxima (hoje)
 	const hoje = new Date().toISOString().split('T')[0];
 </script>
 

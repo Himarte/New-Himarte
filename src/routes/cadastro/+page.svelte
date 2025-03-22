@@ -8,9 +8,13 @@
 	import StepTwo from '$lib/components/Cadastro/StepTwo.svelte';
 	import StepThree from '$lib/components/Cadastro/StepThree.svelte';
 	import type { FormData } from '$lib/components/Cadastro/types';
+	import type { SubmitFunction } from '@sveltejs/kit';
 
-	// Estado do formulário usando $state
+	// Estado do formulário usando runes
 	let currentStep = $state(1);
+	let isSubmitting = $state(false);
+
+	// Dados do formulário
 	let formData = $state<FormData>({
 		// Dados pessoais (Step 1)
 		fullName: '',
@@ -39,53 +43,123 @@
 		promoCode: ''
 	});
 
+	// Função de validação personalizada do StepTwo
+	let validarStep2 = $state<(() => boolean) | null>(null);
+
 	// Validação por etapa
-	const stepValidation = {
-		1: (data: FormData) => {
-			return (
-				data.fullName && data.genero && data.dataNascimento && data.telefone && data.emailCliente
+	const validarEtapa = {
+		1: (): boolean => {
+			return Boolean(
+				formData.fullName &&
+					formData.genero &&
+					formData.dataNascimento &&
+					formData.telefone &&
+					formData.emailCliente
 			);
 		},
-		2: (data: FormData) => {
-			// Será substituída pela função personalizada do StepTwo
+		2: (): boolean => {
+			// Usa função personalizada do StepTwo se disponível
 			if (validarStep2) {
 				return validarStep2();
 			}
-			// Fallback para a validação padrão
-			return data.cep && data.cidade && data.rua && data.bairro && data.estado && data.numero;
+			// Fallback para validação básica
+			return Boolean(
+				formData.cep &&
+					formData.cidade &&
+					formData.rua &&
+					formData.bairro &&
+					formData.estado &&
+					formData.numero
+			);
 		},
-		3: (data: FormData) => {
-			return (
-				data.planoNome &&
-				data.planoMegas &&
-				data.planoModelo &&
-				((data.planoModelo === 'CPF' && data.cpf) || (data.planoModelo === 'CNPJ' && data.cnpj))
+		3: (): boolean => {
+			return Boolean(
+				formData.planoNome &&
+					formData.planoMegas &&
+					formData.planoModelo &&
+					((formData.planoModelo === 'CPF' && formData.cpf) ||
+						(formData.planoModelo === 'CNPJ' && formData.cnpj))
 			);
 		}
 	};
 
-	// Função de validação personalizada do StepTwo
-	let validarStep2: (() => boolean) | null = $state(null);
-	
-	// Manipulador para receber a função de validação
+	// Recebe função de validação do StepTwo
 	function handleValidationChange(detail: { validarStep2: () => boolean }) {
 		validarStep2 = detail.validarStep2;
 	}
 
-	// Função para navegar entre as etapas
-	function navigateStep(direction: 'next' | 'prev') {
-		if (direction === 'next' && currentStep < 3) {
-			if (stepValidation[currentStep as keyof typeof stepValidation](formData)) {
+	// Navegação entre etapas
+	function navegarEtapa(direcao: 'proximo' | 'anterior') {
+		if (direcao === 'proximo' && currentStep < 3) {
+			if (validarEtapa[currentStep as keyof typeof validarEtapa]()) {
 				currentStep++;
 			} else {
 				toast.error('Por favor, preencha todos os campos obrigatórios');
 			}
-		} else if (direction === 'prev' && currentStep > 1) {
+		} else if (direcao === 'anterior' && currentStep > 1) {
 			currentStep--;
 		}
 	}
 
-	let isSubmitting = $state(false);
+	// Etapas do cadastro
+	const etapas = ['Dados Pessoais', 'Endereço', 'Dados Contratuais'];
+
+	// Gerenciador de submissão do formulário
+	const submeterFormulario: SubmitFunction = ({ formData: submitFormData, cancel }) => {
+		// Validação antes de enviar
+		if (!validarEtapa[3]()) {
+			toast.error('Por favor, preencha todos os campos obrigatórios');
+			cancel();
+			return;
+		}
+
+		isSubmitting = true;
+		toast.loading('Enviando cadastro...');
+
+		// Adiciona os dados do formulário ao FormData
+		Object.entries(formData).forEach(([key, value]) => {
+			if (value) {
+				submitFormData.append(key, value.toString());
+			}
+		});
+
+		return async ({ result }) => {
+			isSubmitting = false;
+
+			if (result.type === 'success') {
+				toast.success('Cadastro realizado com sucesso!');
+				// Reseta formulário
+				formData = {
+					fullName: '',
+					genero: '',
+					dataNascimento: '',
+					telefone: '',
+					emailCliente: '',
+					cep: '',
+					cidade: '',
+					rua: '',
+					bairro: '',
+					estado: '',
+					numero: '',
+					complemento: '',
+					pontoReferencia: '',
+					planoNome: '',
+					planoMegas: '',
+					valorPlano: '',
+					planoModelo: 'CPF',
+					cpf: '',
+					cnpj: '',
+					promoCode: ''
+				};
+				currentStep = 1;
+			} else if (result.type === 'failure') {
+				const mensagemErro = result.data?.mensagem || 'Erro ao processar o cadastro';
+				toast.error(mensagemErro);
+			} else {
+				toast.error('Erro ao processar o cadastro');
+			}
+		};
+	};
 </script>
 
 <div class="min-h-full w-full flex items-center justify-center pt-28">
@@ -93,61 +167,7 @@
 		method="POST"
 		action="?/novoCadastro"
 		class="w-fit flex h-full flex-col gap-7"
-		use:enhance={({ formData: submitFormData, cancel }) => {
-			// Validação antes de enviar
-			if (!stepValidation[3](formData)) {
-				toast.error('Por favor, preencha todos os campos obrigatórios');
-				cancel();
-				return;
-			}
-
-			isSubmitting = true;
-			toast.loading('Enviando cadastro...');
-
-			// Adiciona os dados do formData ao submitFormData
-			Object.entries(formData).forEach(([key, value]) => {
-				if (value) {
-					submitFormData.set(key, value.toString());
-				}
-			});
-
-			return async ({ result }) => {
-				isSubmitting = false;
-
-				if (result.type === 'success') {
-					toast.success('Cadastro realizado com sucesso!');
-					// Limpa o formulário
-					formData = {
-						fullName: '',
-						genero: '',
-						dataNascimento: '',
-						telefone: '',
-						emailCliente: '',
-						cep: '',
-						cidade: '',
-						rua: '',
-						bairro: '',
-						estado: '',
-						numero: '',
-						complemento: '',
-						pontoReferencia: '',
-						planoNome: '',
-						planoMegas: '',
-						valorPlano: '',
-						planoModelo: 'CPF',
-						cpf: '',
-						cnpj: '',
-						promoCode: ''
-					};
-					currentStep = 1;
-				} else if (result.type === 'failure') {
-					const mensagemErro = result.data?.mensagem ? result.data.mensagem.toString() : 'Erro ao processar o cadastro';
-					toast.error(mensagemErro);
-				} else {
-					toast.error('Erro ao processar o cadastro');
-				}
-			};
-		}}
+		use:enhance={submeterFormulario}
 	>
 		<div class="flex flex-col gap-1 items-center">
 			<h1 class="font-bold text-center text-4xl">Quase lá! Complete seu cadastro</h1>
@@ -158,36 +178,35 @@
 
 		<!-- Indicador de progresso -->
 		<div class="flex items-center justify-center w-full gap-2">
-			{#each ['Dados Pessoais', 'Endereço', 'Dados Contratuais'] as step, index}
-				{@const stepNum = index + 1}
+			{#each etapas as etapa, index}
+				{@const numeroEtapa = index + 1}
 				<div class="flex items-center gap-2">
-					<!-- Número/Ícone e Label do Step -->
+					<!-- Número/Ícone e Label da Etapa -->
 					<div
-						class="flex items-center transition-colors duration-200 {currentStep >= stepNum
-							? 'text-orange-500'
-							: 'text-gray-400'}
-							{currentStep === stepNum ? 'font-semibold' : ''}"
+						class="flex items-center transition-colors duration-200
+						{currentStep >= numeroEtapa ? 'text-orange-500' : 'text-gray-400'}
+						{currentStep === numeroEtapa ? 'font-semibold' : ''}"
 					>
-						{#if currentStep > stepNum}
+						{#if currentStep > numeroEtapa}
 							<CheckCircle2 class="h-4 w-4 md:h-5 md:w-5 text-orange-500 transition-all" />
 						{:else}
 							<span
 								class="hidden md:flex h-6 w-6 items-center justify-center rounded-full border border-current"
 							>
-								{stepNum}
+								{numeroEtapa}
 							</span>
 						{/if}
 
 						<span class="ml-2 text-base">
-							{step}
+							{etapa}
 						</span>
 					</div>
 
-					<!-- Separador entre os steps -->
-					{#if stepNum < 3}
+					<!-- Separador entre etapas -->
+					{#if numeroEtapa < 3}
 						<Separator
 							class="w-32 border-[0.05rem] transition-colors duration-200
-								{currentStep === stepNum + 1 ? 'bg-orange-300' : 'bg-gray-200'}"
+								{currentStep > numeroEtapa ? 'bg-orange-500' : 'bg-gray-200'}"
 						/>
 					{/if}
 				</div>
@@ -197,14 +216,11 @@
 		<!-- Conteúdo do formulário -->
 		<div class="min-h-96 w-full">
 			{#if currentStep === 1}
-				<StepOne bind:formData />
+				<StepOne {formData} />
 			{:else if currentStep === 2}
-				<StepTwo 
-					bind:formData
-					validationChange={handleValidationChange} 
-				/>
+				<StepTwo {formData} validationChange={handleValidationChange} />
 			{:else}
-				<StepThree bind:formData />
+				<StepThree {formData} />
 			{/if}
 		</div>
 
@@ -214,7 +230,7 @@
 				type="button"
 				variant="secondary"
 				class="w-28"
-				onclick={() => navigateStep('prev')}
+				onclick={() => navegarEtapa('anterior')}
 				disabled={currentStep === 1 || isSubmitting}
 			>
 				Voltar
@@ -225,7 +241,7 @@
 					type="button"
 					variant="default"
 					class="w-28 bg-orange-600 text-white font-semibold hover:bg-orange-700"
-					onclick={() => navigateStep('next')}
+					onclick={() => navegarEtapa('proximo')}
 					disabled={isSubmitting}
 				>
 					Continuar
