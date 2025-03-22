@@ -35,7 +35,7 @@
 <section
 	class="relative mt-10 flex min-h-[22rem] w-full flex-col-reverse items-center justify-center overflow-hidden md:mt-16 md:w-2/3 md:flex-row"
 >
-	<div
+	<div	
 		class="z-10 flex min-h-[22rem] w-full flex-col items-center justify-start gap-36 md:w-1/2 md:justify-center md:gap-5"
 	>
 		<h1
