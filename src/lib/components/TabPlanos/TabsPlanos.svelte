@@ -39,7 +39,6 @@
 			</p>
 		</div>
 		<CardsCPF1 />
-
 		<CardsCPF2 />
 		<CardsCPF3 />
 		<div class="flex items-center w-full text-center justify-center pt-8">

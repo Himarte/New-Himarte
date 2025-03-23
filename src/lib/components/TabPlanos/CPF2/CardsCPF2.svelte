@@ -4,7 +4,7 @@
 	import Plutao from '$lib/img/planetas/plutao.webp';
 	import Urano from '$lib/img/planetas/urano.webp';
 	import Jupiter from '$lib/img/planetas/jupiter.webp';
-
+	import ContratarDialog from '$lib/components/ContratarDialog.svelte';
 
 	const items = [
 		{
@@ -42,6 +42,14 @@
 			beneficios: ['Roteador', 'Assistência Técnica', 'Suporte', 'Santa Cruz do Sul e Rio Pardo']
 		}
 	];
+
+	function handleAtendente() {
+		console.log('Chamou atendente');
+	}
+
+	function handleAutoAtendimento(plano: string, tipo: string, megas: number, valor: string) {
+		window.location.href = `/cadastro?plano=${plano.toLowerCase()}&tipo=${tipo}&megas=${megas}&valor=${valor}`;
+	}
 </script>
 
 <div class="mt-5 flex w-full items-center justify-center text-nowrap md:mt-0">
@@ -74,12 +82,25 @@
 					<span class="text-2xl font-extrabold tracking-tight">{item.precoCentavos}</span>
 					<span class="mx-1 text-xl text-gray-400">/Mês*</span>
 				</div>
-				<a 
-					href={`/cadastro?plano=${item.plano.toLowerCase()}&tipo=CPF&megas=${item.megas}&valor=${item.precoReais},${item.precoCentavos}`} 
-					class="card-button justify-center flex items-center text-background no-underline hover:no-underline"
-				>
-					Saiba Mais
-				</a>
+				<div class="card-button-wrapper">
+					<ContratarDialog
+						plano={item.plano}
+						onAtendente={handleAtendente}
+						onAutoAtendimento={() =>
+							handleAutoAtendimento(
+								item.plano,
+								'CPF',
+								item.megas,
+								`${item.precoReais},${item.precoCentavos}`
+							)}
+					>
+						<div
+							class="card-button justify-center flex items-center text-background no-underline hover:no-underline"
+						>
+							Contratar
+						</div>
+					</ContratarDialog>
+				</div>
 			</div>
 		{/each}
 	</div>
@@ -92,16 +113,26 @@
 	}
 
 	.card-button {
-		transform: translate(-50%, 125%);
-		width: 50%;
+		width: 100%;
 		border-radius: 0.5rem;
 		background-color: #f97316;
 		padding: 0.5rem 1rem;
+		opacity: 1;
+		transition: 0.3s ease-out;
+		position: relative;
+		z-index: 90;
+	}
+
+	.card-button-wrapper {
+		transform: translate(-50%, 125%);
 		position: absolute;
 		left: 50%;
 		bottom: 0;
 		opacity: 0;
 		transition: 0.3s ease-out;
+		width: 100%;
+		display: flex;
+		justify-content: center;
 	}
 
 	/*Hover*/
@@ -110,9 +141,8 @@
 		box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
 	}
 
-	.card:hover .card-button {
+	.card:hover .card-button-wrapper {
 		transform: translate(-50%, 50%);
 		opacity: 1;
-		z-index: 20;
 	}
 </style>

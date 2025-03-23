@@ -7,7 +7,7 @@
 	import Plutao from '$lib/img/planetas/plutao.webp';
 	import Urano from '$lib/img/planetas/urano.webp';
 	import Jupiter from '$lib/img/planetas/jupiter.webp';
-
+	import ContratarDialog from '$lib/components/ContratarDialog.svelte';
 
 	const items = [
 		{
@@ -55,15 +55,23 @@
 			beneficios: ['Assistência dedicada', 'Router Board', 'IP FIXO', 'DNS Reverso']
 		}
 	];
+
+	function handleAtendente() {
+		console.log('Chamou atendente');
+	}
+
+	function handleAutoAtendimento(plano: string, tipo: string, megas: number | null) {
+		window.location.href = `/cadastro?plano=${plano.toLowerCase()}&tipo=${tipo}&megas=${megas || 'ilimitado'}`;
+	}
 </script>
 
 <div class="flex min-h-full w-full flex-col items-center justify-center text-nowrap">
 	<div
-		class=" mt-6 flex h-full w-3/4 flex-col items-end justify-center gap-5 md:h-80 md:w-2/3 md:flex-row"
+		class="mt-6 flex h-full w-3/4 flex-col items-end justify-center gap-5 md:h-80 md:w-2/3 md:flex-row"
 	>
 		{#each items as item}
 			<div
-				class=" card flex h-64 w-full flex-col items-start justify-center rounded-xl border bg-background/70 pl-10 hover:z-10 hover:scale-105 md:h-72 md:w-1/4"
+				class="card flex h-64 w-full flex-col items-start justify-center rounded-xl border bg-background/70 pl-10 hover:z-10 hover:scale-105 md:h-72 md:w-1/4"
 			>
 				<img
 					src={item.img}
@@ -84,12 +92,19 @@
 					{/each}
 				</ul>
 
-				<a 
-					href={`/cadastro?plano=${item.plano.toLowerCase()}&tipo=CNPJ&megas=${item.megas || 'ilimitado'}`} 
-					class="card-button justify-center flex items-center text-background no-underline hover:no-underline"
-				>
-					Saiba Mais
-				</a>
+				<div class="card-button-wrapper">
+					<ContratarDialog
+						plano={item.plano}
+						onAtendente={handleAtendente}
+						onAutoAtendimento={() => handleAutoAtendimento(item.plano, 'CNPJ', item.megas)}
+					>
+						<div
+							class="card-button justify-center flex items-center text-background no-underline hover:no-underline"
+						>
+							Saiba Mais
+						</div>
+					</ContratarDialog>
+				</div>
 			</div>
 		{/each}
 	</div>
@@ -126,12 +141,19 @@
 					{/each}
 				</ul>
 
-				<a 
-					href={`/cadastro?plano=${item.plano.toLowerCase()}&tipo=CNPJ&megas=${item.megas || 'ilimitado'}`} 
-					class="card-button justify-center flex items-center text-background no-underline hover:no-underline"
-				>
-					Saiba Mais
-				</a>
+				<div class="card-button-wrapper">
+					<ContratarDialog
+						plano={item.plano}
+						onAtendente={handleAtendente}
+						onAutoAtendimento={() => handleAutoAtendimento(item.plano, 'CNPJ', item.megas)}
+					>
+						<div
+							class="card-button justify-center flex items-center text-background no-underline hover:no-underline"
+						>
+							Saiba Mais
+						</div>
+					</ContratarDialog>
+				</div>
 			</div>
 		{/each}
 	</div>
@@ -144,16 +166,26 @@
 	}
 
 	.card-button {
-		transform: translate(-50%, 125%);
-		width: 50%;
+		width: 100%;
 		border-radius: 0.5rem;
 		background-color: #f97316;
 		padding: 0.5rem 1rem;
+		opacity: 1;
+		transition: 0.3s ease-out;
+		position: relative;
+		z-index: 90;
+	}
+
+	.card-button-wrapper {
+		transform: translate(-50%, 125%);
 		position: absolute;
 		left: 50%;
 		bottom: 0;
 		opacity: 0;
 		transition: 0.3s ease-out;
+		width: 100%;
+		display: flex;
+		justify-content: center;
 	}
 
 	/*Hover*/
@@ -162,9 +194,8 @@
 		box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
 	}
 
-	.card:hover .card-button {
+	.card:hover .card-button-wrapper {
 		transform: translate(-50%, 50%);
 		opacity: 1;
-		z-index: 20;
 	}
 </style>
