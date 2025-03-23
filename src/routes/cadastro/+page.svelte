@@ -125,10 +125,40 @@
 
 		return async ({ result }) => {
 			isSubmitting = false;
+			toast.dismiss();
 
+			// Função para processar mensagens do Voalle
+			const processarMensagensVoalle = (voalleResult: any) => {
+				if (!voalleResult) return;
+
+				// Apenas processar mensagens se não for um erro principal já exibido
+				if (voalleResult.success) {
+					// Verifica se há mensagens específicas de sucesso ou avisos
+					if (voalleResult.data?.messages?.length > 0) {
+						voalleResult.data.messages.forEach((msg: any) => {
+							const tipo =
+								msg.type === 'Success' ? 'success' : msg.type === 'Warning' ? 'warning' : 'info';
+							toast[tipo](`Voalle: ${msg.message}`);
+						});
+					}
+				}
+				// Não exibimos erros do Voalle aqui para evitar duplicidade
+			};
+
+			// Processar resultado da submissão
 			if (result.type === 'success') {
-				toast.success('Cadastro realizado com sucesso!');
-				// Reseta formulário
+				// Exibe mensagem de sucesso para o fluxo completo
+				toast.success(result.data?.mensagem || 'Cadastro realizado com sucesso!');
+
+				// Exibe detalhes do Voalle se disponíveis
+				processarMensagensVoalle(result.data?.voalleResult);
+
+				// Exibe detalhes do sistema Indica se disponíveis
+				if (result.data?.indicaResult?.message) {
+					toast.success(`Indica: ${result.data.indicaResult.message}`);
+				}
+
+				// Resetar formulário após sucesso
 				formData = {
 					fullName: '',
 					genero: '',
@@ -153,8 +183,24 @@
 				};
 				currentStep = 1;
 			} else if (result.type === 'failure') {
-				const mensagemErro = result.data?.mensagem || 'Erro ao processar o cadastro';
-				toast.error(mensagemErro);
+				// Exibe mensagem principal de erro (que já contém a mensagem do Voalle)
+				toast.error(result.data?.mensagem || 'Erro ao processar o cadastro');
+
+				// Não processamos as mensagens de erro do Voalle aqui para evitar duplicidade
+				// Apenas processamos mensagens de sucesso ou avisos
+				if (result.data?.voalleResult?.success) {
+					processarMensagensVoalle(result.data.voalleResult);
+				}
+
+				// Exibe detalhes do erro do sistema Indica
+				if (result.data?.indicaResult?.message) {
+					toast.error(`Indica: ${result.data.indicaResult.message}`);
+				}
+
+				// Exibe erro específico do Indica se disponível
+				if (result.data?.indicaError) {
+					toast.error(`Erro Indica: ${result.data.indicaError}`);
+				}
 			} else {
 				toast.error('Erro ao processar o cadastro');
 			}
