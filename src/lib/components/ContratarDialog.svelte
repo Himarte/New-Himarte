@@ -25,7 +25,7 @@
 	<Dialog.Trigger>
 		{@render children()}
 	</Dialog.Trigger>
-	<Dialog.Content class="max-w-2xl bg-background/95 backdrop-blur-md border-orange-500/50">
+	<Dialog.Content class="max-w-2xl  bg-background/95 backdrop-blur-md border-orange-500/50">
 		<Dialog.Header>
 			<Dialog.Title class="text-2xl font-bold text-center text-orange-500">
 				Escolha uma opção
@@ -34,7 +34,7 @@
 				Como você prefere prosseguir com a contratação do plano {plano}?
 			</Dialog.Description>
 		</Dialog.Header>
-		<div class="flex gap-4">
+		<div class="flex flex-col md:flex-row gap-4">
 			<div
 				class="flex flex-col items-center gap-4 p-4 rounded-lg hover:bg-muted/50 transition-colors"
 			>
