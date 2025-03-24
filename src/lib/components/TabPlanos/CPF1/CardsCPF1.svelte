@@ -6,7 +6,7 @@
 	import BorderBeam from '$lib/components/BorderBeam/BorderBeam.svelte';
 	import MelhorPreco from './MelhorPreco.svelte';
 	import New from '$lib/img/extras/new.png';
-	import ContratarDialog from '$lib/components/ContratarDialog.svelte';
+	import ContratarDialog from '$lib/components/TabPlanos/ContratarDialog.svelte';
 
 	let { blipClient } = $props<{ blipClient?: any }>();
 

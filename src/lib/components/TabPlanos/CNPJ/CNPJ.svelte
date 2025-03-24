@@ -7,7 +7,7 @@
 	import Plutao from '$lib/img/planetas/plutao.webp';
 	import Urano from '$lib/img/planetas/urano.webp';
 	import Jupiter from '$lib/img/planetas/jupiter.webp';
-	import ContratarDialog from '$lib/components/ContratarDialog.svelte';
+	import ContratarDialog from '$lib/components/TabPlanos/ContratarDialog.svelte';
 
 	let { blipClient } = $props<{ blipClient?: any }>();
 

@@ -5,7 +5,7 @@
 	import { page } from '$app/stores';
 	import type { Snippet } from 'svelte';
 	import '../app.css';
-	import { ModeWatcher } from 'mode-watcher';
+	import ModeWatcherWrapper from '$lib/components/ModeWatcherWrapper.svelte';
 
 	let linktree = $state($page.url.pathname === '/linktree' ? false : true);
 
@@ -19,7 +19,7 @@
 </script>
 
 <Toaster richColors />
-<ModeWatcher defaultMode="dark" />
+<ModeWatcherWrapper defaultMode="dark" />
 
 {#snippet Header()}
 	{#if linktree}

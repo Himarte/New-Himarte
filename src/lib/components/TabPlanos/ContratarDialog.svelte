@@ -51,12 +51,12 @@
 				<div class="bg-orange-500/20 p-3 rounded-full">
 					<MessagesSquare size={24} class="text-orange-500" />
 				</div>
-				<h3 class="font-medium text-center">Falar com atendente</h3>
+				<h3 class="font-medium text-xl text-center">Falar com atendente</h3>
 				<p class="text-sm text-center text-muted-foreground">
 					Converse diretamente com nosso time de vendas
 				</p>
 				<button
-					class="w-full border border-orange-500 rounded-md bg-transparent py-2 hover:bg-orange-500/10 hover:text-orange-500 transition-colors"
+					class="w-full border border-orange-500 rounded-md bg-transparent py-2 hover:bg-orange-500/10 transition-colors"
 					onclick={handleAtendente}
 				>
 					Iniciar chat
@@ -74,7 +74,7 @@
 				<div class="bg-orange-500/20 p-3 rounded-full">
 					<FileCheck size={24} class="text-orange-500" />
 				</div>
-				<h3 class="font-medium text-center">Auto atendimento</h3>
+				<h3 class="font-medium text-xl text-center">Auto atendimento</h3>
 				<p class="text-sm text-center text-muted-foreground">
 					Continue com o processo online de cadastro
 				</p>

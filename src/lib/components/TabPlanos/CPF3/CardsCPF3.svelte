@@ -2,7 +2,7 @@
 	import Plus from 'lucide-svelte/icons/plus';
 	import Plutao from '$lib/img/planetas/plutao.webp';
 	import Mercurio from '$lib/img/planetas/Mercurio.svg';
-	import ContratarDialog from '$lib/components/ContratarDialog.svelte';
+	import ContratarDialog from '$lib/components/TabPlanos/ContratarDialog.svelte';
 
 	let { blipClient } = $props<{ blipClient?: any }>();
 
