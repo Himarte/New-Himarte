@@ -15,7 +15,7 @@
 		});
 	});
 
-	let { children }: { children: Snippet } = $props(); // Anotando o tipo de children
+	let { children } = $props<{ children: Snippet }>();
 </script>
 
 <Toaster richColors />

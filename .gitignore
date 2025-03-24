@@ -8,7 +8,7 @@ node_modules
 bun.lockb
 pnpm-lock.yaml
 bun.lock
-
+package-lock.json
 # OS
 .DS_Store
 Thumbs.db

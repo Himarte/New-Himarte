@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 
-	// Use any para ModeWatcher já que não conhecemos seu tipo exato
+	// Use $state para ModeWatcher para torná-lo reativo
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	let ModeWatcher: any;
+	let ModeWatcher = $state<any>(undefined);
 	let isLoaded = $state(false);
 
 	// Props que serão repassados ao componente
