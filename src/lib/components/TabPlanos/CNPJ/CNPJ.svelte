@@ -9,6 +9,8 @@
 	import Jupiter from '$lib/img/planetas/jupiter.webp';
 	import ContratarDialog from '$lib/components/ContratarDialog.svelte';
 
+	let { blipClient } = $props<{ blipClient?: any }>();
+
 	const items = [
 		{
 			id: 1,
@@ -97,6 +99,8 @@
 						plano={item.plano}
 						onAtendente={handleAtendente}
 						onAutoAtendimento={() => handleAutoAtendimento(item.plano, 'CNPJ', item.megas)}
+						{blipClient}
+						tipo="CNPJ"
 					>
 						<div
 							class="card-button justify-center flex items-center text-background no-underline hover:no-underline"
@@ -146,6 +150,8 @@
 						plano={item.plano}
 						onAtendente={handleAtendente}
 						onAutoAtendimento={() => handleAutoAtendimento(item.plano, 'CNPJ', item.megas)}
+						{blipClient}
+						tipo="CNPJ"
 					>
 						<div
 							class="card-button justify-center flex items-center text-background no-underline hover:no-underline"

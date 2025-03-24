@@ -6,6 +6,8 @@
 	import Jupiter from '$lib/img/planetas/jupiter.webp';
 	import ContratarDialog from '$lib/components/ContratarDialog.svelte';
 
+	let { blipClient } = $props<{ blipClient?: any }>();
+
 	const items = [
 		{
 			id: 2,
@@ -93,6 +95,8 @@
 								item.megas,
 								`${item.precoReais},${item.precoCentavos}`
 							)}
+						{blipClient}
+						tipo="CPF"
 					>
 						<div
 							class="card-button justify-center flex items-center text-background no-underline hover:no-underline"

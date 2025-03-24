@@ -5,15 +5,25 @@
 
 	let open = $state(false);
 
-	let { plano, onAtendente, onAutoAtendimento, children } = $props<{
+	let { plano, onAtendente, onAutoAtendimento, children, blipClient, tipo } = $props<{
 		plano: string;
 		onAtendente: () => void;
 		onAutoAtendimento: () => void;
 		children: any;
+		blipClient?: any;
+		tipo?: string;
 	}>();
 
 	function handleAtendente() {
-		onAtendente();
+		if (blipClient) {
+			blipClient.toogleChat();
+			blipClient.sendMessage({
+				type: 'text/plain',
+				content: `Olá, gostaria de saber mais sobre o plano ${plano} ${tipo ? `para ${tipo}` : ''}.`
+			});
+		} else {
+			onAtendente();
+		}
 		open = false;
 	}
 	function handleAutoAtendimento() {
