@@ -130,9 +130,9 @@
 	</div>
 
 	<!-- números e compromisso -->
-	<div class="flex flex-col items-center justify-center py-14 font-inter">
+	<div class="flex flex-col items-center justify-center py-10 font-inter">
 		<!-- contagem números -->
-		<div
+		<!-- <div
 			class="mb-16 flex flex-col items-center justify-center gap-10 md:mb-0 md:w-[60%] md:flex-row"
 		>
 			{#each stats as stat}
@@ -146,7 +146,7 @@
 			{/each}
 		</div>
 
-		<Separator class="my-10 hidden md:flex md:w-[60%]" />
+		<Separator class="my-10 hidden md:flex md:w-[60%]" /> -->
 
 		<!-- frase compromisso -->
 		<div
