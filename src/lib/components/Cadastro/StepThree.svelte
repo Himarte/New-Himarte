@@ -4,6 +4,7 @@
 	import * as Select from '$lib/components/ui/select';
 	import type { FormData, PlanoModelo } from './types';
 	import { browser } from '$app/environment';
+	import { cn } from '$lib/utils';
 
 	let { formData = $bindable() } = $props<{
 		formData: FormData;
@@ -129,8 +130,8 @@
 	}
 </script>
 
-<div class="w-full flex flex-col gap-8 h-full">
-	<div class="flex flex-col md:flex-row gap-5 md:gap-8">
+<div class="w-full flex flex-col gap-6 sm:gap-8 h-full">
+	<div class="flex flex-col sm:flex-row gap-4 sm:gap-5">
 		<div class="flex w-full flex-col gap-2">
 			<Label>Tipo de Plano*</Label>
 			<Select.Root
@@ -138,7 +139,9 @@
 				onValueChange={(value) => (formData.planoModelo = value as PlanoModelo)}
 				value={formData.planoModelo}
 			>
-				<Select.Trigger class="focus:ring-[#F97316]">
+				<Select.Trigger
+					class={cn('focus:ring-[#F97316]', !formData.planoModelo && 'text-muted-foreground')}
+				>
 					{formData.planoModelo || 'Selecione'}
 				</Select.Trigger>
 				<Select.Content>
@@ -154,7 +157,9 @@
 				onValueChange={selecionarPlano}
 				value={planosAtuais().find((p) => p.label === formData.planoNome)?.value || ''}
 			>
-				<Select.Trigger class="focus:ring-[#F97316]">
+				<Select.Trigger
+					class={cn('focus:ring-[#F97316]', !formData.planoNome && 'text-muted-foreground')}
+				>
 					{formData.planoNome || 'Selecione'}
 				</Select.Trigger>
 				<Select.Content>
@@ -166,7 +171,7 @@
 		</div>
 	</div>
 
-	<div class="flex flex-col md:flex-row gap-5 md:gap-8">
+	<div class="flex flex-col sm:flex-row gap-4 sm:gap-5">
 		{#if formData.planoModelo === 'CPF'}
 			<div class="flex w-full flex-col gap-2">
 				<Label for="cpf">CPF*</Label>
@@ -207,7 +212,7 @@
 		</div>
 	</div>
 
-	<div class="flex flex-col md:flex-row gap-5 md:gap-8">
+	<div class="flex flex-col sm:flex-row gap-4 sm:gap-5">
 		<div class="flex w-full flex-col gap-2">
 			<Label for="megas">Velocidade e Megas</Label>
 			<Input

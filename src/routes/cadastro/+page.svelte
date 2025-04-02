@@ -9,10 +9,32 @@
 	import StepThree from '$lib/components/Cadastro/StepThree.svelte';
 	import type { FormData } from '$lib/components/Cadastro/types';
 	import type { SubmitFunction } from '@sveltejs/kit';
+	import { cn } from '$lib/utils';
+	import { browser } from '$app/environment';
 
 	// Estado do formulário usando runes
 	let currentStep = $state(1);
 	let isSubmitting = $state(false);
+	let isMobile = $state(false);
+
+	// Verificar tamanho da tela no carregamento e ao redimensionar
+	$effect(() => {
+		if (browser) {
+			const checkMobile = () => {
+				isMobile = window.innerWidth < 640;
+			};
+
+			// Verificação inicial
+			checkMobile();
+
+			// Adicionar listener para redimensionamento
+			window.addEventListener('resize', checkMobile);
+
+			return () => {
+				window.removeEventListener('resize', checkMobile);
+			};
+		}
+	});
 
 	// Dados do formulário
 	let formData = $state<FormData>({
@@ -208,59 +230,74 @@
 	};
 </script>
 
-<div class="min-h-full w-full flex items-center justify-center pt-28">
+<div class="min-h-full w-full flex items-center justify-center px-4 sm:px-6 pt-16 md:pt-28">
 	<form
 		method="POST"
 		action="?/novoCadastro"
-		class="w-fit flex h-full flex-col gap-7"
+		class="w-full max-w-3xl flex h-full flex-col gap-5 md:gap-7"
 		use:enhance={submeterFormulario}
 	>
-		<div class="flex flex-col gap-1 items-center">
-			<h1 class="font-bold text-center text-4xl">Quase lá! Complete seu cadastro</h1>
-			<p class="text-sm text-center text-gray-400">
+		<div class="flex flex-col gap-1 items-center pt-10">
+			<h1 class="font-bold text-center text-2xl sm:text-3xl md:text-4xl">
+				Quase lá! Complete seu cadastro
+			</h1>
+			<p class="text-xs sm:text-sm text-center text-gray-400">
 				Preencha os dados para finalizar e aproveitar seu plano de internet.
 			</p>
 		</div>
 
 		<!-- Indicador de progresso -->
-		<div class="flex items-center justify-center w-full gap-2">
+		<div class="flex items-center justify-center w-full gap-1 sm:gap-2">
 			{#each etapas as etapa, index}
 				{@const numeroEtapa = index + 1}
-				<div class="flex items-center gap-2">
-					<!-- Número/Ícone e Label da Etapa -->
-					<div
-						class="flex items-center transition-colors duration-200
-						{currentStep >= numeroEtapa ? 'text-orange-500' : 'text-gray-400'}
-						{currentStep === numeroEtapa ? 'font-semibold' : ''}"
-					>
-						{#if currentStep > numeroEtapa}
-							<CheckCircle2 class="h-4 w-4 md:h-5 md:w-5 text-orange-500 transition-all" />
-						{:else}
+				{#if !isMobile || (isMobile && numeroEtapa === currentStep)}
+					<div class="flex items-center gap-1 sm:gap-2">
+						<!-- Número/Ícone e Label da Etapa -->
+						<div
+							class={cn(
+								'flex items-center transition-colors duration-200',
+								'text-orange-500',
+								'font-semibold'
+							)}
+						>
+							{#if !isMobile}
+								<span
+									class="flex h-5 w-5 md:h-6 md:w-6 items-center justify-center rounded-full border border-current text-xs md:text-sm"
+								>
+									{numeroEtapa}
+								</span>
+							{/if}
+
 							<span
-								class="hidden md:flex h-6 w-6 items-center justify-center rounded-full border border-current"
+								class={cn(
+									'ml-2 text-sm md:text-base',
+									isMobile && 'text-base md:text-lg font-bold'
+								)}
 							>
-								{numeroEtapa}
+								{#if isMobile && etapa === 'Dados Contratuais'}
+									Plano
+								{:else}
+									{etapa}
+								{/if}
 							</span>
+						</div>
+
+						<!-- Separador entre etapas (apenas no desktop) -->
+						{#if !isMobile && numeroEtapa < 3}
+							<Separator
+								class={cn(
+									'w-8 xs:w-12 sm:w-20 md:w-32 border-[0.05rem] transition-colors duration-200',
+									currentStep > numeroEtapa ? 'bg-orange-500' : 'bg-gray-200'
+								)}
+							/>
 						{/if}
-
-						<span class="ml-2 text-base">
-							{etapa}
-						</span>
 					</div>
-
-					<!-- Separador entre etapas -->
-					{#if numeroEtapa < 3}
-						<Separator
-							class="w-32 border-[0.05rem] transition-colors duration-200
-								{currentStep > numeroEtapa ? 'bg-orange-500' : 'bg-gray-200'}"
-						/>
-					{/if}
-				</div>
+				{/if}
 			{/each}
 		</div>
 
 		<!-- Conteúdo do formulário -->
-		<div class="min-h-96 w-full">
+		<div class="min-h-72 sm:min-h-80 md:min-h-96 w-full">
 			{#if currentStep === 1}
 				<StepOne {formData} />
 			{:else if currentStep === 2}
@@ -275,7 +312,7 @@
 			<Button
 				type="button"
 				variant="secondary"
-				class="w-28"
+				class="w-24 sm:w-28"
 				onclick={() => navegarEtapa('anterior')}
 				disabled={currentStep === 1 || isSubmitting}
 			>
@@ -286,7 +323,7 @@
 				<Button
 					type="button"
 					variant="default"
-					class="w-28 bg-orange-600 text-white font-semibold hover:bg-orange-700"
+					class="w-24 sm:w-28 bg-orange-600 text-white font-semibold hover:bg-orange-700"
 					onclick={() => navegarEtapa('proximo')}
 					disabled={isSubmitting}
 				>
@@ -296,7 +333,7 @@
 				<Button
 					type="submit"
 					variant="default"
-					class="w-28 bg-orange-600 text-white font-semibold hover:bg-orange-700"
+					class="w-24 sm:w-28 bg-orange-600 text-white font-semibold hover:bg-orange-700"
 					disabled={isSubmitting}
 				>
 					{isSubmitting ? 'Enviando...' : 'Finalizar'}

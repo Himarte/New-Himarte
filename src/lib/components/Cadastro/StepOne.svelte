@@ -3,6 +3,7 @@
 	import { Input } from '$lib/components/ui/input';
 	import * as Select from '$lib/components/ui/select';
 	import type { FormData, Genero } from './types';
+	import { cn } from '$lib/utils';
 
 	let { formData = $bindable() } = $props<{
 		formData: FormData;
@@ -58,8 +59,8 @@
 		/>
 	</div>
 
-	<div class="flex w-full gap-2">
-		<div class="flex flex-col gap-2 w-1/3">
+	<div class="flex flex-col sm:flex-row w-full gap-4 sm:gap-2">
+		<div class="flex flex-col gap-2 w-full sm:w-1/3">
 			<Label for="telefone">Telefone*</Label>
 			<Input
 				type="tel"
@@ -71,14 +72,16 @@
 				on:input={handleTelefoneInput}
 			/>
 		</div>
-		<div class="flex flex-col gap-2 w-1/3">
+		<div class="flex flex-col gap-2 w-full sm:w-1/3">
 			<Label for="genero">Gênero*</Label>
 			<Select.Root
 				type="single"
 				onValueChange={(value) => (formData.genero = value as Genero)}
 				value={formData.genero}
 			>
-				<Select.Trigger class="focus:ring-[#F97316]">
+				<Select.Trigger
+					class={cn('focus:ring-[#F97316]', !formData.genero && 'text-muted-foreground')}
+				>
 					{formData.genero || 'Selecione'}
 				</Select.Trigger>
 				<Select.Content>
@@ -89,7 +92,7 @@
 			</Select.Root>
 		</div>
 
-		<div class="flex flex-col gap-2 w-1/3">
+		<div class="flex flex-col gap-2 w-full sm:w-1/3">
 			<Label for="dataNascimento">Data de Nascimento*</Label>
 			<Input
 				type="date"

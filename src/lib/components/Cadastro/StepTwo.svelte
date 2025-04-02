@@ -4,6 +4,7 @@
 	import type { FormData } from './types';
 	import { browser } from '$app/environment';
 	import { toast } from 'svelte-sonner';
+	import { cn } from '$lib/utils';
 
 	let { formData = $bindable(), validationChange } = $props<{
 		formData: FormData;
@@ -113,8 +114,8 @@
 	});
 </script>
 
-<div class="w-full flex flex-col gap-8 h-full">
-	<div class="flex flex-col md:flex-row gap-5 md:gap-8">
+<div class="w-full flex flex-col gap-6 sm:gap-8 h-full">
+	<div class="flex flex-col gap-5 sm:gap-8">
 		<div class="flex w-full flex-col gap-2">
 			<Label for="cep">CEP*</Label>
 			<Input
@@ -133,105 +134,109 @@
 	</div>
 
 	{#if cepConsultado}
-		<div class="flex flex-col md:flex-row gap-5 md:gap-8">
-			{#if camposDisponiveis.cidade}
+		<div class="flex flex-col gap-5 sm:gap-8">
+			<div class="flex flex-col sm:flex-row gap-4 sm:gap-5">
+				{#if camposDisponiveis.cidade}
+					<div class="flex w-full flex-col gap-2">
+						<Label for="city">Cidade*</Label>
+						<Input
+							name="cidade"
+							autocomplete="off"
+							placeholder="Santa Cruz do Sul"
+							class="focus-visible:ring-[#F97316] placeholder:text-sm"
+							type="text"
+							bind:value={formData.cidade}
+							readonly={camposDisponiveis.cidade && !!formData.cidade}
+						/>
+					</div>
+				{/if}
+
+				{#if camposDisponiveis.estado}
+					<div class="flex w-full flex-col gap-2">
+						<Label for="state">Estado*</Label>
+						<Input
+							name="estado"
+							autocomplete="off"
+							placeholder="RS"
+							class="focus-visible:ring-[#F97316] placeholder:text-sm"
+							type="text"
+							bind:value={formData.estado}
+							readonly={camposDisponiveis.estado && !!formData.estado}
+						/>
+					</div>
+				{/if}
+			</div>
+
+			<div class="flex flex-col sm:flex-row gap-4 sm:gap-5">
 				<div class="flex w-full flex-col gap-2">
-					<Label for="city">Cidade*</Label>
+					<Label for="street">Rua/Avenida*</Label>
 					<Input
-						name="cidade"
+						name="rua"
 						autocomplete="off"
-						placeholder="Santa Cruz do Sul"
+						placeholder={camposDisponiveis.rua
+							? 'Preenchido automaticamente'
+							: 'Digite a rua/avenida'}
 						class="focus-visible:ring-[#F97316] placeholder:text-sm"
 						type="text"
-						bind:value={formData.cidade}
-						readonly={camposDisponiveis.cidade && !!formData.cidade}
+						bind:value={formData.rua}
+						readonly={camposDisponiveis.rua && !!formData.rua}
 					/>
 				</div>
-			{/if}
-
-			{#if camposDisponiveis.estado}
 				<div class="flex w-full flex-col gap-2">
-					<Label for="state">Estado*</Label>
+					<Label for="district">Bairro*</Label>
 					<Input
-						name="estado"
+						name="bairro"
 						autocomplete="off"
-						placeholder="RS"
+						placeholder={camposDisponiveis.bairro
+							? 'Preenchido automaticamente'
+							: 'Digite o bairro'}
 						class="focus-visible:ring-[#F97316] placeholder:text-sm"
 						type="text"
-						bind:value={formData.estado}
-						readonly={camposDisponiveis.estado && !!formData.estado}
+						bind:value={formData.bairro}
+						readonly={camposDisponiveis.bairro && !!formData.bairro}
 					/>
 				</div>
-			{/if}
-		</div>
+			</div>
 
-		<div class="flex flex-col md:flex-row gap-5 md:gap-8">
-			<div class="flex w-full flex-col gap-2">
-				<Label for="street">Rua/Avenida*</Label>
-				<Input
-					name="rua"
-					autocomplete="off"
-					placeholder={camposDisponiveis.rua
-						? 'Preenchido automaticamente'
-						: 'Digite a rua/avenida'}
-					class="focus-visible:ring-[#F97316] placeholder:text-sm"
-					type="text"
-					bind:value={formData.rua}
-					readonly={camposDisponiveis.rua && !!formData.rua}
-				/>
+			<div class="flex flex-col sm:flex-row gap-4 sm:gap-5">
+				<div class="flex w-full flex-col gap-2">
+					<Label for="number">Número*</Label>
+					<Input
+						name="numero"
+						autocomplete="off"
+						placeholder="290"
+						class="focus-visible:ring-[#F97316] placeholder:text-sm"
+						type="number"
+						bind:value={formData.numero}
+					/>
+				</div>
+				<div class="flex w-full flex-col gap-2">
+					<Label for="complement">Complemento</Label>
+					<Input
+						name="complemento"
+						autocomplete="off"
+						placeholder="Apto 101"
+						class="focus-visible:ring-[#F97316] placeholder:text-sm"
+						type="text"
+						bind:value={formData.complemento}
+					/>
+				</div>
 			</div>
-			<div class="flex w-full flex-col gap-2">
-				<Label for="district">Bairro*</Label>
-				<Input
-					name="bairro"
-					autocomplete="off"
-					placeholder={camposDisponiveis.bairro ? 'Preenchido automaticamente' : 'Digite o bairro'}
-					class="focus-visible:ring-[#F97316] placeholder:text-sm"
-					type="text"
-					bind:value={formData.bairro}
-					readonly={camposDisponiveis.bairro && !!formData.bairro}
-				/>
-			</div>
-		</div>
 
-		<div class="flex flex-col md:flex-row gap-5 md:gap-8">
-			<div class="flex w-full flex-col gap-2">
-				<Label for="number">Número*</Label>
-				<Input
-					name="numero"
-					autocomplete="off"
-					placeholder="290"
-					class="focus-visible:ring-[#F97316] placeholder:text-sm"
-					type="number"
-					bind:value={formData.numero}
-				/>
-			</div>
-			<div class="flex w-full flex-col gap-2">
-				<Label for="complement">Complemento</Label>
-				<Input
-					name="complemento"
-					autocomplete="off"
-					placeholder="Apto 101"
-					class="focus-visible:ring-[#F97316] placeholder:text-sm"
-					type="text"
-					bind:value={formData.complemento}
-				/>
-			</div>
-		</div>
-
-		<div class="flex flex-col md:flex-row gap-5 md:gap-8">
-			<div class="flex w-full flex-col gap-2">
-				<Label class="flex gap-1" for="reference">
-					Ponto de referência <span class="md:flex hidden">(opcional)</span>
-				</Label>
-				<Input
-					name="pontoReferencia"
-					autocomplete="off"
-					placeholder="Himarte"
-					class="focus-visible:ring-[#F97316] placeholder:text-sm"
-					type="text"
-					bind:value={formData.pontoReferencia}
-				/>
+			<div class="flex flex-col sm:flex-row gap-4 sm:gap-5">
+				<div class="flex w-full flex-col gap-2">
+					<Label class="flex gap-1" for="reference">
+						Ponto de referência <span class="hidden sm:inline">(opcional)</span>
+					</Label>
+					<Input
+						name="pontoReferencia"
+						autocomplete="off"
+						placeholder="Himarte"
+						class="focus-visible:ring-[#F97316] placeholder:text-sm"
+						type="text"
+						bind:value={formData.pontoReferencia}
+					/>
+				</div>
 			</div>
 		</div>
 	{/if}
