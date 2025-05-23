@@ -17,7 +17,7 @@
 </script>
 
 <nav
-	class="fixed z-50 flex backdrop-blur-md bg-transparent h-[4rem] w-full items-center justify-center gap-5 bg-[#0f1829] px-[2%] xl:px-[5%] 2xl:px-[10%]"
+	class="fixed z-50 flex backdrop-blur-xl bg-opacity-80 h-[4rem] w-full items-center justify-center gap-5 bg-background px-[2%] xl:px-[5%] 2xl:px-[10%]"
 >
 	<a href="/" class="flex w-1/4 items-center justify-start gap-5">
 		<img src={LogoCompleto} alt="" class="h-10 w-auto" />
