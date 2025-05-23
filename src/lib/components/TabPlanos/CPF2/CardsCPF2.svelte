@@ -1,19 +1,17 @@
 <script lang="ts">
 	import Plus from 'lucide-svelte/icons/plus';
 	import Venus from '$lib/img/planetas/venus.webp';
-	import Plutao from '$lib/img/planetas/plutao.webp';
 	import Urano from '$lib/img/planetas/urano.webp';
 	import Jupiter from '$lib/img/planetas/jupiter.webp';
 
-	let { blipClient } = $props();
+
+	let mensagem = $state('');
 
 	const openChat = (item: any) => {
-		blipClient.toogleChat();
-		blipClient.sendMessage({
-			type: 'text/plain',
-			content: `Olá, gostaria de saber mais sobre o plano ${item.plano} de Fibra dedicada.`
-		});
+		mensagem = `https://wa.me/5551930568251?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20plano%20${item.plano}%20de%20Fibra%20dedicada.`;
+		window.open(mensagem, '_blank');
 	};
+
 
 	const items = [
 		{

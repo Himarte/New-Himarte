@@ -6,31 +6,14 @@
 	import MenuHome from '$lib/components/MenuHome.svelte';
 	import TabsPlanos from '$lib/components/TabPlanos/TabsPlanos.svelte';
 	import notebookImg from '$lib/img/extras/notebook4.webp';
-	import { onMount } from 'svelte';
 
-	// Declare 'blipClient' como variável reativa
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	let BlipChat: any;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	let blipClient: any;
 
-	onMount(async () => {
-		const module = await import('blip-chat-widget');
-		BlipChat = module.BlipChat;
-
-		blipClient = new BlipChat()
-			.withAppKey(import.meta.env.VITE_CHAVE_API_BLIP_CHAT)
-			.withButton({ color: '#EB4F27', icon: '' })
-			.withCustomCommonUrl(import.meta.env.VITE_LINK_BLIP_CHAT);
-		blipClient.build();
-	});
-
-	// Função para abrir o chat
 </script>
 
 <MenuHome />
 
-<TabsPlanos {blipClient} />
+<TabsPlanos />
 
 <section
 	class="relative mt-10 flex min-h-[22rem] w-full flex-col-reverse items-center justify-center overflow-hidden md:mt-16 md:w-2/3 md:flex-row"
