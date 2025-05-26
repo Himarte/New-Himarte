@@ -8,7 +8,7 @@
 	let mensagem = $state('');
 
 	const openChat = (item: any) => {
-		mensagem = `https://wa.me/5551930568251?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20plano%20${item.plano}%20de%20Fibra%20dedicada.`;
+		mensagem = `https://wa.me/555130568251?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20plano%20${item.plano}%20de%20Fibra%20dedicada.`;
 		window.open(mensagem, '_blank');
 	};
 
