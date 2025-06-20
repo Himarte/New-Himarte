@@ -1,5 +1,5 @@
 <script lang="ts">
-	import MainImgAstronalta from '$lib/img/extras/Home.png';
+	import MainImgAstronalta from '$lib/img/extras/hi-astronauta-main.webp';
 
 	let fraseOriginal = 'O FUTURO É AQUI';
 	let fraseDigitada = $state('');
