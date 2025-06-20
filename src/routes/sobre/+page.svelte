@@ -218,60 +218,6 @@
 
 		<!-- Stats Section -->
 
-		<!-- Commitment Section -->
-		<div class="mb-24">
-			<div class="bg-card border-border rounded-3xl border p-8 shadow-xl md:p-12">
-				<div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-					<div class="space-y-6">
-						<h2 class="text-foreground text-4xl font-bold">
-							Excelência e
-							<span
-								class="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent"
-							>
-								compromisso
-							</span>
-							com nossos clientes!
-						</h2>
-						<p class="text-muted-foreground text-lg leading-relaxed">
-							Na Himarte, priorizamos seu sucesso. Estamos dedicados a oferecer soluções claras e
-							eficientes, com parcerias baseadas em transparência e confiança. Nosso foco é superar
-							suas expectativas e garantir satisfação em cada projeto.
-						</p>
-						<div class="text-muted-foreground flex items-center gap-3 text-sm">
-							<div class="h-2 w-2 animate-pulse rounded-full bg-green-500"></div>
-							<span>Compromisso com a excelência desde 2010</span>
-						</div>
-					</div>
-
-					<div class="relative">
-						<div
-							class="absolute inset-0 rounded-2xl bg-gradient-to-r from-orange-500/20 to-transparent"
-						></div>
-						<div class="bg-card/50 border-border relative rounded-2xl border p-8 backdrop-blur-sm">
-							<div class="grid grid-cols-2 gap-6">
-								<div class="text-center">
-									<div class="mb-2 text-3xl font-bold text-orange-400">99.9%</div>
-									<div class="text-muted-foreground text-sm">Uptime</div>
-								</div>
-								<div class="text-center">
-									<div class="mb-2 text-3xl font-bold text-green-400">24/7</div>
-									<div class="text-muted-foreground text-sm">Suporte</div>
-								</div>
-								<div class="text-center">
-									<div class="mb-2 text-3xl font-bold text-blue-400">100%</div>
-									<div class="text-muted-foreground text-sm">Fibra Ótica</div>
-								</div>
-								<div class="text-center">
-									<div class="mb-2 text-3xl font-bold text-purple-400">+13</div>
-									<div class="text-muted-foreground text-sm">Anos</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
 		<!-- Mission, Vision, Values Section -->
 		<div class="mb-16">
 			<div class="mb-16 text-center">
