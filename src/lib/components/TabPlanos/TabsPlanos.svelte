@@ -17,10 +17,10 @@
 	>
 		<Tabs.Trigger
 			value="casa"
-			class="group relative flex flex-1 items-center justify-center gap-2 border-none bg-transparent px-4 py-5 font-medium text-gray-400 transition-colors duration-200 hover:bg-zinc-500/10 hover:text-gray-200 data-[state=active]:bg-zinc-500/10 data-[state=active]:text-orange-400 sm:flex-none sm:px-8"
+			class="group relative flex flex-1 items-center justify-center gap-2 border-none bg-transparent px-4 py-5   font-medium text-gray-400 transition-colors duration-200 hover:bg-zinc-500/10 hover:text-gray-200 data-[state=active]:bg-zinc-500/10 data-[state=active]:text-orange-400 sm:flex-none sm:px-8"
 		>
-			<UsersRound size={18} class="hidden sm:block" />
-			<span class="text-xs font-semibold sm:text-sm">Para sua Casa</span>
+			<UsersRound size={20} class="hidden sm:block" />
+			<span class="text-xs font-semibold sm:text-xl">Para sua Casa</span>
 			<!-- Indicador gradiente -->
 			<div
 				class="absolute -bottom-1 left-1/2 h-0.5 w-0 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 transition-all duration-300 ease-out group-data-[state=active]:w-3/4 group-data-[state=active]:-translate-x-1/2 sm:h-1"
@@ -32,9 +32,9 @@
 			value="empresa"
 			class="group relative flex flex-1 items-center justify-center gap-2 border-none bg-transparent px-4 py-5 font-medium text-gray-400 transition-colors duration-200 hover:bg-zinc-500/10 hover:text-gray-200 data-[state=active]:bg-zinc-500/10 data-[state=active]:text-orange-400 sm:flex-none sm:px-8"
 		>
-			<Building2 size={16} class="sm:hidden" />
-			<Building2 size={18} class="hidden sm:block" />
-			<span class="text-xs font-semibold sm:text-sm">Para sua Empresa</span>
+			<Building2 size={20} class="sm:hidden" />
+			<Building2 size={20} class="hidden sm:block" />
+			<span class="text-xs font-semibold sm:text-xl">Para sua Empresa</span>
 			<!-- Indicador gradiente -->
 			<div
 				class="absolute -bottom-1 left-1/2 h-0.5 w-0 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 transition-all duration-300 ease-out group-data-[state=active]:w-3/4 group-data-[state=active]:-translate-x-1/2 sm:h-1"

@@ -68,19 +68,19 @@
 		hl1.set(0);
 		hl2.set(0);
 	}}
-	class={`relative flex h-min w-fit flex-col flex-nowrap content-center items-center justify-center gap-10 overflow-visible rounded-full border bg-background/20 decoration-clone p-px transition duration-500 hover:bg-background/10 dark:bg-white/20 ${containerClassName}`}
+	class={`bg-background/20 hover:bg-background/10 relative flex h-min w-fit flex-col flex-nowrap content-center items-center justify-center gap-10 overflow-visible rounded-xs border decoration-clone p-px transition duration-500 dark:bg-white/20 ${containerClassName}`}
 	{...$$props}
 >
-	<div class={`z-10 w-auto rounded-[inherit] bg-background px-4 py-2 text-white ${className}`}>
+	<div class={`bg-background z-10 w-full rounded-xs px-4 py-2 text-white ${className}`}>
 		<slot />
 	</div>
 	<div
-		class="absolute inset-0 z-0 flex-none overflow-hidden rounded-[inherit]"
+		class="absolute inset-0 z-0 flex-none overflow-hidden rounded-xs"
 		style="filter: blur(2px); position: absolute; width: 100%; height: 100%;
             background: {hovered
 			? `radial-gradient(${$t1}% ${$t2}% at ${$t3}% ${$t4}%, #FF7B00 0%, rgba(255, 255, 255, 0) 100%), radial-gradient(${$hl2}% ${$hl1}% at 50% 50%, #FF7B00 0%, rgba(255, 255, 255, 0) 100%)`
 			: `radial-gradient(${$t1}% ${$t2}% at ${$t3}% ${$t4}%, #FF7B00 0%, rgba(255, 255, 255, 0) 100%)`};
           "
 	></div>
-	<div class="z-1 absolute inset-[2px] flex-none rounded-[100px] bg-background"></div>
+	<div class="bg-background absolute inset-[2px] z-1 flex-none rounded-xs"></div>
 </svelte:element>
