@@ -21,12 +21,12 @@
 	></div>
 
 	<!-- Main Footer Content -->
-	<div class="relative z-10 px-4 py-16 sm:px-6 lg:px-8">
+	<div class="relative z-10 px-4 py-16 sm:px-6 md:px-8">
 		<div class="mx-auto max-w-7xl">
 			<!-- Top Section -->
-			<div class="grid grid-cols-1 gap-12 lg:grid-cols-4 lg:gap-8">
+			<div class="grid grid-cols-1 gap-12 md:grid-cols-4 md:gap-8">
 				<!-- Company Info -->
-				<div class="lg:col-span-1">
+				<div class="md:col-span-1">
 					<div class="mb-6 flex justify-center md:justify-start">
 						<img class="h-12 w-auto" src={logoNome} alt="Logo Himarte - Internet Fibra Ótica" />
 					</div>
@@ -68,7 +68,7 @@
 				</div>
 
 				<!-- Quick Links -->
-				<div class="lg:col-span-1">
+				<div class="hidden md:col-span-1 md:flex">
 					<h3 class="text-foreground mb-6 text-center text-lg font-semibold md:text-left">
 						Links Rápidos
 					</h3>
@@ -137,7 +137,7 @@
 				</div>
 
 				<!-- Contact Info -->
-				<div class="lg:col-span-1">
+				<div class="md:col-span-1">
 					<h3 class="text-foreground mb-6 text-center text-lg font-semibold md:text-left">
 						Contato
 					</h3>
@@ -209,7 +209,7 @@
 				</div>
 
 				<!-- Stats & Social -->
-				<div class="lg:col-span-1">
+				<div class="hidden md:col-span-1 md:flex">
 					<h3 class="text-foreground mb-2 text-center text-lg font-semibold md:text-left">
 						Acompanhe
 					</h3>
