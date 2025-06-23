@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Separator from '$lib/components/ui/separator/separator.svelte';
 	import Gauge from '@lucide/svelte/icons/gauge';
 	import Headphones from '@lucide/svelte/icons/headphones';
 	import ListChecks from '@lucide/svelte/icons/list-checks';
@@ -10,13 +9,6 @@
 	import UsersRound from '@lucide/svelte/icons/users-round';
 	import MoveRight from '@lucide/svelte/icons/move-right';
 	import Heart from '@lucide/svelte/icons/heart';
-	import Award from '@lucide/svelte/icons/award';
-
-	import NumberUser from '$lib/components/CounterNumber/NumberTickerUser.svelte';
-	import NumberColab from '$lib/components/CounterNumber/NumberTickerColab.svelte';
-	import NumberEmp from '$lib/components/CounterNumber/NumberTickerEmp.svelte';
-	import NumberHouse from '$lib/components/CounterNumber/NumberTickerHouse.svelte';
-	import NumberCond from '$lib/components/CounterNumber/NumberTickerCond.svelte';
 
 	// Array para as vantagens
 	const advantages = [
@@ -56,40 +48,6 @@
 			title: 'Atendimento de qualidade',
 			description: 'Atendimento personalizado com suporte especializado',
 			color: 'pink'
-		}
-	];
-
-	// Array para os números
-	const stats = [
-		{
-			title: 'Residências',
-			value: 5000,
-			component: NumberHouse,
-			icon: 'home'
-		},
-		{
-			title: 'Empresas',
-			value: 170,
-			component: NumberEmp,
-			icon: 'building'
-		},
-		{
-			title: 'Condomínios',
-			value: 20,
-			component: NumberCond,
-			icon: 'apartment'
-		},
-		{
-			title: 'Usuários',
-			value: 9800,
-			component: NumberUser,
-			icon: 'users'
-		},
-		{
-			title: 'Colaboradores',
-			value: 50,
-			component: NumberColab,
-			icon: 'team'
 		}
 	];
 
@@ -179,7 +137,7 @@
 		<!-- Vantagens Section -->
 		<div class="mb-14">
 			<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-				{#each advantages as advantage, index}
+				{#each advantages as advantage, index (index)}
 					<div
 						class="group bg-card border-border relative overflow-hidden rounded-2xl border p-8 shadow-lg transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl"
 						style="animation-delay: {index * 0.1}s;"
@@ -228,7 +186,7 @@
 			</div>
 
 			<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-				{#each missionVisionValues as item, index}
+				{#each missionVisionValues as item, index (index)}
 					<div
 						class="group bg-card border-border relative overflow-hidden rounded-2xl border shadow-lg transition-all duration-500 hover:shadow-2xl"
 						style="animation-delay: {(index + 11) * 0.2}s;"
@@ -261,7 +219,7 @@
 									</p>
 								{:else if item.values}
 									<div class="space-y-3">
-										{#each item.values as value}
+										{#each item.values as value, index (index)}
 											<div class="text-muted-foreground flex items-center gap-3">
 												<div class="flex-shrink-0">
 													<MoveRight size={16} class="text-orange-400" />

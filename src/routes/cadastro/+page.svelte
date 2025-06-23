@@ -9,7 +9,6 @@
 	import type { SubmitFunction } from '@sveltejs/kit';
 	import { cn } from '$lib/utils';
 	import { browser } from '$app/environment';
-
 	// Estado do formulário usando runes
 	let currentStep = $state(1);
 	let isSubmitting = $state(false);
@@ -33,6 +32,16 @@
 			};
 		}
 	});
+	interface VoalleResult {
+		success: boolean;
+		data: {
+			messages: VoalleMessage[];
+		};
+	}
+	interface VoalleMessage {
+		type: string;
+		message: string;
+	}
 
 	// Dados do formulário
 	let formData = $state<FormData>({
@@ -135,7 +144,7 @@
 	const stepClasses = {
 		completed: {
 			circle: 'bg-orange-500 text-black border-orange-500 font-bold text-sm',
-			text: 'text-black font-bold text-sm',
+			text: 'text-orange-500 font-bold text-sm',
 			separator: 'bg-orange-500'
 		},
 		current: {
@@ -174,14 +183,14 @@
 			toast.dismiss();
 
 			// Função para processar mensagens do Voalle
-			const processarMensagensVoalle = (voalleResult: any) => {
+			const processarMensagensVoalle = (voalleResult: VoalleResult) => {
 				if (!voalleResult) return;
 
 				// Apenas processar mensagens se não for um erro principal já exibido
 				if (voalleResult.success) {
 					// Verifica se há mensagens específicas de sucesso ou avisos
 					if (voalleResult.data?.messages?.length > 0) {
-						voalleResult.data.messages.forEach((msg: any) => {
+						voalleResult.data.messages.forEach((msg: VoalleMessage) => {
 							const tipo =
 								msg.type === 'Success' ? 'success' : msg.type === 'Warning' ? 'warning' : 'info';
 							toast[tipo](`Voalle: ${msg.message}`);
@@ -254,7 +263,7 @@
 	};
 </script>
 
-<div class="flex h-full w-full items-center justify-center px-4 pt-16 sm:px-6 md:pt-28">
+<div class="flex h-full w-full items-center justify-center px-4 pt-16 pb-20 sm:px-6 md:pt-28">
 	<form
 		method="POST"
 		action="?/novoCadastro"
@@ -272,7 +281,7 @@
 
 		<!-- Indicador de progresso -->
 		<div class="flex h-full w-full items-center justify-center gap-1 sm:gap-2">
-			{#each etapas as etapa, index}
+			{#each etapas as etapa, index (index)}
 				{@const numeroEtapa = index + 1}
 				{@const status = getStepStatus(numeroEtapa)}
 				{@const classes = stepClasses[status]}
@@ -311,7 +320,7 @@
 						{#if !isMobile && numeroEtapa < 3}
 							<div
 								class={cn(
-									'xs:w-12 h-[1px] w-8 opacity-50 transition-colors duration-200 sm:w-20 md:w-32',
+									'xs:w-12 h-[1px] w-8 opacity-50 transition-colors duration-200 sm:w-20 md:max-w-full',
 									classes.separator
 								)}
 							></div>
@@ -322,7 +331,7 @@
 		</div>
 
 		<!-- Conteúdo do formulário -->
-		<div class="min-h-72 w-full sm:min-h-80 md:min-h-96">
+		<div class="min-h-72 w-full sm:min-h-80 md:h-[60vh]">
 			{#if currentStep === 1}
 				<StepOne {formData} />
 			{:else if currentStep === 2}

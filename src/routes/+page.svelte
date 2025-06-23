@@ -23,12 +23,12 @@
 <!-- Hero Content Section -->
 <section class="relative h-full w-full bg-black pt-0">
 	<div class="relative z-10 w-full py-10">
-		<div class="mx-auto max-w-7xl px-4 md:px-6 md:px-8">
+		<div class="mx-auto max-w-7xl px-4 md:px-8">
 			<div class="grid min-h-[70vh] grid-cols-1 items-center gap-12 md:grid-cols-2">
 				<!-- Left Content -->
 				<div class="space-y-8 text-center md:text-left">
 					<div class="space-y-6">
-						<h1 class="text-foreground text-5xl leading-tight font-bold md:text-6xl md:text-7xl">
+						<h1 class="text-foreground text-5xl leading-tight font-bold md:text-6xl">
 							Até onde a
 							<span
 								class="animate-text-gradient bg-gradient-to-r from-orange-500 via-orange-400 to-orange-600 bg-clip-text text-transparent"
@@ -131,7 +131,7 @@
 </div>
 
 <!-- Video/History Section -->
-<section class="relative w-full bg-black py-10">
+<section class="relative w-full bg-black py-2 md:py-10">
 	<div class="mx-auto max-w-7xl px-4 md:px-0">
 		<div class="grid grid-cols-1 items-center gap-16 md:grid-cols-2">
 			<!-- Left Content - Video -->
@@ -170,7 +170,7 @@
 			</div>
 
 			<!-- Right Content - Text with stats -->
-			<div class="order-1 space-y-8 md:order-2">
+			<div class="order-1 space-y-8 px-4 text-center md:order-2 md:px-0 md:text-left">
 				<div>
 					<h2 class="text-foreground mb-6 text-4xl font-bold">
 						Conheça um pouco da nossa

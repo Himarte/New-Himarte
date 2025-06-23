@@ -76,7 +76,7 @@
 	/>
 </svelte:head>
 
-<div class="bg-background h-full w-full pt-24">
+<div class="bg-background h-full w-full py-10 md:py-24">
 	<div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
 		<!-- Header Section -->
 		<div class="mb-12 text-center">
@@ -152,7 +152,7 @@
 								placeholder="Digite seu nome completo"
 								name="nome"
 								bind:value={nome}
-								on:input={() => {
+								oninput={() => {
 									nome = validateNome(nome);
 								}}
 							/>
@@ -189,7 +189,7 @@
 								class="bg-input border-border text-foreground placeholder:text-muted-foreground h-12 transition-colors focus:border-orange-500 focus:ring-orange-500"
 								placeholder="(11) 99999-9999"
 								bind:value={telefone}
-								on:input={() => {
+								oninput={() => {
 									telefone = formatTelefone(telefone);
 								}}
 							/>

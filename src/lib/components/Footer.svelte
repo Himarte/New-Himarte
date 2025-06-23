@@ -1,9 +1,8 @@
-<script>
+<script lang="ts">
 	import logoNome from '$lib/img/logos/logo-nome-quliadade2.png';
 	import Facebook from '@lucide/svelte/icons/facebook';
 	import Instagram from '@lucide/svelte/icons/instagram';
 	import Linkedin from '@lucide/svelte/icons/linkedin';
-	import Button from '@/lib/components/ui/button/button.svelte';
 	import MapPin from '@lucide/svelte/icons/map-pin';
 	import Phone from '@lucide/svelte/icons/phone';
 	import Mail from '@lucide/svelte/icons/mail';
@@ -11,7 +10,6 @@
 	import Wifi from '@lucide/svelte/icons/wifi';
 	import Shield from '@lucide/svelte/icons/shield-check';
 	import Award from '@lucide/svelte/icons/award';
-	import Users from '@lucide/svelte/icons/users';
 	import ChevronRight from '@lucide/svelte/icons/chevron-right';
 </script>
 

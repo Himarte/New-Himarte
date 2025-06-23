@@ -98,7 +98,7 @@
 
 		<!-- Filiais Grid -->
 		<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-			{#each listaFiliais as location, index}
+			{#each listaFiliais as location, index (index)}
 				<div
 					class="group bg-card border-border relative overflow-hidden rounded-2xl border shadow-lg transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl"
 					style="animation-delay: {index * 0.1}s;"
