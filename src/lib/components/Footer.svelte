@@ -68,7 +68,7 @@
 				</div>
 
 				<!-- Quick Links -->
-				<div class="hidden md:col-span-1 md:flex">
+				<div class="hidden md:col-span-1 md:block">
 					<h3 class="text-foreground mb-6 text-center text-lg font-semibold md:text-left">
 						Links Rápidos
 					</h3>
@@ -209,7 +209,7 @@
 				</div>
 
 				<!-- Stats & Social -->
-				<div class="hidden md:col-span-1 md:flex">
+				<div class="hidden md:col-span-1 md:block">
 					<h3 class="text-foreground mb-2 text-center text-lg font-semibold md:text-left">
 						Acompanhe
 					</h3>
