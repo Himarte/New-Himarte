@@ -52,7 +52,7 @@
 							</div>
 							<div class="flex flex-col">
 								<span class="text-muted-foreground text-xs">Domingo</span>
-								<span class="text-foreground font-mono text-sm">08:00 - 19:00</span>
+								<span class="text-foreground font-mono text-sm">08:00 - 12:00 / 13:00 - 19:00</span>
 							</div>
 						</div>
 						<div class="flex items-center gap-3 text-sm">
