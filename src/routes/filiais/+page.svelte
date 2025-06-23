@@ -62,8 +62,19 @@
 			city: 'Candelária',
 			address: 'Av. Pereira Rêgo, 1545 - Centro',
 			schedule: 'Segunda a Sexta: 08:30 - 12:00 | 13:30 - 18:00',
+			days: 'Segunda a Sexta',
 			schedule2: 'Sábado: 08:00 - 12:00',
 			link: 'https://maps.app.goo.gl/72SJiiRRZEe619qQ7'
+		},
+		{
+			url: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d867.2279794682759!2d-52.6850167!3d-29.6062467!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x951ccabf974eef23%3A0xc72a39be4b342b49!2sAv.%20Arno%20Ullmann%2C%20851%2C%20Vale%20do%20Sol%20-%20RS%2C%2096878-000!5e0!3m2!1spt-BR!2sbr!4v1750703075961!5m2!1spt-BR!2sbr',
+			title: 'Himarte Net Localização Vale do Sol',
+			city: 'Vale do Sol',
+			address: 'Av. Arno Ullmann, 851 - Centro',
+			schedule: 'Segunda a Sexta: 08:30 - 12:00 | 13:30 - 18:00',
+			days: 'Segunda a Sexta',
+			schedule2: 'Sábado: 08:00 - 12:00',
+			link: 'https://maps.app.goo.gl/xzZqDNUwW266J4yMA'
 		}
 	];
 </script>
