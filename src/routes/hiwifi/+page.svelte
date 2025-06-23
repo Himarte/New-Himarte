@@ -5,6 +5,32 @@
 	import HoverBorderGradient from '$lib/components/HoverBorderGradient.svelte';
 </script>
 
+<svelte:head>
+	<title>HiWiFi Empresarial - Internet Corporativa Himarte</title>
+	<meta
+		name="description"
+		content="Conheça a HiWiFi, solução de internet empresarial da Himarte. Conectividade corporativa de alta performance com segurança e eficiência garantida."
+	/>
+	<meta
+		name="keywords"
+		content="internet empresarial, wifi corporativo, himarte empresas, conexão empresarial, internet para empresas RS"
+	/>
+	<meta name="robots" content="index, follow" />
+	<meta property="og:title" content="HiWiFi Empresarial - Internet Corporativa Himarte" />
+	<meta
+		property="og:description"
+		content="Conheça a HiWiFi, solução de internet empresarial da Himarte. Conectividade corporativa de alta performance com segurança e eficiência garantida."
+	/>
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://himarte.com.br/hiwifi" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="HiWiFi Empresarial - Internet Corporativa Himarte" />
+	<meta
+		name="twitter:description"
+		content="Conheça a HiWiFi, solução de internet empresarial da Himarte. Conectividade corporativa de alta performance com segurança e eficiência garantida."
+	/>
+</svelte:head>
+
 <BackgroundLightsHero />
 <FeatureSelectionDemo />
 

@@ -9,6 +9,7 @@
 	import type { SubmitFunction } from '@sveltejs/kit';
 	import { cn } from '$lib/utils';
 	import { browser } from '$app/environment';
+
 	// Estado do formulário usando runes
 	let currentStep = $state(1);
 	let isSubmitting = $state(false);
@@ -262,6 +263,32 @@
 		};
 	};
 </script>
+
+<svelte:head>
+	<title>Cadastro de Cliente - Himarte Internet Fibra Ótica</title>
+	<meta
+		name="description"
+		content="Complete seu cadastro na Himarte e aproveite a melhor internet fibra ótica do RS. Processo rápido e seguro para ativar seu plano."
+	/>
+	<meta
+		name="keywords"
+		content="cadastro himarte, contratar internet, fibra ótica RS, cadastro cliente, ativação plano internet"
+	/>
+	<meta name="robots" content="noindex, nofollow" />
+	<meta property="og:title" content="Cadastro de Cliente - Himarte Internet Fibra Ótica" />
+	<meta
+		property="og:description"
+		content="Complete seu cadastro na Himarte e aproveite a melhor internet fibra ótica do RS. Processo rápido e seguro para ativar seu plano."
+	/>
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://himarte.com.br/cadastro" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Cadastro de Cliente - Himarte Internet Fibra Ótica" />
+	<meta
+		name="twitter:description"
+		content="Complete seu cadastro na Himarte e aproveite a melhor internet fibra ótica do RS. Processo rápido e seguro para ativar seu plano."
+	/>
+</svelte:head>
 
 <div class="flex h-full w-full items-center justify-center px-4 pt-16 pb-20 sm:px-6 md:pt-28">
 	<form
