@@ -8,8 +8,6 @@
 	import Mail from '@lucide/svelte/icons/mail';
 	import Clock from '@lucide/svelte/icons/clock';
 	import Wifi from '@lucide/svelte/icons/wifi';
-	import Shield from '@lucide/svelte/icons/shield-check';
-	import Award from '@lucide/svelte/icons/award';
 	import ChevronRight from '@lucide/svelte/icons/chevron-right';
 </script>
 
@@ -37,25 +35,34 @@
 						Mais de 13 anos levando tecnologia de ponta para sua casa e negócio.
 					</p>
 
-					<!-- Key Features -->
-					<div class="space-y-3 pl-16 md:pl-0">
+					<!-- Horários de Funcionamento -->
+					<div class="space-y-3 pl-8 md:pl-0">
 						<div class="flex items-center gap-3 text-sm">
 							<div class="flex h-8 w-8 items-center justify-center rounded-full bg-orange-500/20">
-								<Wifi size={16} class="text-orange-400" />
+								<Clock size={16} class="text-orange-400" />
 							</div>
-							<span class="text-muted-foreground">100% Fibra Ótica</span>
+							<div class="flex flex-col">
+								<span class="text-muted-foreground text-xs">Segunda a Sábado</span>
+								<span class="text-foreground font-mono text-sm">08:30 - 22:00</span>
+							</div>
 						</div>
 						<div class="flex items-center gap-3 text-sm">
 							<div class="flex h-8 w-8 items-center justify-center rounded-full bg-blue-500/20">
-								<Shield size={16} class="text-blue-400" />
+								<Clock size={16} class="text-blue-400" />
 							</div>
-							<span class="text-muted-foreground">Suporte 24/7</span>
+							<div class="flex flex-col">
+								<span class="text-muted-foreground text-xs">Domingo</span>
+								<span class="text-foreground font-mono text-sm">08:00 - 19:00</span>
+							</div>
 						</div>
 						<div class="flex items-center gap-3 text-sm">
 							<div class="flex h-8 w-8 items-center justify-center rounded-full bg-green-500/20">
-								<Award size={16} class="text-green-400" />
+								<Clock size={16} class="text-green-400" />
 							</div>
-							<span class="text-muted-foreground">99.9% Disponibilidade</span>
+							<div class="flex flex-col">
+								<span class="text-muted-foreground text-xs">Feriados</span>
+								<span class="text-foreground font-mono text-sm">13:00 - 17:00</span>
+							</div>
 						</div>
 					</div>
 				</div>
