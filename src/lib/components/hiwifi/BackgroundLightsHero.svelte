@@ -6,16 +6,17 @@
 </script>
 
 <section class="relative block h-screen w-full overflow-hidden rounded-xl bg-black">
-	<!-- Grid Background Pattern - você pode trocar bg-dot-grid por bg-grid-pattern se preferir linhas -->
-	<div class="bg-dot-grid absolute inset-0 opacity-60"></div>
+	<!-- Grid Background Pattern mais visível -->
+	<!-- Troque bg-grid-lines por: bg-dot-grid (pontos) ou bg-grid-hybrid (híbrido) -->
+	<div class="bg-grid-hybrid absolute inset-0 opacity-80"></div>
 
-	<!-- Subtle gradient overlay -->
-	<div class="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50"></div>
+	<!-- Overlay gradient mais suave para não esconder o grid -->
+	<div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30"></div>
 
 	<!-- Main content -->
 	<div class="relative z-10 h-full w-full px-4">
 		<div
-			class="animate-moveUp relative z-[1] flex h-full w-full flex-col items-start justify-center sm:items-center"
+			class="relative z-[1] flex h-full w-full animate-[moveUp_1.4s_ease_forwards] flex-col items-start justify-center sm:items-center"
 		>
 			<div class="mb-5 flex h-auto w-full flex-col items-center justify-center">
 				<img src={hiwifiLogo} alt="HiWiFi" class="w-48 object-contain md:mb-3 md:w-80" />
@@ -43,7 +44,7 @@
 			</div>
 		</div>
 
-		<!-- Lights effect in background -->
+		<!-- Lights effect no fundo com opacidade bem baixa -->
 		<div
 			class="absolute bottom-0 left-0 z-0 h-full w-full animate-[appear_0.5s_1s_forwards] opacity-0"
 		>
@@ -53,35 +54,36 @@
 </section>
 
 <style>
-	@keyframes moveUp {
-		0% {
-			transform: translateY(50px);
-			opacity: 0;
-		}
-		100% {
-			transform: translateY(0);
-			opacity: 1;
-		}
-	}
-
-	.animate-moveUp {
-		animation: moveUp 1s ease-out forwards;
-	}
-
-	/* Grid pattern background */
-	.bg-grid-pattern {
+	/* Grid de linhas mais visível */
+	.bg-grid-lines {
 		background-image:
-			linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-			linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-		background-size: 24px 24px;
+			linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+		background-size: 20px 20px;
 		background-position:
 			0 0,
 			0 0;
 	}
 
-	/* Alternative dot grid pattern */
+	/* Grid de pontos alternativo */
 	.bg-dot-grid {
-		background-image: radial-gradient(circle, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
-		background-size: 24px 24px;
+		background-image: radial-gradient(circle, rgba(255, 255, 255, 0.12) 1.5px, transparent 1.5px);
+		background-size: 20px 20px;
+	}
+
+	/* Grid híbrido - linhas + pontos nas intersecções */
+	.bg-grid-hybrid {
+		background-image:
+			radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+			linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+		background-size:
+			20px 20px,
+			20px 20px,
+			20px 20px;
+		background-position:
+			0 0,
+			0 0,
+			0 0;
 	}
 </style>

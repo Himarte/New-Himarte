@@ -17,7 +17,7 @@
 
 <div class={cn('h-full w-full overflow-hidden', className)}>
 	<div
-		style="background: conic-gradient(from {gradientDirection} at 50% 50%, #3b82f6 0deg, #06b6d4 180deg, #facc15 1turn); filter: blur(100px); opacity: 0.15;"
+		style="background: conic-gradient(from {gradientDirection} at 50% 50%, #3b82f6 0deg, #06b6d4 180deg, #facc15 1turn); filter: blur(120px); opacity: 0.12;"
 		class="relative h-full w-full {positionClass}"
 	></div>
 </div>
