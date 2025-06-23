@@ -10,28 +10,28 @@
 
 <Beneficios />
 <div
-	class="w-full h-[60vh] flex items-center justify-center bg-gradient-to-b from-black via-transparent to-transparent"
+	class="flex h-[60vh] w-full items-center justify-center bg-gradient-to-b from-black via-transparent to-transparent"
 >
-	<div class=" w-full md:w-2/3 flex items-center justify-center">
-		<div class="w-full flex flex-col md:w-2/3 gap-5 items-center justify-center">
-			<div class="flex flex-col w-full gap-3 mb-4">
+	<div class=" flex w-full items-center justify-center md:w-2/3">
+		<div class="flex w-full flex-col items-center justify-center gap-5 md:w-2/3">
+			<div class="mb-4 flex w-full flex-col gap-3">
 				<h1
-					class="text-transparent font-inter text-center font-bold text-3xl md:text-5xl text-nowrap bg-clip-text bg-gradient-to-br from-white/60 via-neutral-300 to-black/[0.6]"
+					class="font-inter bg-gradient-to-br from-white/60 via-neutral-300 to-black/[0.6] bg-clip-text text-center text-3xl font-bold text-nowrap text-transparent md:text-5xl"
 				>
 					Pronto para começar?
 				</h1>
-				<h4 class="text-white/[0.7] text-center px-5">
+				<h4 class="px-5 text-center text-white/[0.7]">
 					Temos como propósito entregar <span
-						class="underline underline-offset-4 decoration-1 decoration-orange-500"
+						class="underline decoration-orange-500 decoration-1 underline-offset-4"
 					>
 						excelência e qualidade</span
 					>
 					nos serviços prestados para
-					<span class="underline underline-offset-4 decoration-1 decoration-orange-500"
+					<span class="underline decoration-orange-500 decoration-1 underline-offset-4"
 						>contribuir positivamente</span
 					>
 					na caminhada de sucesso de sua empresa.
-					<span class="underline underline-offset-4 decoration-1 decoration-orange-500"
+					<span class="underline decoration-orange-500 decoration-1 underline-offset-4"
 						>Conte conosco!</span
 					>
 				</h4>
