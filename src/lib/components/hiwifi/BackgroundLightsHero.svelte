@@ -54,23 +54,6 @@
 </section>
 
 <style>
-	/* Grid de linhas mais visível */
-	.bg-grid-lines {
-		background-image:
-			linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
-			linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-		background-size: 20px 20px;
-		background-position:
-			0 0,
-			0 0;
-	}
-
-	/* Grid de pontos alternativo */
-	.bg-dot-grid {
-		background-image: radial-gradient(circle, rgba(255, 255, 255, 0.12) 1.5px, transparent 1.5px);
-		background-size: 20px 20px;
-	}
-
 	/* Grid híbrido - linhas + pontos nas intersecções */
 	.bg-grid-hybrid {
 		background-image:
