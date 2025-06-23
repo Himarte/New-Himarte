@@ -238,7 +238,7 @@
 					Ver Nossos Planos
 				</a>
 				<a
-					href="/#contato"
+					href="https://api.whatsapp.com/send/?phone=555130568251&text=Ola%21+Tudo+bem%3F&type=phone_number&app_absent=0"
 					class="border-border bg-card hover:bg-muted/50 text-foreground inline-flex items-center justify-center gap-2 rounded-xs border px-8 py-4 font-semibold transition-all duration-200 hover:scale-105 hover:ring-2 hover:ring-orange-500/20"
 				>
 					Entre em Contato

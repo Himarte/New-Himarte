@@ -323,9 +323,7 @@
 					<p class="text-muted-foreground text-sm">
 						© {new Date().getFullYear()} Himarte Internet. Todos os direitos reservados.
 					</p>
-					<p class="text-muted-foreground mt-1 text-xs">
-						CNPJ: 07.588.404/0001-97 • Desenvolvido com ❤️ no Rio Grande do Sul
-					</p>
+					<p class="text-muted-foreground mt-1 text-xs">CNPJ: 07.588.404/0001-97</p>
 				</div>
 
 				<!-- Test Speed CTA -->
