@@ -104,7 +104,7 @@
 							tipo="CPF"
 						>
 							<div
-								class="card-button text-background flex items-center justify-center rounded-sm no-underline hover:no-underline"
+								class="card-button text-background flex items-center justify-center rounded-xs no-underline hover:no-underline"
 							>
 								Contratar
 							</div>

@@ -58,7 +58,7 @@
 			<div class="flex w-full items-center justify-center pt-8 text-center">
 				<a
 					href="/planos"
-					class="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-lg bg-gradient-to-r from-orange-400 to-orange-600 px-8 py-4 text-sm font-semibold text-white shadow-lg transition-all duration-300 ease-out hover:scale-105 hover:shadow-xl hover:shadow-orange-500/25 active:scale-95"
+					class="group text-background relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-xs bg-gradient-to-r from-orange-400 to-orange-600 px-8 py-4 text-base font-semibold shadow-lg transition-all duration-300 ease-out hover:scale-105 hover:shadow-xl hover:shadow-orange-500/25 active:scale-95"
 				>
 					<!-- Efeito de brilho no hover -->
 					<div

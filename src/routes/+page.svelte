@@ -3,9 +3,9 @@
 	import MenuHome from '$lib/components/MenuHome.svelte';
 	import TabsPlanosScroll from '$lib/components/TabPlanosScroll/TabsPlanosScroll.svelte';
 	import notebookImg from '$lib/img/extras/notebook4.webp';
-	import Zap from '@lucide/svelte/icons/zap';
 	import Gauge from '@lucide/svelte/icons/gauge';
 	import ExternalLink from '@lucide/svelte/icons/external-link';
+	import PhoneCall from '@lucide/svelte/icons/phone-call';
 </script>
 
 <svelte:head>
@@ -212,19 +212,17 @@
 				confiança de milhares de clientes.
 			</p>
 			<div class="flex flex-col justify-center gap-4 md:flex-row">
-				<a
-					href="/planos"
-					class="inline-flex items-center justify-center gap-2 rounded-xs bg-gradient-to-r from-orange-600 to-orange-500 px-8 py-4 font-semibold text-white shadow-lg shadow-orange-500/25 transition-all duration-200 hover:scale-105 hover:from-orange-700 hover:to-orange-600 hover:shadow-xl hover:shadow-orange-500/30"
-				>
-					<Zap size={20} />
-					Ver Nossos Planos
-				</a>
-				<a
-					href="https://api.whatsapp.com/send/?phone=555130568251&text=Ola%21+Tudo+bem%3F&type=phone_number&app_absent=0"
-					class="border-border bg-card hover:bg-muted/50 text-foreground inline-flex items-center justify-center gap-2 rounded-xs border px-8 py-4 font-semibold transition-all duration-200 hover:scale-105 hover:ring-2 hover:ring-orange-500/20"
-				>
-					Entre em Contato
-				</a>
+				<HoverBorderGradient>
+					<a
+						href="https://api.whatsapp.com/send/?phone=555130568251&text=Ola%21+Tudo+bem%3F&type=phone_number&app_absent=0"
+						target="_blank"
+						class="inline-flex items-center gap-3 px-6 py-3 text-sm font-semibold md:text-base"
+					>
+						<PhoneCall size={20} class="text-orange-400" />
+						Entre em Contato
+						<ExternalLink size={16} />
+					</a>
+				</HoverBorderGradient>
 			</div>
 		</div>
 	</div>

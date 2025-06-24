@@ -385,10 +385,4 @@
 		border: 2px solid hsl(var(--orange) / 0.3);
 		animation: glow 3s ease-in-out infinite;
 	}
-
-	.shimmer-effect {
-		background: linear-gradient(90deg, transparent, rgba(251, 146, 60, 0.1), transparent);
-		background-size: 200% 100%;
-		animation: shimmer 2s infinite;
-	}
 </style>
