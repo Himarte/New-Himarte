@@ -51,11 +51,11 @@
 	}
 </script>
 
-<div class="flex min-h-full min-w-full items-center justify-center text-nowrap">
+<div class="flex min-h-full w-full items-center justify-center text-nowrap">
 	<div
 		class="mt-5 flex min-h-full w-full flex-col items-center justify-center gap-10 md:h-96 md:w-2/3 md:flex-row md:items-end md:justify-between"
 	>
-		{#each items as item (item.id)}
+		{#each items as item}
 			{#if item.id === 2}
 				<div
 					class="card flex h-96 w-3/4 flex-col items-center justify-center text-start hover:z-10 hover:border-amber-500/70 md:w-1/3 md:hover:scale-105"
@@ -78,7 +78,7 @@
 						{item.megas} <span class="font-inter text-3xl font-bold">Megas</span>
 					</h2>
 					<ul>
-						{#each item.beneficios as beneficio (beneficio)}
+						{#each item.beneficios as beneficio}
 							<li class="flex gap-2"><Plus color="#f97316" /> {beneficio}</li>
 						{/each}
 					</ul>
@@ -139,7 +139,7 @@
 						</h2>
 					{/if}
 					<ul>
-						{#each item.beneficios as beneficio (beneficio)}
+						{#each item.beneficios as beneficio}
 							<li class="flex gap-2"><Plus color="#f97316" /> {beneficio}</li>
 						{/each}
 					</ul>

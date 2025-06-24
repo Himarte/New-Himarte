@@ -1,7 +1,7 @@
 <script lang="ts">
 	import HoverBorderGradient from '$lib/components/HoverBorderGradient.svelte';
 	import MenuHome from '$lib/components/MenuHome.svelte';
-	import TabsPlanos from '$lib/components/TabPlanos/TabsPlanos.svelte';
+	import TabsPlanosScroll from '$lib/components/TabPlanosScroll/TabsPlanosScroll.svelte';
 	import notebookImg from '$lib/img/extras/notebook4.webp';
 	import Zap from '@lucide/svelte/icons/zap';
 	import Gauge from '@lucide/svelte/icons/gauge';
@@ -20,92 +20,6 @@
 <!-- MenuHome Component - Preserved completely -->
 <MenuHome />
 
-<!-- Hero Content Section -->
-<section class="relative h-full w-full bg-black pt-0">
-	<div class="relative z-10 w-full py-10">
-		<div class="mx-auto max-w-7xl px-4 md:px-8">
-			<div class="grid min-h-[70vh] grid-cols-1 items-center gap-12 md:grid-cols-2">
-				<!-- Left Content -->
-				<div class="space-y-8 text-center md:text-left">
-					<div class="space-y-6">
-						<h1 class="text-foreground text-5xl leading-tight font-bold md:text-6xl">
-							Até onde a
-							<span
-								class="animate-text-gradient bg-gradient-to-r from-orange-500 via-orange-400 to-orange-600 bg-clip-text text-transparent"
-							>
-								Himarte
-							</span>
-							<br />pode te levar!
-						</h1>
-
-						<p class="text-muted-foreground max-w-2xl text-xl leading-relaxed">
-							Conecte-se ao futuro com a internet mais rápida e estável do Rio Grande do Sul. Planos
-							residenciais e empresariais com velocidade real garantida.
-						</p>
-					</div>
-
-					<!-- CTAs -->
-					<div class="flex flex-col items-center justify-center gap-4 md:flex-row md:justify-start">
-						<HoverBorderGradient>
-							<a
-								href="https://www.minhaconexao.com.br/?server_id=001805"
-								target="_blank"
-								class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold md:text-base"
-							>
-								<Gauge size={20} />
-								Teste sua velocidade
-								<ExternalLink size={16} />
-							</a>
-						</HoverBorderGradient>
-
-						<a
-							href="/planos"
-							class="bg-card border-border hover:bg-muted/50 text-foreground inline-flex items-center justify-center gap-2 rounded-xs border px-10 py-5 font-semibold transition-all duration-200 hover:scale-105 hover:shadow-lg hover:ring-2 hover:ring-orange-500/20"
-						>
-							<Zap size={20} />
-							Ver Planos
-						</a>
-					</div>
-				</div>
-
-				<!-- Right Content - Notebook Image -->
-				<div class="relative hidden items-center justify-center md:flex md:justify-end">
-					<div class="group relative">
-						<!-- Enhanced Glow Effect -->
-						<div
-							class="absolute inset-0 rounded-full bg-gradient-to-r from-orange-500/20 via-purple-500/15 to-blue-500/20 blur-2xl transition-all duration-500 group-hover:scale-110 group-hover:blur-3xl"
-						></div>
-
-						<!-- Secondary glow -->
-						<div
-							class="animate-pulse-slow absolute inset-0 rounded-full bg-gradient-to-r from-orange-400/10 to-blue-400/10 blur-xl"
-						></div>
-
-						<!-- Image -->
-						<img
-							src={notebookImg}
-							loading="lazy"
-							alt="Notebook conectado à internet Himarte de alta velocidade"
-							class="relative z-10 w-full max-w-lg -scale-x-100 drop-shadow-2xl transition-transform duration-500 md:rotate-6"
-						/>
-
-						<!-- Enhanced Floating Elements -->
-						<div
-							class="absolute top-10 right-10 h-16 w-16 animate-pulse rounded-full border border-orange-500/20 bg-gradient-to-br from-orange-500/30 to-orange-600/20 backdrop-blur-sm"
-						></div>
-						<div
-							class="absolute bottom-20 left-10 h-12 w-12 animate-bounce rounded-full border border-blue-500/20 bg-gradient-to-br from-blue-500/30 to-blue-600/20 backdrop-blur-sm"
-						></div>
-						<div
-							class="absolute top-1/2 right-5 h-8 w-8 animate-ping rounded-full bg-gradient-to-br from-purple-500/25 to-pink-500/20"
-						></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
 <!-- Transition Element -->
 <div class="relative">
 	<div
@@ -119,7 +33,7 @@
 		<h2 class="mb-4 text-center text-4xl font-bold text-orange-400">
 			Escolha o plano ideal para você
 		</h2>
-		<TabsPlanos />
+		<TabsPlanosScroll />
 	</div>
 </section>
 
@@ -204,6 +118,83 @@
 		</div>
 	</div>
 </section>
+<!-- Hero Content Section -->
+<section class="relative h-full w-full bg-black">
+	<div class="relative z-10 w-full">
+		<div class="mx-auto max-w-7xl px-4 md:px-8">
+			<div class="grid min-h-[70vh] grid-cols-1 items-center gap-12 md:grid-cols-2">
+				<!-- Left Content -->
+				<div class="space-y-8 text-center md:text-left">
+					<div class="space-y-6">
+						<h1 class="text-foreground text-5xl leading-tight font-bold md:text-6xl">
+							Até onde a
+							<span
+								class="animate-text-gradient bg-gradient-to-r from-orange-500 via-orange-400 to-orange-600 bg-clip-text text-transparent"
+							>
+								Himarte
+							</span>
+							<br />pode te levar!
+						</h1>
+
+						<p class="text-muted-foreground max-w-2xl text-xl leading-relaxed">
+							Conecte-se ao futuro com a internet mais rápida e estável do Rio Grande do Sul. Planos
+							residenciais e empresariais com velocidade real garantida.
+						</p>
+					</div>
+
+					<!-- CTAs -->
+					<div class="flex flex-col items-center justify-center gap-4 md:flex-row md:justify-start">
+						<HoverBorderGradient>
+							<a
+								href="https://www.minhaconexao.com.br/?server_id=001805"
+								target="_blank"
+								class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold md:text-base"
+							>
+								<Gauge size={20} />
+								Teste sua velocidade
+								<ExternalLink size={16} />
+							</a>
+						</HoverBorderGradient>
+					</div>
+				</div>
+
+				<!-- Right Content - Notebook Image -->
+				<div class="relative hidden items-center justify-center md:flex md:justify-end">
+					<div class="group relative">
+						<!-- Enhanced Glow Effect -->
+						<div
+							class="absolute inset-0 rounded-full bg-gradient-to-r from-orange-500/20 via-purple-500/15 to-blue-500/20 blur-2xl transition-all duration-500 group-hover:scale-110 group-hover:blur-3xl"
+						></div>
+
+						<!-- Secondary glow -->
+						<div
+							class="animate-pulse-slow absolute inset-0 rounded-full bg-gradient-to-r from-orange-400/10 to-blue-400/10 blur-xl"
+						></div>
+
+						<!-- Image -->
+						<img
+							src={notebookImg}
+							loading="lazy"
+							alt="Notebook conectado à internet Himarte de alta velocidade"
+							class="relative z-10 w-full max-w-lg -scale-x-100 drop-shadow-2xl transition-transform duration-500 md:rotate-6"
+						/>
+
+						<!-- Enhanced Floating Elements -->
+						<div
+							class="absolute top-10 right-10 h-16 w-16 animate-pulse rounded-full border border-orange-500/20 bg-gradient-to-br from-orange-500/30 to-orange-600/20 backdrop-blur-sm"
+						></div>
+						<div
+							class="absolute bottom-20 left-10 h-12 w-12 animate-bounce rounded-full border border-blue-500/20 bg-gradient-to-br from-blue-500/30 to-blue-600/20 backdrop-blur-sm"
+						></div>
+						<div
+							class="absolute top-1/2 right-5 h-8 w-8 animate-ping rounded-full bg-gradient-to-br from-purple-500/25 to-pink-500/20"
+						></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
 <!-- Transition Element -->
 <div class="relative">
@@ -213,7 +204,7 @@
 </div>
 
 <!-- Footer CTA -->
-<section class="relative w-full bg-black py-20">
+<section class="relative w-full bg-black pt-10 pb-20">
 	<div class="mx-auto max-w-4xl px-4 text-center">
 		<div
 			class="bg-card/80 border-border rounded-xs border p-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-sm transition-all hover:shadow-orange-500/10 hover:ring-orange-500/20 md:p-12"

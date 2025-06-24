@@ -185,7 +185,7 @@
 						</div>
 						<div class="bg-accent/30 flex items-center justify-between rounded-lg px-3 py-2">
 							<span class="text-foreground font-medium">Domingo</span>
-							<span class="text-muted-foreground font-mono">08:00 - 19:00</span>
+							<span class="text-muted-foreground font-mono">08:00 - 17:00</span>
 						</div>
 						<div class="bg-accent/30 flex items-center justify-between rounded-lg px-3 py-2">
 							<span class="text-foreground font-medium">Feriados</span>

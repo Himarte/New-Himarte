@@ -37,6 +37,7 @@
 
 					<!-- Horários de Funcionamento -->
 					<div class="space-y-3 pl-8 md:pl-0">
+						<p class="text-muted-foreground text-sm">Horários do Suporte</p>
 						<div class="flex items-center gap-3 text-sm">
 							<div class="flex h-8 w-8 items-center justify-center rounded-full bg-orange-500/20">
 								<Clock size={16} class="text-orange-400" />
@@ -52,7 +53,7 @@
 							</div>
 							<div class="flex flex-col">
 								<span class="text-muted-foreground text-xs">Domingo</span>
-								<span class="text-foreground font-mono text-sm">08:00 - 12:00 / 13:00 - 19:00</span>
+								<span class="text-foreground font-mono text-sm">08:00 - 12:00 / 13:00 - 17:00</span>
 							</div>
 						</div>
 						<div class="flex items-center gap-3 text-sm">
@@ -198,7 +199,7 @@
 								<Clock size={16} class="text-purple-400" />
 							</div>
 							<div>
-								<p class="text-muted-foreground text-sm">Horário de Atendimento</p>
+								<p class="text-muted-foreground text-sm">Horário Loja Física</p>
 								<p class="text-foreground text-sm font-medium">
 									Seg - Sex: 8h às 18h<br />
 									Sáb: 8h às 12h
