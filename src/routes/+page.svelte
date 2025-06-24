@@ -6,7 +6,6 @@
 	import Zap from '@lucide/svelte/icons/zap';
 	import Gauge from '@lucide/svelte/icons/gauge';
 	import ExternalLink from '@lucide/svelte/icons/external-link';
-	import Globe from '@lucide/svelte/icons/globe';
 </script>
 
 <svelte:head>
