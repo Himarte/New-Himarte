@@ -44,85 +44,11 @@
 	></div>
 </div>
 
-<!-- Video/History Section -->
-<section class="relative w-full bg-black py-2 md:py-10">
-	<div class="mx-auto max-w-7xl px-4 md:px-0">
-		<div class="grid grid-cols-1 items-center gap-16 md:grid-cols-2">
-			<!-- Left Content - Video -->
-			<div class="order-2 md:order-1">
-				<div class="group relative">
-					<!-- Enhanced video container -->
-					<div
-						class="border-border bg-card relative overflow-hidden rounded-xs border shadow-2xl ring-1 ring-zinc-500/10 backdrop-blur-sm"
-					>
-						<div class="iframe-container">
-							<iframe
-								class="rounded-xs"
-								src="https://www.youtube-nocookie.com/embed/seGVeab1a-I?si=PoyImY2uxZ11CmHh"
-								title="Conheça a história da Himarte - Internet Fibra Ótica"
-								frameborder="0"
-								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-								referrerpolicy="strict-origin-when-cross-origin"
-								allowfullscreen
-							></iframe>
-						</div>
-
-						<!-- Overlay gradient on hover -->
-						<div
-							class="from-background/20 pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-t to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-						></div>
-					</div>
-
-					<!-- Decorative elements around video -->
-					<div
-						class="absolute -top-4 -right-4 hidden h-8 w-8 animate-ping rounded-full bg-green-500/30 blur-xs md:block"
-					></div>
-					<div
-						class="absolute -bottom-4 -left-4 h-6 w-6 animate-pulse rounded-full bg-orange-500/30 blur-xs md:block"
-					></div>
-				</div>
-			</div>
-
-			<!-- Right Content - Text with stats -->
-			<div class="order-1 space-y-8 px-4 text-center md:order-2 md:px-0 md:text-left">
-				<div>
-					<h2 class="text-foreground mb-6 text-4xl font-bold">
-						Conheça um pouco da nossa
-						<span
-							class="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent"
-						>
-							história
-						</span>
-					</h2>
-
-					<p class="text-muted-foreground mb-8 text-xl leading-relaxed">
-						Desde nossa fundação, trabalhamos incansavelmente para levar internet de qualidade
-						superior para residências e empresas. Descubra como começamos e para onde estamos indo.
-					</p>
-				</div>
-
-				<!-- CTA -->
-				<div class="pt-4">
-					<a
-						href="/sobre"
-						class="group inline-flex items-center gap-2 font-semibold text-orange-400 transition-all hover:gap-3 hover:text-orange-300"
-					>
-						Saiba mais sobre nós
-						<ExternalLink
-							size={16}
-							class="transition-transform group-hover:translate-x-1 group-hover:scale-110"
-						/>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
 <!-- Hero Content Section -->
-<section class="relative h-full w-full bg-black">
+<section class="relative h-full w-full bg-black pb-20">
 	<div class="relative z-10 w-full">
 		<div class="mx-auto max-w-7xl px-4 md:px-8">
-			<div class="grid min-h-[70vh] grid-cols-1 items-center gap-12 md:grid-cols-2">
+			<div class="grid min-h-[50vh] grid-cols-1 items-center gap-12 md:grid-cols-2">
 				<!-- Left Content -->
 				<div class="space-y-8 text-center md:text-left">
 					<div class="space-y-6">
@@ -196,6 +122,80 @@
 	</div>
 </section>
 
+<!-- Video/History Section -->
+<section class="relative w-full bg-black pb-20">
+	<div class="mx-auto max-w-7xl px-4 md:px-0">
+		<div class="grid grid-cols-1 items-center gap-16 md:grid-cols-2">
+			<!-- Left Content - Video -->
+			<div class="order-2 md:order-1">
+				<div class="group relative">
+					<!-- Enhanced video container -->
+					<div
+						class="border-border bg-card relative overflow-hidden rounded-xs border shadow-2xl ring-1 ring-zinc-500/10 backdrop-blur-sm"
+					>
+						<div class="iframe-container">
+							<iframe
+								class="rounded-xs"
+								src="https://www.youtube-nocookie.com/embed/seGVeab1a-I?si=PoyImY2uxZ11CmHh"
+								title="Conheça a história da Himarte - Internet Fibra Ótica"
+								frameborder="0"
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+								referrerpolicy="strict-origin-when-cross-origin"
+								allowfullscreen
+							></iframe>
+						</div>
+
+						<!-- Overlay gradient on hover -->
+						<div
+							class="from-background/20 pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-t to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+						></div>
+					</div>
+
+					<!-- Decorative elements around video -->
+					<div
+						class="absolute -top-4 -right-4 hidden h-8 w-8 animate-ping rounded-full bg-green-500/30 blur-xs md:block"
+					></div>
+					<div
+						class="absolute -bottom-4 -left-4 h-6 w-6 animate-pulse rounded-full bg-orange-500/30 blur-xs md:block"
+					></div>
+				</div>
+			</div>
+
+			<!-- Right Content - Text with stats -->
+			<div class="order-1 space-y-8 px-4 text-center md:order-2 md:px-0 md:text-left">
+				<div>
+					<h2 class="text-foreground mb-6 text-4xl font-bold">
+						Conheça um pouco da nossa
+						<span
+							class="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent"
+						>
+							história
+						</span>
+					</h2>
+
+					<p class="text-muted-foreground mb-8 text-xl leading-relaxed">
+						Desde nossa fundação, trabalhamos incansavelmente para levar internet de qualidade
+						superior para residências e empresas. Descubra como começamos e para onde estamos indo.
+					</p>
+				</div>
+
+				<!-- CTA -->
+				<div class="pt-4">
+					<a
+						href="/sobre"
+						class="group inline-flex items-center gap-2 font-semibold text-orange-400 transition-all hover:gap-3 hover:text-orange-300"
+					>
+						Saiba mais sobre nós
+						<ExternalLink
+							size={16}
+							class="transition-transform group-hover:translate-x-1 group-hover:scale-110"
+						/>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 <!-- Transition Element -->
 <div class="relative">
 	<div
@@ -204,17 +204,9 @@
 </div>
 
 <!-- Footer CTA -->
-<section class="relative w-full bg-black pt-10 pb-20">
-	<div class="mx-auto max-w-4xl px-4 text-center">
-		<div
-			class="bg-card/80 border-border rounded-xs border p-8 shadow-2xl ring-1 ring-white/10 backdrop-blur-sm transition-all hover:shadow-orange-500/10 hover:ring-orange-500/20 md:p-12"
-		>
-			<div
-				class="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-orange-500/20 to-blue-500/20 ring-2 ring-orange-500/20 backdrop-blur-sm"
-			>
-				<Globe size={24} class="text-orange-400" />
-			</div>
-
+<section class="relative w-full bg-black pb-20">
+	<div class="mx-auto max-w-7xl text-center">
+		<div class="bg-card/80 rounded-xs border p-8 shadow-2xl md:p-12">
 			<h3 class="text-foreground mb-6 text-3xl font-bold">Pronto para se conectar?</h3>
 			<p class="text-muted-foreground mx-auto mb-8 max-w-2xl text-xl">
 				Faça parte da revolução digital com a Himarte. Velocidade, suporte especializado e com a

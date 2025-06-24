@@ -113,7 +113,7 @@
 				</div>
 			{:else}
 				<div
-					class=" card bg-background/70 flex h-80 w-3/4 flex-col justify-center border pl-10 text-start hover:z-10 hover:scale-105 hover:border-amber-500/70 md:w-1/3 md:pl-20"
+					class=" card bg-background/70 flex h-80 w-3/4 flex-col justify-center border pl-5 text-start hover:z-10 hover:scale-105 hover:border-amber-500/70 md:w-1/3 md:pl-10"
 				>
 					<img
 						src={item.img}
@@ -127,20 +127,21 @@
 							class="bg-background absolute -top-5 -left-4 w-16 -rotate-12"
 						/>
 					{/if}
-					<h1 class="font-inter text-5xl font-bold text-[#f97316]">{item.plano}</h1>
+					<h1 class="font-inter text-4xl font-bold text-[#f97316]">{item.plano}</h1>
 
 					{#if item.megas === 1000}
 						<h2 class=" mt-1 text-5xl font-bold">
 							1000 <span class="font-inter text-3xl font-bold">Megas</span>
 						</h2>
 					{:else}
-						<h2 class=" mt-1 text-5xl font-bold md:text-5xl">
-							{item.megas} <span class="font-inter font-bold md:text-3xl">Megas</span>
+						<h2 class=" text-5xl font-bold">
+							{item.megas}
+							<span class="font-inter overflow-hidden text-2xl font-bold md:text-3xl">Megas</span>
 						</h2>
 					{/if}
 					<ul>
 						{#each item.beneficios as beneficio (beneficio)}
-							<li class="flex gap-2"><Plus color="#f97316" /> {beneficio}</li>
+							<li class="mt-1 flex text-sm"><Plus color="#f97316" /> {beneficio}</li>
 						{/each}
 					</ul>
 					<div class="mt-2 flex items-end">

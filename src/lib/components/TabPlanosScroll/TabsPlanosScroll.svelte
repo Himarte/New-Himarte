@@ -2,7 +2,7 @@
 	import * as Tabs from '$lib/components/ui/tabs';
 	import UsersRound from '@lucide/svelte/icons/users-round';
 	import Building2 from '@lucide/svelte/icons/building-2';
-	import CardsCPF1 from '$lib/components/TabPlanos/CPF1/CardsCPF1.svelte';
+	import CardsCPF1 from '$lib/components/TabPlanosScroll/CPF1/CardsCPF1.svelte';
 	import CNPJ from '$lib/components/TabPlanos/CNPJ/CNPJ.svelte';
 	import Zap from '@lucide/svelte/icons/zap';
 </script>
@@ -41,7 +41,7 @@
 		</Tabs.Trigger>
 	</Tabs.List>
 	<Tabs.Content value="casa" id="PessoaFisica">
-		<div class="flex w-full flex-col items-center justify-center gap-10">
+		<div class="flex w-full flex-col items-center justify-center gap-5">
 			<div class="mb-10 flex w-full flex-col items-center justify-center gap-2 text-center">
 				<p class="font-inter hidden w-2/3 text-zinc-400 md:block">
 					Oferecemos internet fibra óptica de alta qualidade, garantindo estabilidade e velocidade

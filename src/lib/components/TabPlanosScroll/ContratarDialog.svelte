@@ -12,7 +12,7 @@
 		plano: string;
 		onAtendente: () => void;
 		onAutoAtendimento: () => void;
-		children: any;
+		children: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 		tipo?: string;
 	}>();
 

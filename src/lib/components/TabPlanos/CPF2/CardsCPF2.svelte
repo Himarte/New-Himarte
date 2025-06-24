@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Plus from '@lucide/svelte/icons/plus';
 	import Venus from '$lib/img/planetas/venus.webp';
-	import Plutao from '$lib/img/planetas/plutao.webp';
 	import Urano from '$lib/img/planetas/urano.webp';
 	import Jupiter from '$lib/img/planetas/jupiter.webp';
 	import ContratarDialog from '$lib/components/TabPlanos/ContratarDialog.svelte';
@@ -56,9 +55,9 @@
 	<div
 		class="flex min-h-full w-full flex-col items-center justify-center gap-5 md:h-96 md:w-3/4 md:flex-row md:items-end"
 	>
-		{#each items as item}
+		{#each items as item (item.id)}
 			<div
-				class="card bg-background/70 mt-6 flex h-80 w-3/4 flex-col justify-center border pl-10 text-start hover:z-10 hover:border-amber-500/70 md:w-1/4 md:pl-8 md:hover:scale-105"
+				class="card bg-background/70 mt-6 flex h-80 w-3/4 flex-col justify-center border pl-5 text-start hover:z-10 hover:border-amber-500/70 md:w-1/4 md:pl-8 md:hover:scale-105"
 			>
 				<img
 					src={item.img}
@@ -71,8 +70,8 @@
 					<span class="font-inter overflow-hidden text-2xl font-bold md:text-3xl">Megas</span>
 				</h2>
 				<ul>
-					{#each item.beneficios as beneficio}
-						<li class="flex gap-2 overflow-hidden"><Plus color="#f97316" /> {beneficio}</li>
+					{#each item.beneficios as beneficio (beneficio)}
+						<li class="mt-1 flex text-sm"><Plus color="#f97316" /> {beneficio}</li>
 					{/each}
 				</ul>
 				<div class="mt-2 flex items-end overflow-hidden">
