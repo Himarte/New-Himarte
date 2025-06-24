@@ -6,7 +6,7 @@
 	import BorderBeam from '$lib/components/BorderBeam/BorderBeam.svelte';
 	import MelhorPreco from './MelhorPreco.svelte';
 	import New from '$lib/img/extras/new.png';
-	import ContratarDialog from '$lib/components/TabPlanos/ContratarDialog.svelte';
+	import ContratarDialog from '$lib/components/TabPlanosScroll/ContratarDialog.svelte';
 
 	const items = [
 		{
@@ -79,7 +79,7 @@
 					</h2>
 					<ul>
 						{#each item.beneficios as beneficio (beneficio)}
-							<li class="flex gap-2"><Plus color="#f97316" /> {beneficio}</li>
+							<li class="mt-1 flex text-sm"><Plus color="#f97316" /> {beneficio}</li>
 						{/each}
 					</ul>
 					<div class="mt-2 flex items-end">

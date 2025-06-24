@@ -7,7 +7,7 @@
 	import Plutao from '$lib/img/planetas/plutao.webp';
 	import Urano from '$lib/img/planetas/urano.webp';
 	import Jupiter from '$lib/img/planetas/jupiter.webp';
-	import ContratarDialog from '$lib/components/TabPlanos/ContratarDialog.svelte';
+	import ContratarDialog from '$lib/components/TabPlanosScroll/ContratarDialog.svelte';
 
 	const items = [
 		{
@@ -65,13 +65,13 @@
 	}
 </script>
 
-<div class="flex min-h-full w-full flex-col items-center justify-center text-nowrap">
+<div class="flex h-full w-full flex-col items-center justify-center text-nowrap">
 	<div
 		class="mt-6 flex h-full w-3/4 flex-col items-end justify-center gap-5 md:h-80 md:w-2/3 md:flex-row"
 	>
-		{#each items as item}
+		{#each items as item (item.id)}
 			<div
-				class="card bg-background/70 flex h-64 w-full flex-col items-start justify-center border pl-10 hover:z-10 hover:scale-105 hover:border-amber-500/70 md:h-72 md:w-1/4"
+				class="card bg-background/70 flex h-64 w-full flex-col items-start justify-center border pl-5 hover:z-10 hover:scale-105 hover:border-amber-500/70 md:h-72 md:w-1/4 md:pl-10"
 			>
 				<img
 					src={item.img}
@@ -87,7 +87,7 @@
 					{item.megas} <span class="font-inter text-3xl font-bold">Megas</span>
 				</h2>
 				<ul>
-					{#each item.beneficios as beneficio}
+					{#each item.beneficios as beneficio (beneficio)}
 						<li class="flex gap-2"><Plus color="#f97316" /> {beneficio}</li>
 					{/each}
 				</ul>
@@ -112,9 +112,9 @@
 	<div
 		class=" mt-6 flex h-full w-3/4 flex-col items-end justify-center gap-5 md:h-80 md:w-2/3 md:flex-row"
 	>
-		{#each items2 as item}
+		{#each items2 as item (item.id)}
 			<div
-				class=" card bg-background/70 flex h-64 w-full flex-col items-start justify-center border pl-10 hover:z-10 hover:scale-105 hover:border-amber-500/70 md:h-72 md:w-1/4 md:pl-14"
+				class=" card bg-background/70 flex h-64 w-full flex-col items-start justify-center border pl-5 hover:z-10 hover:scale-105 hover:border-amber-500/70 md:h-72 md:w-1/4 md:pl-10"
 			>
 				<img
 					src={item.img}
@@ -127,7 +127,7 @@
 						{item.plano}
 						<Badge variant="outline">PRO</Badge>
 					</h1>
-					<h2 class=" mt-1 text-5xl font-bold">
+					<h2 class=" mt-1 text-3xl font-bold md:text-5xl">
 						{item.megas} <span class="font-inter text-3xl font-bold">Megas</span>
 					</h2>
 				{:else}
@@ -137,8 +137,8 @@
 					<h2 class=" mt-1 text-3xl font-bold">Ilimitado</h2>
 				{/if}
 				<ul>
-					{#each item.beneficios as beneficio}
-						<li class="flex gap-2"><Plus color="#f97316" /> {beneficio}</li>
+					{#each item.beneficios as beneficio (beneficio)}
+						<li class="mt-1 flex text-sm"><Plus color="#f97316" /> {beneficio}</li>
 					{/each}
 				</ul>
 

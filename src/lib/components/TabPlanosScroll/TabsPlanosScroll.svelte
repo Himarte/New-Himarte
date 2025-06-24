@@ -3,13 +3,13 @@
 	import UsersRound from '@lucide/svelte/icons/users-round';
 	import Building2 from '@lucide/svelte/icons/building-2';
 	import CardsCPF1 from '$lib/components/TabPlanosScroll/CPF1/CardsCPF1.svelte';
-	import CNPJ from '$lib/components/TabPlanos/CNPJ/CNPJ.svelte';
+	import CNPJ from '$lib/components/TabPlanosScroll/CNPJ/CNPJ.svelte';
 	import Zap from '@lucide/svelte/icons/zap';
 </script>
 
 <Tabs.Root
 	value="casa"
-	class="flex min-h-full w-full flex-col items-center justify-center gap-5 overflow-x-hidden py-8 md:overflow-x-visible"
+	class="flex h-full w-full flex-col items-center justify-center gap-5 overflow-x-hidden py-8 md:overflow-x-visible"
 >
 	<Tabs.List
 		class="flex w-full max-w-md items-center justify-center gap-1 border-none bg-transparent px-2 pb-6 sm:gap-2 md:px-0"
@@ -18,7 +18,7 @@
 			value="casa"
 			class="group relative flex flex-1 items-center justify-center gap-2 border-none bg-transparent px-4 py-5   font-medium text-gray-400 transition-colors duration-200 hover:bg-zinc-500/10 hover:text-gray-200 data-[state=active]:bg-zinc-500/10 data-[state=active]:text-orange-400 sm:flex-none sm:px-8"
 		>
-			<UsersRound size={20} class="hidden sm:block" />
+			<UsersRound size={20} />
 			<span class="text-xs font-semibold sm:text-xl">Para sua Casa</span>
 			<!-- Indicador gradiente -->
 			<div
@@ -31,8 +31,7 @@
 			value="empresa"
 			class="group relative flex flex-1 items-center justify-center gap-2 border-none bg-transparent px-4 py-5 font-medium text-gray-400 transition-colors duration-200 hover:bg-zinc-500/10 hover:text-gray-200 data-[state=active]:bg-zinc-500/10 data-[state=active]:text-orange-400 sm:flex-none sm:px-8"
 		>
-			<Building2 size={20} class="sm:hidden" />
-			<Building2 size={20} class="hidden sm:block" />
+			<Building2 size={20} />
 			<span class="text-xs font-semibold sm:text-xl">Para sua Empresa</span>
 			<!-- Indicador gradiente -->
 			<div
@@ -77,8 +76,8 @@
 			</div>
 		</div>
 	</Tabs.Content>
-	<Tabs.Content value="empresa" class="flex w-full flex-col items-center justify-center">
-		<div class="flex flex-col items-center justify-center gap-2 text-center md:w-2/3">
+	<Tabs.Content value="empresa" class="flex h-full w-full flex-col items-center justify-center">
+		<div class="flex h-full flex-col items-center justify-center gap-2 text-center md:w-2/3">
 			<p class="font-inter text-zinc-400">
 				Trabalhe com mais agilidade e sem interrupções, garantindo a produtividade do seu negócio!
 			</p>
