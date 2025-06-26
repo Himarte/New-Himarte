@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Plus } from 'lucide-svelte';
+	import Plus from '@lucide/svelte/icons/plus';
 	import Venus from '$lib/img/planetas/venus.webp';
 	import Saturno from '$lib/img/planetas/saturno.webp';
 	import { Badge } from '$lib/components/ui/badge';
@@ -7,15 +7,7 @@
 	import Plutao from '$lib/img/planetas/plutao.webp';
 	import Urano from '$lib/img/planetas/urano.webp';
 	import Jupiter from '$lib/img/planetas/jupiter.webp';
-
-
-	let mensagem = $state('');
-
-	const openChat = (item: any) => {
-		mensagem = `https://wa.me/555130568251?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20plano%20${item.plano}%20de%20Fibra%20profissional.`;
-		window.open(mensagem, '_blank');
-	};
-
+	import ContratarDialog from '$lib/components/TabPlanos/ContratarDialog.svelte';
 
 	const items = [
 		{
@@ -63,20 +55,28 @@
 			beneficios: ['Assistência dedicada', 'Router Board', 'IP FIXO', 'DNS Reverso']
 		}
 	];
+
+	function handleAtendente() {
+		console.log('Chamou atendente');
+	}
+
+	function handleAutoAtendimento(plano: string, tipo: string, megas: number | null) {
+		window.location.href = `/cadastro?plano=${plano.toLowerCase()}&tipo=${tipo}&megas=${megas || 'ilimitado'}`;
+	}
 </script>
 
 <div class="flex min-h-full w-full flex-col items-center justify-center text-nowrap">
 	<div
-		class=" mt-6 flex h-full w-3/4 flex-col items-end justify-center gap-5 md:h-80 md:w-2/3 md:flex-row"
+		class="mt-6 flex h-full w-3/4 flex-col items-end justify-center gap-5 md:h-80 md:w-2/3 md:flex-row"
 	>
 		{#each items as item}
 			<div
-				class=" card flex h-64 w-full flex-col items-start justify-center rounded-xl border bg-background/70 pl-10 hover:z-10 hover:scale-105 md:h-72 md:w-1/4"
+				class="card bg-background/70 flex h-64 w-full flex-col items-start justify-center border pl-10 hover:z-10 hover:scale-105 hover:border-amber-500/70 md:h-72 md:w-1/4"
 			>
 				<img
 					src={item.img}
 					alt={item.plano}
-					class="absolute -right-10 -top-10 z-10 h-28 hover:z-10"
+					class="absolute -top-10 -right-10 z-10 h-28 hover:z-10"
 				/>
 				<h1 class="center font-inter text-4xl font-bold text-[#f97316]">
 					{item.plano}
@@ -92,9 +92,20 @@
 					{/each}
 				</ul>
 
-				<button onclick={() => openChat(item)} class="card-button text-background"
-					>Saiba Mais</button
-				>
+				<div class="card-button-wrapper">
+					<ContratarDialog
+						plano={item.plano}
+						onAtendente={handleAtendente}
+						onAutoAtendimento={() => handleAutoAtendimento(item.plano, 'CNPJ', item.megas)}
+						tipo="CNPJ"
+					>
+						<div
+							class="card-button text-background flex items-center justify-center rounded-sm no-underline hover:no-underline"
+						>
+							Saiba Mais
+						</div>
+					</ContratarDialog>
+				</div>
 			</div>
 		{/each}
 	</div>
@@ -103,12 +114,12 @@
 	>
 		{#each items2 as item}
 			<div
-				class=" card flex h-64 w-full flex-col items-start justify-center rounded-xl border bg-background/70 pl-10 hover:z-10 hover:scale-105 md:h-72 md:w-1/4 md:pl-14"
+				class=" card bg-background/70 flex h-64 w-full flex-col items-start justify-center border pl-10 hover:z-10 hover:scale-105 hover:border-amber-500/70 md:h-72 md:w-1/4 md:pl-14"
 			>
 				<img
 					src={item.img}
 					alt={item.plano}
-					class="absolute -right-10 -top-10 z-10 h-28 hover:z-10"
+					class="absolute -top-10 -right-10 z-10 h-28 hover:z-10"
 				/>
 
 				{#if item.id !== 6}
@@ -131,9 +142,20 @@
 					{/each}
 				</ul>
 
-				<button onclick={() => openChat(item)} class="card-button text-background"
-					>Saiba Mais</button
-				>
+				<div class="card-button-wrapper">
+					<ContratarDialog
+						plano={item.plano}
+						onAtendente={handleAtendente}
+						onAutoAtendimento={() => handleAutoAtendimento(item.plano, 'CNPJ', item.megas)}
+						tipo="CNPJ"
+					>
+						<div
+							class="card-button text-background flex items-center justify-center rounded-sm no-underline hover:no-underline"
+						>
+							Saiba Mais
+						</div>
+					</ContratarDialog>
+				</div>
 			</div>
 		{/each}
 	</div>
@@ -146,27 +168,34 @@
 	}
 
 	.card-button {
-		transform: translate(-50%, 125%);
-		width: 50%;
-		border-radius: 0.5rem;
+		width: 100%;
 		background-color: #f97316;
 		padding: 0.5rem 1rem;
+		opacity: 1;
+		transition: 0.3s ease-out;
+		position: relative;
+		z-index: 90;
+	}
+
+	.card-button-wrapper {
+		transform: translate(-50%, 125%);
 		position: absolute;
 		left: 50%;
 		bottom: 0;
 		opacity: 0;
 		transition: 0.3s ease-out;
+		width: 100%;
+		display: flex;
+		justify-content: center;
 	}
 
 	/*Hover*/
 	.card:hover {
-		border-color: #ffaa40;
 		box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
 	}
 
-	.card:hover .card-button {
+	.card:hover .card-button-wrapper {
 		transform: translate(-50%, 50%);
 		opacity: 1;
-		z-index: 20;
 	}
 </style>

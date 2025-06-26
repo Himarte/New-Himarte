@@ -1,11 +1,18 @@
-import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { clsx, type ClassValue } from 'clsx';
 import { cubicOut } from 'svelte/easing';
 import type { TransitionConfig } from 'svelte/transition';
+import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
 }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type WithoutChild<T> = T extends { child?: any } ? Omit<T, 'child'> : T;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type WithoutChildren<T> = T extends { children?: any } ? Omit<T, 'children'> : T;
+export type WithoutChildrenOrChild<T> = WithoutChildren<WithoutChild<T>>;
+export type WithElementRef<T, U extends HTMLElement = HTMLElement> = T & { ref?: U | null };
 
 type FlyAndScaleParams = {
 	y?: number;
@@ -41,7 +48,7 @@ export const flyAndScale = (
 	return {
 		duration: params.duration ?? 200,
 		delay: 0,
-		css: (t) => {
+		css: (t: number) => {
 			const y = scaleConversion(t, [0, 1], [params.y ?? 5, 0]);
 			const x = scaleConversion(t, [0, 1], [params.x ?? 0, 0]);
 			const scale = scaleConversion(t, [0, 1], [params.start ?? 0.95, 1]);

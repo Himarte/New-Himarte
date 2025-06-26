@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { writable } from 'svelte/store';
 	import { AnimatePresence, Motion } from 'svelte-motion';
-	import Play from 'lucide-svelte/icons/play';
-	import X from 'lucide-svelte/icons/x';
+	import Play from '@lucide/svelte/icons/play';
+	import X from '@lucide/svelte/icons/x';
 
 	type AnimationStyle =
 		| 'from-bottom'
@@ -100,12 +100,12 @@
 		<div class="absolute inset-0 flex items-center justify-center">
 			<!-- svelte-ignore a11y-no-static-element-interactions -->
 			<div
-				class="flex size-24 items-center justify-center rounded-full border border-background backdrop-blur-md transition-transform duration-300 ease-out"
+				class="border-background flex size-24 items-center justify-center rounded-full border backdrop-blur-md transition-transform duration-300 ease-out"
 				on:mouseenter={() => isPlayHovered.set(true)}
 				on:mouseleave={() => isPlayHovered.set(false)}
 			>
 				<div
-					class="backdrop-blur-3xlxl relative flex size-20 items-center justify-center rounded-full border border-background transition-all duration-300 ease-out"
+					class="backdrop-blur-3xlxl border-background relative flex size-20 items-center justify-center rounded-full border transition-all duration-300 ease-out"
 					class:isPlayHovered={$isPlayHovered}
 				>
 					<Play

@@ -1,36 +1,57 @@
 <script lang="ts">
 	import { cn } from '$lib/utils';
+	import { tweened } from 'svelte/motion';
+	import { linear } from 'svelte/easing';
+	import { onMount } from 'svelte';
 
-	export let size = 250;
-	export let duration = 15;
-	export let anchor = 90;
-	export let borderWidth = 1.5;
-	export let colorFrom = '#f97316';
-	export let colorTo = '#ffaa40';
-	export let delay = 0;
-	let delaySec = delay + 's';
+	// Usando Svelte 5 runes para props
+	let {
+		size = 250,
+		duration = 15,
+		anchor = 90,
+		borderWidth = 2,
+		colorFrom = '#f97316',
+		colorTo = '#ffaa40',
+		delay = 0,
+		class: className = ''
+	} = $props<{
+		size?: number;
+		duration?: number;
+		anchor?: number;
+		borderWidth?: number;
+		colorFrom?: string;
+		colorTo?: string;
+		delay?: number;
+		class?: string;
+	}>();
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	let className: any = '';
-	export { className as class };
+	// Animação de rotação do gradiente
+	let rotation = tweened(0, {
+		duration: duration * 1000,
+		easing: linear
+	});
+
+	onMount(() => {
+		setTimeout(() => {
+			const startRotation = () => {
+				rotation.set(360, { duration: duration * 1000 }).then(() => {
+					rotation.set(0, { duration: 0 }).then(startRotation);
+				});
+			};
+			startRotation();
+		}, delay * 1000);
+	});
+
+	// Gradiente que gira baseado na rotação atual
+	let gradientAngle = $derived($rotation + anchor);
 </script>
 
+<!-- Borda com gradiente rotativo -->
 <div
-	style:--border-width={borderWidth}
-	style:--size={size}
-	style:--color-from={colorFrom}
-	style:--color-to={colorTo}
-	style:--delay={delaySec}
-	style:--anchor={anchor}
-	style:--duration={duration}
-	class={cn(
-		'pointer-events-none absolute inset-[0] rounded-[inherit] [border:calc(var(--border-width)*1px)_solid_transparent]',
-
-		// mask styles
-		'![mask-clip:padding-box,border-box] ![mask-composite:intersect] [mask:linear-gradient(transparent,transparent),linear-gradient(white,white)]',
-
-		// pseudo styles
-		'after:absolute after:aspect-square after:w-[calc(var(--size)*1px)] after:animate-border-beam after:[animation-delay:var(--delay)] after:[background:linear-gradient(to_left,var(--color-from),var(--color-to),transparent)] after:[offset-anchor:calc(var(--anchor)*1%)_50%] after:[offset-path:rect(0_auto_auto_0_round_calc(var(--size)*1px))]',
-		className
-	)}
+	class={cn('pointer-events-none absolute inset-0 rounded-xl', className)}
+	style="
+		border: {borderWidth}px solid transparent;
+		border-image: conic-gradient(from {gradientAngle}deg, {colorFrom}, {colorTo}, transparent, {colorFrom}) 1;
+		background: transparent;
+	"
 ></div>
