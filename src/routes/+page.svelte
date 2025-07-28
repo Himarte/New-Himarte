@@ -27,7 +27,7 @@
 </div>
 
 <!-- Plans Section -->
-<section class="relative h-full w-full bg-black pb-20">
+<section class="relative h-full w-full bg-black pt-10 pb-20">
 	<div class="w-full px-4">
 		<h2 class="mb-4 text-center text-4xl font-bold text-orange-400">
 			Escolha o plano ideal para você
