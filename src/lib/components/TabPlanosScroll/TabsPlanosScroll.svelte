@@ -1,9 +1,10 @@
 <script lang="ts">
-	import * as Tabs from '$lib/components/ui/tabs';
-	import UsersRound from '@lucide/svelte/icons/users-round';
-	import Building2 from '@lucide/svelte/icons/building-2';
-	import CardsCPF1 from '$lib/components/TabPlanosScroll/CPF1/CardsCPF1.svelte';
+	import { resolve } from '$app/paths';
 	import CNPJ from '$lib/components/TabPlanosScroll/CNPJ/CNPJ.svelte';
+	import CardsCPF1 from '$lib/components/TabPlanosScroll/CPF1/CardsCPF1.svelte';
+	import * as Tabs from '$lib/components/ui/tabs';
+	import Building2 from '@lucide/svelte/icons/building-2';
+	import UsersRound from '@lucide/svelte/icons/users-round';
 	import Zap from '@lucide/svelte/icons/zap';
 </script>
 
@@ -55,10 +56,10 @@
 					*Os valores são válidos apenas para pagamentos realizados até a data de vencimento.
 				</h5>
 			</div>
-			<div class="flex w-full items-center justify-center pt-8 text-center">
+			<div class="flex w-full items-center justify-center pt-2 text-center">
 				<a
-					href="/planos"
-					class="group text-background relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-xs bg-gradient-to-r from-orange-400 to-orange-600 px-8 py-4 text-base font-semibold shadow-lg transition-all duration-300 ease-out hover:scale-105 hover:shadow-xl hover:shadow-orange-500/25 active:scale-95"
+					href={resolve('/planos-residenciais')}
+					class="group text-background relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-xs bg-gradient-to-r from-orange-400 to-orange-600 px-8 py-3 text-base font-semibold shadow-lg transition-all duration-300 ease-out hover:scale-105 hover:shadow-xl hover:shadow-orange-500/25 active:scale-95"
 				>
 					<!-- Efeito de brilho no hover -->
 					<div

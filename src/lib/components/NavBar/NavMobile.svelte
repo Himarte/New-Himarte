@@ -1,25 +1,24 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import * as Popover from '$lib/components/ui/popover';
-	import Menu from '@lucide/svelte/icons/menu';
+	import Briefcase from '@lucide/svelte/icons/briefcase';
 	import Home from '@lucide/svelte/icons/home';
 	import Info from '@lucide/svelte/icons/info';
 	import MapPin from '@lucide/svelte/icons/map-pin';
-	import Briefcase from '@lucide/svelte/icons/briefcase';
+	import Menu from '@lucide/svelte/icons/menu';
 	import Wifi from '@lucide/svelte/icons/wifi';
-	import SquareSquare from '@lucide/svelte/icons/square-square';
 
+	import Separator from '$lib/components/ui/separator/separator.svelte';
+	import * as Sheet from '$lib/components/ui/sheet';
 	import LogoCompleto from '$lib/img/logos/logo-nome-quliadade2.png';
-	import Phone from '@lucide/svelte/icons/phone';
-	import UsersRound from '@lucide/svelte/icons/users-round';
-	import PhoneCall from '@lucide/svelte/icons/phone-call';
+	import Clock_8 from '@lucide/svelte/icons/clock-8';
 	import Facebook from '@lucide/svelte/icons/facebook';
 	import Instagram from '@lucide/svelte/icons/instagram';
 	import Linkedin from '@lucide/svelte/icons/linkedin';
-	import Clock_8 from '@lucide/svelte/icons/clock-8';
-	import Separator from '$lib/components/ui/separator/separator.svelte';
-	import * as Sheet from '$lib/components/ui/sheet';
-
+	import Phone from '@lucide/svelte/icons/phone';
+	import PhoneCall from '@lucide/svelte/icons/phone-call';
+	import UsersRound from '@lucide/svelte/icons/users-round';
 	let open = false;
 
 	const navItems = [
@@ -30,7 +29,8 @@
 	];
 
 	const serviceItems = [
-		{ href: '/planos', label: 'Nossos Planos', icon: SquareSquare },
+		{ href: '/planos-residenciais', label: 'Planos Residenciais', icon: Home },
+		{ href: '/planos-empresariais', label: 'Planos Empresariais', icon: Briefcase },
 		{ href: '/hiwifi', label: 'HiWifi', icon: Wifi }
 	];
 
@@ -80,7 +80,7 @@
 			<!-- Navegação Principal -->
 			<div class="flex-1 px-6 py-6">
 				<div class="space-y-1">
-					{#each navItems as item}
+					{#each navItems as item (item.href)}
 						<Button
 							variant="ghost"
 							href={item.href}
@@ -102,7 +102,7 @@
 				<!-- Seção Serviços -->
 				<div class="space-y-1">
 					<h3 class="text-muted-foreground mb-2 px-3 text-sm font-semibold">Serviços</h3>
-					{#each serviceItems as item}
+					{#each serviceItems as item (item.href)}
 						<Button
 							variant="ghost"
 							href={item.href}
@@ -140,7 +140,7 @@
 					Siga-nos nas redes sociais
 				</p>
 				<div class="flex items-center justify-center gap-2">
-					{#each socialLinks as social}
+					{#each socialLinks as social (social.href)}
 						<Button
 							variant="ghost"
 							size="icon"
@@ -158,7 +158,7 @@
 	</Sheet.Root>
 
 	<!-- Logo Central -->
-	<a href="/" class="flex h-16 w-full items-center justify-center">
+	<a href={resolve('/')} class="flex h-16 w-full items-center justify-center">
 		<img src={LogoCompleto} alt="Logo Himarte Net" class="h-10 w-auto" />
 	</a>
 

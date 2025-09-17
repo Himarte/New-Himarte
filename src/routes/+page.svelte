@@ -1,10 +1,11 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import HoverBorderGradient from '$lib/components/HoverBorderGradient.svelte';
 	import MenuHome from '$lib/components/MenuHome.svelte';
 	import TabsPlanosScroll from '$lib/components/TabPlanosScroll/TabsPlanosScroll.svelte';
 	import notebookImg from '$lib/img/extras/notebook4.webp';
-	import Gauge from '@lucide/svelte/icons/gauge';
 	import ExternalLink from '@lucide/svelte/icons/external-link';
+	import Gauge from '@lucide/svelte/icons/gauge';
 	import PhoneCall from '@lucide/svelte/icons/phone-call';
 </script>
 
@@ -27,7 +28,7 @@
 </div>
 
 <!-- Plans Section -->
-<section class="relative h-full w-full bg-black pt-10 pb-20">
+<section class="relative h-full w-full bg-black pt-10 pb-10">
 	<div class="w-full px-4">
 		<h2 class="mb-4 text-center text-4xl font-bold text-orange-400">
 			Escolha o plano ideal para você
@@ -181,7 +182,7 @@
 				<!-- CTA -->
 				<div class="pt-4">
 					<a
-						href="/sobre"
+						href={resolve('/sobre')}
 						class="group inline-flex items-center gap-2 font-semibold text-orange-400 transition-all hover:gap-3 hover:text-orange-300"
 					>
 						Saiba mais sobre nós

@@ -1,14 +1,15 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import logoNome from '$lib/img/logos/logo-nome-quliadade2.png';
+	import ChevronRight from '@lucide/svelte/icons/chevron-right';
+	import Clock from '@lucide/svelte/icons/clock';
 	import Facebook from '@lucide/svelte/icons/facebook';
 	import Instagram from '@lucide/svelte/icons/instagram';
 	import Linkedin from '@lucide/svelte/icons/linkedin';
+	import Mail from '@lucide/svelte/icons/mail';
 	import MapPin from '@lucide/svelte/icons/map-pin';
 	import Phone from '@lucide/svelte/icons/phone';
-	import Mail from '@lucide/svelte/icons/mail';
-	import Clock from '@lucide/svelte/icons/clock';
 	import Wifi from '@lucide/svelte/icons/wifi';
-	import ChevronRight from '@lucide/svelte/icons/chevron-right';
 </script>
 
 <footer class="bg-background relative w-full overflow-hidden">
@@ -76,7 +77,7 @@
 					<ul class="space-y-4 pl-8 md:pl-0">
 						<li>
 							<a
-								href="/planos"
+								href={resolve('/planos-residenciais')}
 								class="text-muted-foreground group inline-flex items-center text-sm transition-colors hover:text-orange-400"
 							>
 								<ChevronRight
@@ -88,7 +89,7 @@
 						</li>
 						<li>
 							<a
-								href="/planos"
+								href={resolve('/planos-empresariais')}
 								class="text-muted-foreground group inline-flex items-center text-sm transition-colors hover:text-orange-400"
 							>
 								<ChevronRight
@@ -100,7 +101,7 @@
 						</li>
 						<li>
 							<a
-								href="/sobre"
+								href={resolve('/sobre')}
 								class="text-muted-foreground group inline-flex items-center text-sm transition-colors hover:text-orange-400"
 							>
 								<ChevronRight
@@ -112,7 +113,7 @@
 						</li>
 						<li>
 							<a
-								href="/filiais"
+								href={resolve('/filiais')}
 								class="text-muted-foreground group inline-flex items-center text-sm transition-colors hover:text-orange-400"
 							>
 								<ChevronRight
@@ -124,7 +125,7 @@
 						</li>
 						<li>
 							<a
-								href="/trabalhe-conosco"
+								href={resolve('/trabalhe-conosco')}
 								class="text-muted-foreground group inline-flex items-center text-sm transition-colors hover:text-orange-400"
 							>
 								<ChevronRight

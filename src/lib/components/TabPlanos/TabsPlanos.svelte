@@ -1,11 +1,11 @@
 <script lang="ts">
-	import * as Tabs from '$lib/components/ui/tabs';
-	import UsersRound from '@lucide/svelte/icons/users-round';
-	import Building2 from '@lucide/svelte/icons/building-2';
+	import CNPJ from '$lib/components/TabPlanos/CNPJ/CNPJ.svelte';
 	import CardsCPF1 from '$lib/components/TabPlanos/CPF1/CardsCPF1.svelte';
 	import CardsCPF2 from '$lib/components/TabPlanos/CPF2/CardsCPF2.svelte';
 	import CardsCPF3 from '$lib/components/TabPlanos/CPF3/CardsCPF3.svelte';
-	import CNPJ from '$lib/components/TabPlanos/CNPJ/CNPJ.svelte';
+	import * as Tabs from '$lib/components/ui/tabs';
+	import Building2 from '@lucide/svelte/icons/building-2';
+	import UsersRound from '@lucide/svelte/icons/users-round';
 </script>
 
 <Tabs.Root

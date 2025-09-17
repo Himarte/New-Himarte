@@ -1,11 +1,11 @@
 <script lang="ts">
 	import astroColorido from '$lib/img/extras/astro-costas.webp';
-	import appStore from '$lib/img/logos/appleBottao.webp';
-	import googlePlay from '$lib/img/logos/googleMaior.webp';
-	import instagramIcon from '$lib/img/extras/instaIcon.webp';
 	import facebookIcon from '$lib/img/extras/facebookIcone.webp';
+	import instagramIcon from '$lib/img/extras/instaIcon.webp';
 	import linkedinIcon from '$lib/img/extras/linkedinIcon.webp';
 	import whatsappIcon from '$lib/img/extras/whatsIcon.webp';
+	import appStore from '$lib/img/logos/appleBottao.webp';
+	import googlePlay from '$lib/img/logos/googleMaior.webp';
 	import logoNomeComepleto from '$lib/img/logos/logo-nome-quliadade2.png';
 </script>
 

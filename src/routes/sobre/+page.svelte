@@ -1,14 +1,15 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import Gauge from '@lucide/svelte/icons/gauge';
 	import Headphones from '@lucide/svelte/icons/headphones';
+	import Heart from '@lucide/svelte/icons/heart';
 	import ListChecks from '@lucide/svelte/icons/list-checks';
+	import MoveRight from '@lucide/svelte/icons/move-right';
+	import Target from '@lucide/svelte/icons/target';
+	import UsersRound from '@lucide/svelte/icons/users-round';
 	import Wifi from '@lucide/svelte/icons/wifi';
 	import Wrench from '@lucide/svelte/icons/wrench';
 	import Zap from '@lucide/svelte/icons/zap';
-	import Target from '@lucide/svelte/icons/target';
-	import UsersRound from '@lucide/svelte/icons/users-round';
-	import MoveRight from '@lucide/svelte/icons/move-right';
-	import Heart from '@lucide/svelte/icons/heart';
 
 	// Array para as vantagens
 	const advantages = [
@@ -255,7 +256,7 @@
 				</p>
 				<div class="flex flex-col justify-center gap-4 sm:flex-row">
 					<a
-						href="/planos"
+						href={resolve('/planos-residenciais')}
 						class="inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-orange-600 to-orange-500 px-8 py-4 font-semibold text-white shadow-lg shadow-orange-500/25 transition-all duration-200 hover:scale-105 hover:from-orange-700 hover:to-orange-600"
 					>
 						Ver Nossos Planos
