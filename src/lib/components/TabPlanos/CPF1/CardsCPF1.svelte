@@ -3,10 +3,11 @@
 	import Saturno from '$lib/img/planetas/saturno.webp';
 	import Netuno from '$lib/img/planetas/netuno.png';
 	import Marte from '$lib/img/planetas/marte.webp';
-	import BorderBeam from '$lib/components/BorderBeam/BorderBeam.svelte';
 	import MelhorPreco from './MelhorPreco.svelte';
 	import New from '$lib/img/extras/new.png';
 	import ContratarDialog from '$lib/components/TabPlanos/ContratarDialog.svelte';
+	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
+	import { Info } from '@lucide/svelte';
 
 	const items = [
 		{
@@ -84,13 +85,38 @@
 					<h2 class=" mt-1 text-6xl font-bold">
 						{item.megas} <span class="font-inter text-3xl font-bold">Megas</span>
 					</h2>
-					<ul>
+					<ul class="mt-1 flex flex-col gap-1">
 						{#each item.beneficios as beneficio (beneficio)}
-							<li class="flex gap-2"><Plus color="#f97316" /> {beneficio}</li>
+							{#if beneficio !== 'Todas as Cidades'}
+								<li class="flex gap-2"><Plus color="#f97316" /> {beneficio}</li>
+							{:else}
+								<li class="flex gap-2">
+									<Plus color="#f97316" />
+									<Tooltip.Provider>
+										<Tooltip.Root>
+											<Tooltip.Trigger class="z-50 flex items-center gap-2"
+												>{beneficio}<Info color="#f97316" size={16} />
+											</Tooltip.Trigger>
+											<Tooltip.Content
+												align="end"
+												side="right"
+												class="text-foreground flex w-40 flex-col gap-1 rounded-md border  bg-gray-800  px-4 py-2 text-center"
+											>
+												<p class="text-center text-sm">Santa Cruz do Sul</p>
+												<p class="text-center text-sm">Encruzilhada do Sul</p>
+												<p class="text-center text-sm">Rio Pardo</p>
+												<p class="text-center text-sm">Vera Cruz</p>
+												<p class="text-center text-sm">Candelária</p>
+												<p class="text-center text-sm">Agudo</p>
+											</Tooltip.Content>
+										</Tooltip.Root>
+									</Tooltip.Provider>
+								</li>
+							{/if}
 						{/each}
 					</ul>
 					<div class="mt-2 flex items-end">
-						<span class=" text-2xl font-semibold text-[#f97316]">R$</span>
+						<span class="  mr-1 text-2xl font-semibold text-[#f97316]">R$</span>
 						<span class="text-4xl font-extrabold tracking-tight">{item.precoReais}</span>
 						<span class=" text-3xl font-extrabold tracking-tight text-[#f97316]">,</span>
 						<span class="text-3xl font-extrabold tracking-tight">{item.precoCentavos}</span>
@@ -113,14 +139,14 @@
 							<div
 								class="card-button text-background flex items-center justify-center rounded-sm no-underline hover:no-underline"
 							>
-								Contratar
+								Saiba Mais
 							</div>
 						</ContratarDialog>
 					</div>
 				</div>
 			{:else}
 				<div
-					class=" card flex h-80 w-3/4 flex-col justify-center rounded-xl border bg-gray-700/20 pl-5 text-start shadow-[0_0_30px_#f97316]/40 hover:z-10 hover:scale-105 md:w-1/3 md:pl-10"
+					class=" card flex h-80 w-3/4 flex-col justify-center rounded-xl border bg-gray-700/20 pl-5 text-start hover:z-10 hover:scale-102 md:w-1/3 md:pl-10"
 				>
 					<img
 						src={item.img}
@@ -146,13 +172,38 @@
 							<span class="font-inter overflow-hidden text-2xl font-bold md:text-3xl">Megas</span>
 						</h2>
 					{/if}
-					<ul>
+					<ul class="mt-1 flex flex-col gap-1">
 						{#each item.beneficios as beneficio (beneficio)}
-							<li class="mt-1 flex text-sm"><Plus color="#f97316" /> {beneficio}</li>
+							{#if beneficio !== 'Todas as Cidades'}
+								<li class="flex gap-2"><Plus color="#f97316" /> {beneficio}</li>
+							{:else}
+								<li class="flex gap-2">
+									<Plus color="#f97316" />
+									<Tooltip.Provider>
+										<Tooltip.Root>
+											<Tooltip.Trigger class="z-50 flex items-center gap-2"
+												>{beneficio}<Info color="#f97316" size={16} />
+											</Tooltip.Trigger>
+											<Tooltip.Content
+												align="end"
+												side="right"
+												class="text-foreground flex w-40 flex-col gap-1 rounded-md border  bg-gray-800  px-4 py-2 text-center"
+											>
+												<p class="text-center text-sm">Santa Cruz do Sul</p>
+												<p class="text-center text-sm">Encruzilhada do Sul</p>
+												<p class="text-center text-sm">Rio Pardo</p>
+												<p class="text-center text-sm">Vera Cruz</p>
+												<p class="text-center text-sm">Candelária</p>
+												<p class="text-center text-sm">Agudo</p>
+											</Tooltip.Content>
+										</Tooltip.Root>
+									</Tooltip.Provider>
+								</li>
+							{/if}
 						{/each}
 					</ul>
 					<div class="mt-2 flex items-end">
-						<span class=" text-2xl font-semibold text-[#f97316]">R$</span>
+						<span class=" mr-1 text-2xl font-semibold text-[#f97316]">R$</span>
 						<span class="text-4xl font-extrabold tracking-tight">{item.precoReais}</span>
 						<span class=" text-3xl font-extrabold tracking-tight text-[#f97316]">,</span>
 						<span class="text-3xl font-extrabold tracking-tight">{item.precoCentavos}</span>

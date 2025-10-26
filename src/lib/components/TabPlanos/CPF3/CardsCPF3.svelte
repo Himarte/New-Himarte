@@ -3,6 +3,8 @@
 	import Plutao from '$lib/img/planetas/plutao.webp';
 	import Mercurio from '$lib/img/planetas/Mercurio.svg';
 	import ContratarDialog from '$lib/components/TabPlanos/ContratarDialog.svelte';
+	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
+	import { Info } from '@lucide/svelte';
 	const items = [
 		{
 			id: 1,
@@ -13,7 +15,7 @@
 			precoCentavos: 90,
 			regioes: ['Todas'],
 			href: '/',
-			beneficios: ['Roteador', 'Assistência Técnica', 'Suporte', 'Todas as Cidades']
+			beneficios: ['Assistência Técnica', 'Todas as Cidades', 'Roteador Gratuito']
 		},
 		{
 			id: 2,
@@ -24,7 +26,7 @@
 			precoCentavos: '00',
 			regioes: ['Todas'],
 			href: '/',
-			beneficios: ['Roteador', 'Assistência Técnica', 'Suporte', 'Todas as Cidades']
+			beneficios: ['Assistência Técnica', 'Todas as Cidades', 'Roteador Gratuito']
 		}
 	];
 
@@ -39,11 +41,11 @@
 
 <div class="mt-5 flex w-full items-center justify-center text-nowrap md:mt-0">
 	<div
-		class="flex min-h-full w-full flex-col items-center justify-center gap-5 md:h-96 md:w-3/4 md:flex-row md:items-end"
+		class="flex min-h-full w-full flex-col items-center justify-center gap-8 md:h-96 md:w-3/4 md:flex-row md:items-end"
 	>
 		{#each items as item (item.id)}
 			<div
-				class="card z-10 mt-6 flex h-80 w-3/4 flex-col justify-center rounded-xl border bg-gray-800/30 pl-5 text-start shadow-[0_0_20px_#f97316]/40 md:w-1/4 md:pl-8 md:hover:scale-102"
+				class="card z-10 mt-6 flex h-80 w-3/4 flex-col justify-center rounded-xl border bg-gray-800/30 pl-5 text-start md:w-1/4 md:pl-8 md:hover:scale-102"
 			>
 				<img
 					src={item.img}
@@ -55,13 +57,38 @@
 					{item.megas}
 					<span class="font-inter text-2xl font-bold md:text-3xl">Megas</span>
 				</h2>
-				<ul>
+				<ul class="mt-1 flex flex-col gap-1">
 					{#each item.beneficios as beneficio (beneficio)}
-						<li class="mt-1 flex text-sm"><Plus color="#f97316" /> {beneficio}</li>
+						{#if beneficio !== 'Todas as Cidades'}
+							<li class="flex gap-2"><Plus color="#f97316" /> {beneficio}</li>
+						{:else}
+							<li class="flex gap-2">
+								<Plus color="#f97316" />
+								<Tooltip.Provider>
+									<Tooltip.Root>
+										<Tooltip.Trigger class="z-50 flex items-center gap-2"
+											>{beneficio}<Info color="#f97316" size={16} />
+										</Tooltip.Trigger>
+										<Tooltip.Content
+											align="end"
+											side="right"
+											class="text-foreground flex w-40 flex-col gap-1 rounded-md border  bg-gray-800  px-4 py-2 text-center"
+										>
+											<p class="text-center text-sm">Santa Cruz do Sul</p>
+											<p class="text-center text-sm">Encruzilhada do Sul</p>
+											<p class="text-center text-sm">Rio Pardo</p>
+											<p class="text-center text-sm">Vera Cruz</p>
+											<p class="text-center text-sm">Candelária</p>
+											<p class="text-center text-sm">Agudo</p>
+										</Tooltip.Content>
+									</Tooltip.Root>
+								</Tooltip.Provider>
+							</li>
+						{/if}
 					{/each}
 				</ul>
 				<div class="mt-2 flex items-end overflow-hidden">
-					<span class=" text-xl font-semibold text-[#f97316]">R$</span>
+					<span class=" mr-1 text-xl font-semibold text-[#f97316]">R$</span>
 					<span class="text-3xl font-extrabold tracking-tight">{item.precoReais}</span>
 					<span class=" text-3xl font-extrabold tracking-tight text-[#f97316]">,</span>
 					<span class="text-2xl font-extrabold tracking-tight">{item.precoCentavos}</span>
