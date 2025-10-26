@@ -53,11 +53,11 @@
 
 <div class="mt-5 flex w-full items-center justify-center text-nowrap md:mt-0">
 	<div
-		class="flex min-h-full w-full flex-col items-center justify-center gap-5 md:h-96 md:w-3/4 md:flex-row md:items-end"
+		class="flex min-h-full w-full flex-col items-center justify-center gap-8 md:h-96 md:w-3/4 md:flex-row md:items-end"
 	>
 		{#each items as item (item.id)}
 			<div
-				class="card bg-background/70 mt-6 flex h-80 w-3/4 flex-col justify-center border pl-5 text-start hover:z-10 hover:border-amber-500/70 md:w-1/4 md:pl-8 md:hover:scale-105"
+				class="card z-10 mt-6 flex h-80 w-3/4 flex-col justify-center rounded-xl border bg-gray-800/30 pl-5 text-start shadow-[0_0_20px_#f97316]/40 md:w-1/4 md:pl-8 md:hover:scale-102"
 			>
 				<img
 					src={item.img}

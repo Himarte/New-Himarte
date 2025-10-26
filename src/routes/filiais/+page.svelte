@@ -223,7 +223,7 @@
 
 							<!-- Gradient Overlay -->
 							<div
-								class="from-background/90 via-background/20 absolute inset-0 bg-gradient-to-t to-transparent"
+								class="from-background/90 via-background/20 absolute inset-0 bg-linear-to-t to-transparent"
 							></div>
 						</div>
 

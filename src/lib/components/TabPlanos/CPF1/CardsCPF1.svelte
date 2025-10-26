@@ -17,7 +17,12 @@
 			precoReais: 109,
 			precoCentavos: 90,
 			href: '/',
-			beneficios: ['Roteador', 'Assistência Técnica', 'Suporte', 'Santa Cruz do Sul e Rio Pardo']
+			beneficios: [
+				'Assistência Técnica',
+				'Instalação Gratuita',
+				'Todas as Cidades',
+				'Roteador Gratuito'
+			]
 		},
 		{
 			id: 2,
@@ -27,7 +32,12 @@
 			precoReais: 99,
 			precoCentavos: 90,
 			href: '/',
-			beneficios: ['Roteador', 'Assistência Técnica', 'Suporte', 'Todas as Cidades']
+			beneficios: [
+				'Assistência Técnica',
+				'Instalação Gratuita',
+				'Todas as Cidades',
+				'Roteador Gratuito'
+			]
 		},
 
 		{
@@ -38,7 +48,12 @@
 			precoReais: 199,
 			precoCentavos: 90,
 			href: '/',
-			beneficios: ['Roteador', 'Assistência Técnica', 'Suporte', 'Santa Cruz do Sul e Rio Pardo']
+			beneficios: [
+				'Assistência Técnica',
+				'Instalação Gratuita',
+				'Todas as Cidades',
+				'Roteador Gratuito'
+			]
 		}
 	];
 
@@ -53,21 +68,13 @@
 
 <div class="flex min-h-full min-w-full items-center justify-center text-nowrap">
 	<div
-		class="mt-5 flex min-h-full w-full flex-col items-center justify-center gap-10 md:h-96 md:w-2/3 md:flex-row md:items-end md:justify-between"
+		class="mt-5 flex min-h-full w-full flex-col items-center justify-center gap-10 md:h-96 md:w-3/5 md:flex-row md:items-end md:justify-between"
 	>
 		{#each items as item (item.id)}
 			{#if item.id === 2}
 				<div
-					class="card flex h-96 w-3/4 flex-col items-center justify-center text-start hover:z-10 hover:border-amber-500/70 md:w-1/3 md:hover:scale-105"
+					class="card relative z-10 flex h-96 w-3/4 flex-col items-center justify-center rounded-xl border bg-gray-800/30 text-start shadow-[0_0_20px_#f97316]/40 md:w-1/3 md:hover:scale-102"
 				>
-					<BorderBeam
-						size={200}
-						duration={5}
-						borderWidth={1.5}
-						colorFrom="#ffaa40"
-						colorTo="#9c40ff"
-					/>
-
 					<img
 						src={item.img}
 						alt={item.plano}
@@ -113,7 +120,7 @@
 				</div>
 			{:else}
 				<div
-					class=" card bg-background/70 flex h-80 w-3/4 flex-col justify-center border pl-5 text-start hover:z-10 hover:scale-105 hover:border-amber-500/70 md:w-1/3 md:pl-10"
+					class=" card flex h-80 w-3/4 flex-col justify-center rounded-xl border bg-gray-700/20 pl-5 text-start shadow-[0_0_30px_#f97316]/40 hover:z-10 hover:scale-105 md:w-1/3 md:pl-10"
 				>
 					<img
 						src={item.img}
@@ -124,7 +131,7 @@
 						<img
 							src={New}
 							alt="New Plano"
-							class="bg-background absolute -top-5 -left-4 w-16 -rotate-12"
+							class="bg-background absolute -top-5 -left-4 w-16 -rotate-12 rounded-full"
 						/>
 					{/if}
 					<h1 class="font-inter text-4xl font-bold text-[#f97316]">{item.plano}</h1>

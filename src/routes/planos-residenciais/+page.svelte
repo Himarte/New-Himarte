@@ -3,6 +3,7 @@
 	import CardsCPF1 from '$lib/components/TabPlanos/CPF1/CardsCPF1.svelte';
 	import CardsCPF2 from '$lib/components/TabPlanos/CPF2/CardsCPF2.svelte';
 	import CardsCPF3 from '$lib/components/TabPlanos/CPF3/CardsCPF3.svelte';
+	import BgStars from '$lib/img/extras/black-november/nov-estrelas.jpg';
 </script>
 
 <svelte:head>
@@ -49,10 +50,15 @@
 	</script>
 </svelte:head>
 
-<div class="flex w-full flex-col items-center justify-center pt-24 pb-10 md:pt-24">
-	<h1 class="text-4xl font-bold text-orange-400">Planos Residenciais</h1>
+<div class="relative flex w-full flex-col items-center justify-center pt-24 pb-10 md:pt-24">
+	<img
+		src={BgStars}
+		alt="Ceu Estrelado"
+		class="absolute top-0 left-0 h-full w-full object-cover opacity-20"
+	/>
+	<h1 class="z-10 text-4xl font-bold text-orange-400">Planos Residenciais</h1>
 	<div
-		class="flex min-h-full w-full flex-col items-center justify-center gap-5 overflow-x-hidden py-8 md:overflow-x-visible"
+		class="z-10 flex min-h-full w-full flex-col items-center justify-center gap-5 overflow-x-hidden py-8 md:overflow-x-visible"
 	>
 		<div class="mb-10 flex flex-col items-center justify-center gap-2 text-center">
 			<p class="font-inter w-2/3 text-zinc-400">

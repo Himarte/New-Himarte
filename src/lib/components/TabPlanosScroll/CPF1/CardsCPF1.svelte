@@ -58,7 +58,7 @@
 		{#each items as item (item.id)}
 			{#if item.id === 2}
 				<div
-					class="card flex h-96 w-3/4 flex-col items-center justify-center text-start hover:z-10 hover:border-amber-500/70 md:w-1/3 md:hover:scale-105"
+					class="card flex h-96 w-3/4 flex-col items-center justify-center text-start hover:z-10 hover:border-amber-500/70 md:w-1/3 md:hover:scale-102"
 				>
 					<BorderBeam
 						size={200}
