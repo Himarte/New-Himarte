@@ -4,6 +4,7 @@
 	import CardsCPF2 from '$lib/components/TabPlanos/CPF2/CardsCPF2.svelte';
 	import CardsCPF3 from '$lib/components/TabPlanos/CPF3/CardsCPF3.svelte';
 	import BgStars from '$lib/img/extras/black-november/nov-estrelas.jpg';
+	import GlobeNovember from '$lib/img/extras/black-november/nov-globo.png';
 </script>
 
 <svelte:head>
@@ -56,19 +57,23 @@
 		alt="Ceu Estrelado"
 		class="absolute top-0 left-0 h-full w-full object-cover opacity-20"
 	/>
-	<h1 class="z-10 text-4xl font-bold text-orange-400">Planos Residenciais</h1>
 	<div
 		class="z-10 flex min-h-full w-full flex-col items-center justify-center gap-5 overflow-x-hidden py-8 md:overflow-x-visible"
 	>
-		<div class="mb-10 flex flex-col items-center justify-center gap-2 text-center">
-			<p class="font-inter w-2/3 text-zinc-400">
-				Escolha o plano perfeito para você e tenha uma experiência de conexão confiável e rápida!
-			</p>
-			<p class="font-inter hidden w-2/3 text-zinc-400 md:block">
-				Oferecemos internet fibra óptica de alta qualidade, garantindo estabilidade e velocidade
-				para todas as suas necessidades. Navegue sem preocupações, assista a filmes e série, jogue e
-				faça downloads sem interrupções.
-			</p>
+		<div class="mb-10 flex max-w-5xl items-center justify-center gap-10">
+			<img src={GlobeNovember} alt="Globo de papel" class="h-72 w-72" />
+			<div class="flex flex-col items-center justify-center gap-2 text-center">
+				<h1 class="mb-2 text-4xl font-bold text-orange-400">Planos Residenciais</h1>
+
+				<p class="font-inter w-full text-zinc-400">
+					Escolha o plano perfeito para você e tenha uma experiência de conexão confiável e rápida!
+				</p>
+				<p class="font-inter hidden w-full text-zinc-400 md:block">
+					Oferecemos internet fibra óptica de alta qualidade, garantindo estabilidade e velocidade
+					para todas as suas necessidades. Navegue sem preocupações, assista a filmes e série, jogue
+					e faça downloads sem interrupções.
+				</p>
+			</div>
 		</div>
 		<CardsCPF1 />
 		<CardsCPF2 />
