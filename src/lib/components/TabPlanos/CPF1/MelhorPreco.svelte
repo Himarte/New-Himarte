@@ -1,15 +1,20 @@
 <script lang="ts">
+	interface Props {
+		text?: string;
+	}
+
+	let { text = 'Instalação Grátis' }: Props = $props();
 </script>
 
-<div class="absolute left-0 top-0 h-96 w-full">
+<div class="absolute top-0 left-0 h-96 w-full">
 	<div class="relative flex h-96 w-full overflow-hidden">
 		<div
-			class="rotate absolute -right-32 md:-right-36 bottom-12 flex w-96 -rotate-45 bg-orange-500 text-center md:bottom-10"
+			class="rotate absolute -right-32 bottom-12 flex w-96 -rotate-45 bg-linear-to-r from-orange-800 via-orange-400 to-orange-800 text-center shadow-lg md:-right-32 md:bottom-13"
 		>
 			<h4
-				class="w-full font-inter text-sm font-bold uppercase text-background md:text-sm lg:text-base"
+				class="font-inter text-background h-5 w-full text-sm font-bold uppercase shadow-sm md:text-sm"
 			>
-				Mais Vendido
+				{text}
 			</h4>
 		</div>
 	</div>

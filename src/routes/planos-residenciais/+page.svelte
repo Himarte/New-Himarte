@@ -61,17 +61,17 @@
 		class="z-10 flex min-h-full w-full flex-col items-center justify-center gap-5 overflow-x-hidden py-8 md:overflow-x-visible"
 	>
 		<div class="mb-10 flex max-w-5xl items-center justify-center gap-10">
-			<img src={GlobeNovember} alt="Globo de papel" class="h-72 w-72" />
+			<img src={GlobeNovember} alt="Globo de papel" class=" h-72 w-72 object-contain" />
 			<div class="flex flex-col items-center justify-center gap-2 text-center">
-				<h1 class="mb-2 text-4xl font-bold text-orange-400">Planos Residenciais</h1>
+				<h1 class="mb-2 text-4xl font-bold text-orange-400">Promoção de Black November!</h1>
 
-				<p class="font-inter w-full text-zinc-400">
-					Escolha o plano perfeito para você e tenha uma experiência de conexão confiável e rápida!
-				</p>
 				<p class="font-inter hidden w-full text-zinc-400 md:block">
-					Oferecemos internet fibra óptica de alta qualidade, garantindo estabilidade e velocidade
-					para todas as suas necessidades. Navegue sem preocupações, assista a filmes e série, jogue
-					e faça downloads sem interrupções.
+					Conecte-se com velocidade de outro planeta: <span class="font-semibold text-orange-400"
+						>50% OFF</span
+					>,
+					<span class="font-semibold text-orange-400">instalação grátis</span> e
+					<span class="font-semibold text-orange-400">3 meses inteiros de vantagem</span>. Planos a
+					partir de 400 Megas, com velocidade de até 1 Giga para todas as cidades.
 				</p>
 			</div>
 		</div>

@@ -39,29 +39,27 @@
 	}
 </script>
 
-<div class="mt-5 flex w-full items-center justify-center text-nowrap md:mt-0">
+<div class="flex min-h-full min-w-full items-center justify-center text-nowrap">
 	<div
-		class="flex min-h-full w-full flex-col items-center justify-center gap-8 md:h-96 md:w-3/4 md:flex-row md:items-end"
+		class="mt-12 flex min-h-full w-full flex-col items-center justify-center gap-10 md:h-96 md:w-3/5 md:flex-row md:items-end md:justify-center"
 	>
 		{#each items as item (item.id)}
 			<div
-				class="card z-10 mt-6 flex h-80 w-3/4 flex-col justify-center rounded-xl border bg-gray-800/30 pl-5 text-start md:w-1/4 md:pl-8 md:hover:scale-102"
+				class="card relative z-10 flex h-96 w-3/4 flex-col items-center justify-center rounded-xl border bg-gray-800/30 text-start md:w-1/3 md:hover:scale-102"
 			>
 				<img
 					src={item.img}
 					alt={item.plano}
 					class="absolute -top-11 -right-10 z-10 h-28 hover:z-10 md:h-32"
 				/>
-				<h1 class="font-inter text-4xl font-bold text-[#f97316]">{item.plano}</h1>
-				<h2 class=" text-5xl font-bold">
+				<h1 class="font-inter text-5xl font-bold text-[#f97316]">{item.plano}</h1>
+				<h2 class=" mt-1 text-6xl font-bold">
 					{item.megas}
-					<span class="font-inter text-2xl font-bold md:text-3xl">Megas</span>
+					<span class="font-inter text-3xl font-bold">Megas</span>
 				</h2>
 				<ul class="mt-1 flex flex-col gap-1">
 					{#each item.beneficios as beneficio (beneficio)}
-						{#if beneficio !== 'Todas as Cidades'}
-							<li class="flex gap-2"><Plus color="#f97316" /> {beneficio}</li>
-						{:else}
+						{#if beneficio === 'Todas as Cidades'}
 							<li class="flex gap-2">
 								<Plus color="#f97316" />
 								<Tooltip.Provider>
@@ -84,14 +82,16 @@
 									</Tooltip.Root>
 								</Tooltip.Provider>
 							</li>
+						{:else}
+							<li class="flex gap-2"><Plus color="#f97316" /> {beneficio}</li>
 						{/if}
 					{/each}
 				</ul>
-				<div class="mt-2 flex items-end overflow-hidden">
-					<span class=" mr-1 text-xl font-semibold text-[#f97316]">R$</span>
-					<span class="text-3xl font-extrabold tracking-tight">{item.precoReais}</span>
+				<div class="mt-2 flex items-end justify-center">
+					<span class=" mr-1 text-2xl font-semibold text-[#f97316]">R$</span>
+					<span class="text-4xl font-extrabold tracking-tight">{item.precoReais}</span>
 					<span class=" text-3xl font-extrabold tracking-tight text-[#f97316]">,</span>
-					<span class="text-2xl font-extrabold tracking-tight">{item.precoCentavos}</span>
+					<span class="text-3xl font-extrabold tracking-tight">{item.precoCentavos}</span>
 					<span class="mx-1 text-xl text-gray-400">/Mês*</span>
 				</div>
 				<div class="card-button-wrapper">

@@ -23,7 +23,7 @@
 <!-- Transition Element -->
 <div class="relative">
 	<div
-		class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-orange-500/30 to-transparent"
+		class="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-orange-500/30 to-transparent"
 	></div>
 </div>
 
@@ -40,7 +40,7 @@
 <!-- Transition Element -->
 <div class="relative">
 	<div
-		class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent"
+		class="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-blue-500/30 to-transparent"
 	></div>
 </div>
 
@@ -55,7 +55,7 @@
 						<h1 class="text-foreground text-5xl leading-tight font-bold md:text-6xl">
 							Até onde a
 							<span
-								class="animate-text-gradient bg-gradient-to-r from-orange-500 via-orange-400 to-orange-600 bg-clip-text text-transparent"
+								class="animate-text-gradient bg-linear-to-r from-orange-500 via-orange-400 to-orange-600 bg-clip-text text-transparent"
 							>
 								Himarte
 							</span>
@@ -89,12 +89,12 @@
 					<div class="group relative">
 						<!-- Enhanced Glow Effect -->
 						<div
-							class="absolute inset-0 rounded-full bg-gradient-to-r from-orange-500/20 via-purple-500/15 to-blue-500/20 blur-2xl transition-all duration-500 group-hover:scale-110 group-hover:blur-3xl"
+							class="absolute inset-0 rounded-full bg-linear-to-r from-orange-500/20 via-purple-500/15 to-blue-500/20 blur-2xl transition-all duration-500 group-hover:scale-110 group-hover:blur-3xl"
 						></div>
 
 						<!-- Secondary glow -->
 						<div
-							class="animate-pulse-slow absolute inset-0 rounded-full bg-gradient-to-r from-orange-400/10 to-blue-400/10 blur-xl"
+							class="animate-pulse-slow absolute inset-0 rounded-full bg-linear-to-r from-orange-400/10 to-blue-400/10 blur-xl"
 						></div>
 
 						<!-- Image -->
@@ -107,13 +107,13 @@
 
 						<!-- Enhanced Floating Elements -->
 						<div
-							class="absolute top-10 right-10 h-16 w-16 animate-pulse rounded-full border border-orange-500/20 bg-gradient-to-br from-orange-500/30 to-orange-600/20 backdrop-blur-sm"
+							class="absolute top-10 right-10 h-16 w-16 animate-pulse rounded-full border border-orange-500/20 bg-linear-to-br from-orange-500/30 to-orange-600/20 backdrop-blur-sm"
 						></div>
 						<div
-							class="absolute bottom-20 left-10 h-12 w-12 animate-bounce rounded-full border border-blue-500/20 bg-gradient-to-br from-blue-500/30 to-blue-600/20 backdrop-blur-sm"
+							class="absolute bottom-20 left-10 h-12 w-12 animate-bounce rounded-full border border-blue-500/20 bg-linear-to-br from-blue-500/30 to-blue-600/20 backdrop-blur-sm"
 						></div>
 						<div
-							class="absolute top-1/2 right-5 h-8 w-8 animate-ping rounded-full bg-gradient-to-br from-purple-500/25 to-pink-500/20"
+							class="absolute top-1/2 right-5 h-8 w-8 animate-ping rounded-full bg-linear-to-br from-purple-500/25 to-pink-500/20"
 						></div>
 					</div>
 				</div>
@@ -147,7 +147,7 @@
 
 						<!-- Overlay gradient on hover -->
 						<div
-							class="from-background/20 pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-t to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+							class="from-background/20 pointer-events-none absolute inset-0 rounded-2xl bg-linear-to-t to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
 						></div>
 					</div>
 
@@ -167,7 +167,7 @@
 					<h2 class="text-foreground mb-6 text-4xl font-bold">
 						Conheça um pouco da nossa
 						<span
-							class="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent"
+							class="bg-linear-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent"
 						>
 							história
 						</span>
@@ -199,7 +199,7 @@
 <!-- Transition Element -->
 <div class="relative">
 	<div
-		class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-green-500/30 to-transparent"
+		class="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-green-500/30 to-transparent"
 	></div>
 </div>
 
