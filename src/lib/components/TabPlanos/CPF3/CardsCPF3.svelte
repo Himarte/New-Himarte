@@ -45,7 +45,7 @@
 	>
 		{#each items as item (item.id)}
 			<div
-				class="card relative z-10 flex h-96 w-3/4 flex-col items-center justify-center rounded-xl border bg-gray-800/30 text-start md:w-1/3 md:hover:scale-102"
+				class="card relative z-10 flex h-96 w-3/4 flex-col items-center justify-center rounded-xl border bg-gray-800/30 text-start opacity-60 md:w-1/3 md:hover:scale-102"
 			>
 				<img
 					src={item.img}

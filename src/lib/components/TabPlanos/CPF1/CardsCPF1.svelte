@@ -1,8 +1,8 @@
 <script lang="ts">
 	import Plus from '@lucide/svelte/icons/plus';
-	import Saturno from '$lib/img/planetas/saturno.webp';
 	import Netuno from '$lib/img/planetas/netuno.png';
 	import Marte from '$lib/img/planetas/marte.webp';
+	import Jupiter from '$lib/img/planetas/jupiter.webp';
 	import MelhorPreco from './MelhorPreco.svelte';
 	import ContratarDialog from '$lib/components/TabPlanos/ContratarDialog.svelte';
 	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
@@ -12,37 +12,37 @@
 	const items = [
 		{
 			id: 1,
-			img: Saturno,
-			plano: 'Saturno',
-			megas: 400,
-			precoPromocional: 50,
-			precoReais: 99,
-			precoCentavos: 90,
-			href: '/',
-			beneficios: ['Assistência Técnica', 'Roteador Gratuito', 'Todas as Cidades'],
-			faixaText: 'Instalação Grátis'
-		},
-		{
-			id: 2,
-			img: Netuno,
-			plano: 'Netuno',
-			megas: 600,
-			precoReais: 109,
-			precoCentavos: 90,
-			precoPromocional: 55,
-			href: '/',
-			beneficios: ['Assistência Técnica', 'Roteador Gratuito', 'Todas as Cidades'],
-			faixaText: 'Instalação Grátis'
-		},
-
-		{
-			id: 3,
 			img: Marte,
 			plano: 'Marte',
 			megas: 1000,
 			precoReais: 199,
 			precoCentavos: 90,
 			precoPromocional: 100,
+			href: '/',
+			beneficios: ['Assistência Técnica', 'Roteador Gratuito', 'Todas as Cidades'],
+			faixaText: 'Instalação Grátis'
+		},
+		{
+			id: 2,
+			img: Jupiter,
+			plano: 'Júpiter',
+			megas: 700,
+			precoReais: 149,
+			precoCentavos: 90,
+			precoPromocional: 75,
+			regioes: ['Todas'],
+			href: '/',
+			beneficios: ['Assistência Técnica', 'Roteador Gratuito', 'Todas as Cidades'],
+			faixaText: 'Instalação Grátis'
+		},
+		{
+			id: 3,
+			img: Netuno,
+			plano: 'Netuno',
+			megas: 600,
+			precoReais: 109,
+			precoCentavos: 90,
+			precoPromocional: 55,
 			href: '/',
 			beneficios: ['Assistência Técnica', 'Roteador Gratuito', 'Todas as Cidades'],
 			faixaText: 'Instalação Grátis'

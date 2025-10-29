@@ -2,13 +2,13 @@
 	import Plus from '@lucide/svelte/icons/plus';
 	import Venus from '$lib/img/planetas/venus.webp';
 	import Urano from '$lib/img/planetas/urano.webp';
-	import Jupiter from '$lib/img/planetas/jupiter.webp';
+	import Saturno from '$lib/img/planetas/saturno.webp';
 	import ContratarDialog from '$lib/components/TabPlanos/ContratarDialog.svelte';
 	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
 	import { Info } from '@lucide/svelte';
 	import MelhorPreco from '../CPF1/MelhorPreco.svelte';
 	import descontoImg from '$lib/img/extras/50.png';
-
+	0;
 	const items = [
 		{
 			id: 2,
@@ -17,9 +17,20 @@
 			megas: 90,
 			precoReais: 79,
 			precoCentavos: 90,
-			regioes: ['Todas'],
 			href: '/',
 			beneficios: ['Assistência Técnica', 'Roteador Gratuito', 'Todas as Cidades']
+		},
+		{
+			id: 4,
+			img: Saturno,
+			plano: 'Saturno',
+			megas: 400,
+			precoPromocional: 50,
+			precoReais: 99,
+			precoCentavos: 90,
+			href: '/',
+			beneficios: ['Assistência Técnica', 'Roteador Gratuito', 'Todas as Cidades'],
+			faixaText: 'Instalação Grátis'
 		},
 
 		{
@@ -29,22 +40,8 @@
 			megas: 120,
 			precoReais: 89,
 			precoCentavos: 90,
-			regioes: ['Todas'],
 			href: '/',
 			beneficios: ['Assistência Técnica', 'Roteador Gratuito', 'Todas as Cidades']
-		},
-		{
-			id: 4,
-			img: Jupiter,
-			plano: 'Júpiter',
-			megas: 700,
-			precoReais: 149,
-			precoCentavos: 90,
-			precoPromocional: 75,
-			regioes: ['Todas'],
-			href: '/',
-			beneficios: ['Assistência Técnica', 'Roteador Gratuito', 'Todas as Cidades'],
-			faixaText: 'Instalação Grátis'
 		}
 	];
 
@@ -66,7 +63,7 @@
 				class="card relative z-10 flex h-96 w-3/4 flex-col items-center justify-center rounded-xl border bg-gray-800/30 text-start {item.id ===
 				4
 					? 'shadow-[0_0_20px_#f97316]/40'
-					: ''} md:w-1/3 md:hover:scale-102"
+					: 'opacity-60'} md:w-1/3 md:hover:scale-102"
 			>
 				<img
 					src={item.img}

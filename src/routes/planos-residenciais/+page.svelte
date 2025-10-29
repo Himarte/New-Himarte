@@ -70,8 +70,8 @@
 						>50% OFF</span
 					>,
 					<span class="font-semibold text-orange-400">instalação grátis</span> e
-					<span class="font-semibold text-orange-400">3 meses inteiros de vantagem</span>. Planos a
-					partir de 400 Megas, com velocidade de até 1 Giga para todas as cidades.
+					<span class="font-semibold text-orange-400">3 meses de vantagem</span>. Planos a partir de
+					400 Megas, com velocidade de até 1 Giga para todas as cidades.
 				</p>
 			</div>
 		</div>
