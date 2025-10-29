@@ -70,7 +70,7 @@
 					alt={item.plano}
 					class="absolute -top-11 -right-10 z-10 h-28 hover:z-10 md:h-32"
 				/>
-				{#if item.megas === 700}
+				{#if item.precoPromocional}
 					<img src={descontoImg} alt="Desconto" class=" absolute -top-10 -left-8 w-30 -rotate-12" />
 				{/if}
 				<h1 class="font-inter text-5xl font-bold text-[#f97316]">{item.plano}</h1>
@@ -137,7 +137,7 @@
 						<span class="mx-1 text-xl text-gray-400">/Mês*</span>
 					</div>
 				{/if}
-				{#if item.megas === 700}
+				{#if item.precoPromocional}
 					<MelhorPreco text={item.faixaText} />
 				{/if}
 				<div class="card-button-wrapper">
