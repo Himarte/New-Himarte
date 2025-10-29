@@ -51,21 +51,29 @@
 	</script>
 </svelte:head>
 
-<div class="relative flex w-full flex-col items-center justify-center pt-24 pb-10 md:pt-24">
+<div class="relative flex w-full flex-col items-center justify-center pt-16 pb-6 md:pt-24 md:pb-10">
 	<img
 		src={BgStars}
 		alt="Ceu Estrelado"
 		class="absolute top-0 left-0 h-full w-full object-cover opacity-20"
 	/>
 	<div
-		class="z-10 flex min-h-full w-full flex-col items-center justify-center gap-5 overflow-x-hidden py-8 md:overflow-x-visible"
+		class="z-10 flex min-h-full w-full flex-col items-center justify-center gap-3 overflow-x-hidden py-4 md:gap-5 md:overflow-x-visible md:py-8"
 	>
-		<div class="mb-10 flex max-w-5xl items-center justify-center gap-10">
-			<img src={GlobeNovember} alt="Globo de papel" class=" h-72 w-72 object-contain" />
+		<div
+			class="mb-10 flex max-w-5xl flex-col items-center justify-center gap-4 px-5 md:flex-row md:gap-10 md:px-0"
+		>
+			<img
+				src={GlobeNovember}
+				alt="Globo de papel"
+				class="h-48 w-48 object-contain md:h-72 md:w-72"
+			/>
 			<div class="flex flex-col items-center justify-center gap-2 text-center">
-				<h1 class="mb-2 text-4xl font-bold text-orange-400">Promoção de Black November!</h1>
+				<h1 class="mb-2 text-2xl font-bold text-orange-400 md:text-4xl">
+					Promoção de Black November!
+				</h1>
 
-				<p class="font-inter hidden w-full text-zinc-400 md:block">
+				<p class="font-inter w-full text-sm text-zinc-400 md:text-base">
 					Conecte-se com velocidade de outro planeta: <span class="font-semibold text-orange-400"
 						>50% OFF</span
 					>,
@@ -78,8 +86,8 @@
 		<CardsCPF1 />
 		<CardsCPF2 />
 		<CardsCPF3 />
-		<div class="flex w-full items-center justify-center pt-8 text-center">
-			<h5 class=" font-inter text-sm text-gray-500">
+		<div class="flex w-full items-center justify-center px-4 pt-6 text-center md:px-0 md:pt-8">
+			<h5 class="font-inter text-xs text-gray-500 md:text-sm">
 				*Os valores são válidos apenas para pagamentos realizados até a data de vencimento.
 			</h5>
 		</div>
