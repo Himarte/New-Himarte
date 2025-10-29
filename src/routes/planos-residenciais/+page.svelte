@@ -68,18 +68,22 @@
 				alt="Globo de papel"
 				class="h-48 w-48 object-contain md:h-72 md:w-72"
 			/>
-			<div class="flex flex-col items-center justify-center gap-2 text-center">
-				<h1 class="mb-2 text-2xl font-bold text-orange-400 md:text-4xl">
+			<div class="flex flex-col items-center justify-center gap-1 text-center">
+				<h1 class="mb-3 text-2xl font-bold text-orange-400 md:text-4xl">
 					Promoção de Black November!
 				</h1>
 
 				<p class="font-inter w-full text-sm text-zinc-400 md:text-base">
-					Conecte-se com velocidade de outro planeta: <span class="font-semibold text-orange-400"
-						>50% OFF</span
-					>,
+					Conecte-se com velocidade de outro planeta: <br />
+					<span class="font-semibold text-orange-400">50% OFF</span>,
 					<span class="font-semibold text-orange-400">instalação grátis</span> e
-					<span class="font-semibold text-orange-400">3 meses de vantagem</span>. Planos a partir de
-					400 Megas, com velocidade de até 1 Giga para todas as cidades.
+					<span class="font-semibold text-orange-400">3 meses de vantagem</span>.
+				</p>
+				<p class="font-inter w-full text-sm text-zinc-400 md:text-base">
+					<span class="mr-1 text-xs font-semibold text-orange-400 md:text-sm">*</span>Condições
+					promocionais válidas para contratações realizadas entre
+					<span class="font-semibold text-orange-400">01/11/25</span>
+					até <span class="font-semibold text-orange-400">30/11/25</span>.
 				</p>
 			</div>
 		</div>
