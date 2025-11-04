@@ -3,7 +3,7 @@
 	import CardsCPF1 from '$lib/components/TabPlanos/CPF1/CardsCPF1.svelte';
 	import CardsCPF2 from '$lib/components/TabPlanos/CPF2/CardsCPF2.svelte';
 	import CardsCPF3 from '$lib/components/TabPlanos/CPF3/CardsCPF3.svelte';
-	import BgStars from '$lib/img/extras/black-november/nov-estrelas.jpg';
+	import BgStars from '$lib/img/extras/black-november/nov-estrelas.webp';
 	import GlobeNovember from '$lib/img/extras/black-november/nov-globo.png';
 </script>
 
@@ -55,6 +55,7 @@
 	<img
 		src={BgStars}
 		alt="Ceu Estrelado"
+		loading="eager"
 		class="absolute top-0 left-0 h-full w-full object-cover opacity-20"
 	/>
 	<div

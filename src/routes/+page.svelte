@@ -7,6 +7,7 @@
 	import ExternalLink from '@lucide/svelte/icons/external-link';
 	import Gauge from '@lucide/svelte/icons/gauge';
 	import PhoneCall from '@lucide/svelte/icons/phone-call';
+	import BlackNovember from '$lib/components/BlackNovember.svelte';
 </script>
 
 <svelte:head>
@@ -28,14 +29,16 @@
 </div>
 
 <!-- Plans Section -->
-<section class="relative h-full w-full bg-black pt-10 pb-10">
+<!-- <section class="relative h-full w-full bg-black pt-10 pb-10">
 	<div class="w-full px-4">
 		<h2 class="mb-4 text-center text-4xl font-bold text-orange-400">
 			Escolha o plano ideal para você
 		</h2>
 		<TabsPlanosScroll />
 	</div>
-</section>
+</section> -->
+<!-- Black November Section -->
+<BlackNovember />
 
 <!-- Transition Element -->
 <div class="relative">
