@@ -61,30 +61,18 @@
 	<div
 		class="z-10 flex min-h-full w-full flex-col items-center justify-center gap-3 overflow-x-hidden py-4 md:gap-5 md:overflow-x-visible md:py-8"
 	>
+		<h1 class="z-10 text-center text-4xl font-bold text-orange-400">Planos Residenciais</h1>
 		<div
-			class="mb-10 flex max-w-5xl flex-col items-center justify-center gap-4 px-5 md:flex-row md:gap-10 md:px-0"
+			class="z-10 flex min-h-full w-full flex-col items-center justify-center gap-5 overflow-x-hidden md:overflow-x-visible"
 		>
-			<img
-				src={GlobeNovember}
-				alt="Globo de papel"
-				class="h-48 w-48 object-contain md:h-72 md:w-72"
-			/>
-			<div class="flex flex-col items-center justify-center gap-1 text-center">
-				<h1 class="mb-3 text-2xl font-bold text-orange-400 md:text-4xl">
-					Promoção de Black November!
-				</h1>
-
-				<p class="font-inter w-full text-sm text-zinc-400 md:text-base">
-					Conecte-se com velocidade de outro planeta: <br />
-					<span class="font-semibold text-orange-400">50% OFF</span>,
-					<span class="font-semibold text-orange-400">instalação grátis</span> e
-					<span class="font-semibold text-orange-400">3 meses de vantagem</span>.
+			<div class="mb-10 flex flex-col items-center justify-center gap-2 text-center">
+				<p class="font-inter w-2/3 text-zinc-400">
+					Escolha o plano perfeito para você e tenha uma experiência de conexão confiável e rápida!
 				</p>
-				<p class="font-inter w-full text-sm text-zinc-400 md:text-base">
-					<span class="mr-1 text-xs font-semibold text-orange-400 md:text-sm">*</span>Condições
-					promocionais válidas para contratações realizadas entre
-					<span class="font-semibold text-orange-400">01/11/25</span>
-					até <span class="font-semibold text-orange-400">30/11/25</span>.
+				<p class="font-inter hidden w-2/3 text-zinc-400 md:block">
+					Oferecemos internet fibra óptica de alta qualidade, garantindo estabilidade e velocidade
+					para todas as suas necessidades. Navegue sem preocupações, assista a filmes e série, jogue
+					e faça downloads sem interrupções.
 				</p>
 			</div>
 		</div>

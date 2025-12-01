@@ -6,9 +6,6 @@
 	import ContratarDialog from '$lib/components/TabPlanos/ContratarDialog.svelte';
 	import * as Tooltip from '$lib/components/ui/tooltip/index.js';
 	import { Info } from '@lucide/svelte';
-	import MelhorPreco from '../CPF1/MelhorPreco.svelte';
-	import descontoImg from '$lib/img/extras/50.png';
-	0;
 	const items = [
 		{
 			id: 2,
@@ -25,12 +22,10 @@
 			img: Saturno,
 			plano: 'Saturno',
 			megas: 400,
-			precoPromocional: 50,
 			precoReais: 99,
 			precoCentavos: 90,
 			href: '/',
-			beneficios: ['Assistência Técnica', 'Roteador Gratuito', 'Todas as Cidades'],
-			faixaText: 'Instalação Grátis'
+			beneficios: ['Assistência Técnica', 'Roteador Gratuito', 'Todas as Cidades']
 		},
 
 		{
@@ -60,19 +55,13 @@
 	>
 		{#each items as item (item.id)}
 			<div
-				class="card relative z-10 flex h-96 w-3/4 flex-col items-center justify-center rounded-xl border bg-gray-800/30 text-start {item.id ===
-				4
-					? 'shadow-[0_0_20px_#f97316]/40'
-					: 'opacity-60'} md:w-1/3 md:hover:scale-102"
-			>
+			class="card relative z-10 flex h-96 w-3/4 flex-col items-center justify-center rounded-md border bg-gray-800/30 text-start md:w-1/3 md:hover:scale-102"
+		>
 				<img
 					src={item.img}
 					alt={item.plano}
 					class="absolute -top-11 -right-10 z-10 h-28 hover:z-10 md:h-32"
 				/>
-				{#if item.precoPromocional}
-					<img src={descontoImg} alt="Desconto" class=" absolute -top-10 -left-8 w-30 -rotate-12" />
-				{/if}
 				<h1 class="font-inter text-5xl font-bold text-[#f97316]">{item.plano}</h1>
 				<h2 class=" mt-1 text-6xl font-bold">
 					{item.megas}
@@ -108,38 +97,13 @@
 						{/if}
 					{/each}
 				</ul>
-				{#if item.precoPromocional}
-					<div class=" mt-1 flex items-end justify-center line-through decoration-orange-500">
-						<span class="  mr-1 text-xl font-semibold text-gray-400">R$</span>
-						<span class="text-xl font-extrabold tracking-tight text-gray-400"
-							>{item.precoReais}</span
-						>
-						<span class=" text-xl font-extrabold tracking-tight text-gray-400">,</span>
-						<span class="text-xl font-extrabold tracking-tight text-gray-400"
-							>{item.precoCentavos}</span
-						>
-						<span class=" text-xl font-semibold text-gray-400">/Mês*</span>
-					</div>
-
-					<div class=" flex items-end">
-						<span class="  mr-1 text-2xl font-semibold text-[#f97316]">R$</span>
-						<span class="text-4xl font-extrabold tracking-tight">{item.precoPromocional}</span>
-						<span class=" text-3xl font-extrabold tracking-tight text-[#f97316]">,</span>
-						<span class="text-3xl font-extrabold tracking-tight">00</span>
-						<span class="mx-1 text-xl text-gray-400">/Mês*</span>
-					</div>
-				{:else}
-					<div class="mt-2 flex items-end justify-center">
-						<span class=" mr-1 text-2xl font-semibold text-[#f97316]">R$</span>
-						<span class="text-4xl font-extrabold tracking-tight">{item.precoReais}</span>
-						<span class=" text-3xl font-extrabold tracking-tight text-[#f97316]">,</span>
-						<span class="text-3xl font-extrabold tracking-tight">{item.precoCentavos}</span>
-						<span class="mx-1 text-xl text-gray-400">/Mês*</span>
-					</div>
-				{/if}
-				{#if item.precoPromocional}
-					<MelhorPreco text={item.faixaText} />
-				{/if}
+				<div class="mt-2 flex items-end justify-center">
+					<span class=" mr-1 text-2xl font-semibold text-[#f97316]">R$</span>
+					<span class="text-4xl font-extrabold tracking-tight">{item.precoReais}</span>
+					<span class=" text-3xl font-extrabold tracking-tight text-[#f97316]">,</span>
+					<span class="text-3xl font-extrabold tracking-tight">{item.precoCentavos}</span>
+					<span class="mx-1 text-xl text-gray-400">/Mês*</span>
+				</div>
 				<div class="card-button-wrapper">
 					<ContratarDialog
 						plano={item.plano}

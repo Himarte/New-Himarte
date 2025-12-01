@@ -23,7 +23,7 @@
 			<span class="text-xs font-semibold sm:text-xl">Para sua Casa</span>
 			<!-- Indicador gradiente -->
 			<div
-				class="absolute -bottom-1 left-1/2 h-0.5 w-0 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 transition-all duration-300 ease-out group-data-[state=active]:w-3/4 group-data-[state=active]:-translate-x-1/2 sm:h-1"
+				class="absolute -bottom-1 left-1/2 h-0.5 w-0 rounded-full bg-linear-to-r from-orange-400 to-orange-600 transition-all duration-300 ease-out group-data-[state=active]:w-3/4 group-data-[state=active]:-translate-x-1/2 sm:h-1"
 			></div>
 		</Tabs.Trigger>
 
@@ -36,7 +36,7 @@
 			<span class="text-xs font-semibold sm:text-xl">Para sua Empresa</span>
 			<!-- Indicador gradiente -->
 			<div
-				class="absolute -bottom-1 left-1/2 h-0.5 w-0 rounded-full bg-gradient-to-r from-orange-400 to-orange-600 transition-all duration-300 ease-out group-data-[state=active]:w-3/4 group-data-[state=active]:-translate-x-1/2 sm:h-1"
+				class="absolute -bottom-1 left-1/2 h-0.5 w-0 rounded-full bg-linear-to-r from-orange-400 to-orange-600 transition-all duration-300 ease-out group-data-[state=active]:w-3/4 group-data-[state=active]:-translate-x-1/2 sm:h-1"
 			></div>
 		</Tabs.Trigger>
 	</Tabs.List>
@@ -59,11 +59,11 @@
 			<div class="flex w-full items-center justify-center pt-2 text-center">
 				<a
 					href={resolve('/planos-residenciais')}
-					class="group text-background relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-xs bg-gradient-to-r from-orange-400 to-orange-600 px-8 py-3 text-base font-semibold shadow-lg transition-all duration-300 ease-out hover:scale-105 hover:shadow-xl hover:shadow-orange-500/25 active:scale-95"
+					class="group text-background relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-xs bg-linear-to-r from-orange-400 to-orange-600 px-8 py-3 text-base font-semibold shadow-lg transition-all duration-300 ease-out hover:scale-105 hover:shadow-xl hover:shadow-orange-500/25 active:scale-95"
 				>
 					<!-- Efeito de brilho no hover -->
 					<div
-						class="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-white/0 via-white/20 to-white/0 transition-transform duration-700 ease-out group-hover:translate-x-[100%]"
+						class="absolute inset-0 -translate-x-full bg-linear-to-r from-white/0 via-white/20 to-white/0 transition-transform duration-700 ease-out group-hover:translate-x-full"
 					></div>
 
 					<Zap size={20} class="transition-transform duration-300 group-hover:rotate-12" />
