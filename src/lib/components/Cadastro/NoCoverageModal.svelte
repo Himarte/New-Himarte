@@ -2,11 +2,56 @@
 	import * as Dialog from '$lib/components/ui/dialog';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import { goto } from '$app/navigation';
+	import type { FormData } from './types';
 
-	let { open = $bindable(false), cidade = '' } = $props<{
+	let {
+		open = $bindable(false),
+		cidade = '',
+		formData = undefined
+	} = $props<{
 		open: boolean;
 		cidade?: string;
+		formData?: FormData;
 	}>();
+
+	// Estado para prevenir envios duplicados
+	let enviado = $state(false);
+
+	// Envia lead sem cobertura quando o modal abre
+	$effect(() => {
+		if (open && formData && !enviado) {
+			enviarLeadSemCobertura();
+			enviado = true;
+		}
+		if (!open) {
+			enviado = false; // Reset quando fechar para permitir novo envio se reabrir
+		}
+	});
+
+	async function enviarLeadSemCobertura() {
+		if (!formData) return;
+
+		try {
+			await fetch('/api/cadastro/lead-sem-cobertura', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					nome: formData.fullName,
+					telefone: formData.telefone.replace(/\D/g, ''),
+					email: formData.emailCliente,
+					cep: formData.cep.replace(/\D/g, ''),
+					cidade: formData.cidade,
+					estado: formData.estado,
+					bairro: formData.bairro,
+					rua: formData.rua
+				})
+			});
+			// Silenciosamente ignora resultado - sem feedback visual
+		} catch (error) {
+			console.error('Erro ao enviar lead sem cobertura:', error);
+			// Silenciosamente ignora erro - sem feedback visual
+		}
+	}
 
 	function handleGoToFiliais() {
 		open = false;
