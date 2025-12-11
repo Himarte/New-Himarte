@@ -1,6 +1,7 @@
 import type { Actions } from './$types';
 import { fail } from '@sveltejs/kit';
 import { SITE_CHAVE_API, SITE_URL_API } from '$env/static/private';
+import { enviarEmailConfirmacaoCadastro } from '$lib/server/email-cadastro.server';
 
 // Função utilitária para limpar caracteres especiais
 const limparTexto = (texto: unknown): string => {
@@ -138,6 +139,23 @@ export const actions: Actions = {
 
 				// Sucesso na integração com Indica Himarte
 				const pessoaJaExistia = voalleResult.pessoaJaExiste === true;
+
+				// 3. Enviar email de confirmação para o cliente (não bloqueia se falhar)
+				try {
+					await enviarEmailConfirmacaoCadastro({
+						fullName: cadastroData.fullName || '',
+						emailCliente: cadastroData.emailCliente?.toString() || '',
+						telefone: cadastroData.telefone || '',
+						planoNome: cadastroData.planoNome?.toString() || '',
+						planoMegas: cadastroData.planoMegas?.toString() || '',
+						valorPlano: cadastroData.valorPlano?.toString() || '',
+						cidade: cadastroData.cidade?.toString() || ''
+					});
+				} catch (erroEmail) {
+					// Log mas não bloqueia o fluxo
+					console.error('Falha ao enviar email de confirmação (não bloqueante):', erroEmail);
+				}
+
 				return {
 					success: true,
 					mensagem: pessoaJaExistia
