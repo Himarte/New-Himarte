@@ -51,19 +51,19 @@
 		{@render children()}
 	</Dialog.Trigger>
 	<Dialog.Content
-		class="bg-background/95 max-h-[90vh] max-w-[95vw] overflow-y-auto rounded-md border-orange-500/20 shadow-2xl backdrop-blur-md sm:max-w-4xl md:max-h-[95vh]"
+		class="bg-background/75 max-h-[90vh] max-w-[95vw] overflow-y-auto rounded-md shadow-2xl backdrop-blur-md sm:max-w-4xl md:max-h-[95vh]"
 	>
 		<!-- Container principal com scroll -->
 		<div class="flex h-full max-h-[80vh] flex-col overflow-hidden md:max-h-[90vh]">
 			<!-- Header fixo -->
 			<Dialog.Header class="flex shrink-0 flex-col items-center pb-4 text-center">
 				<div
-					class="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-orange-500 to-orange-600 sm:h-16 sm:w-16"
+					class="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-linear-to-br from-orange-500 to-orange-600 sm:h-16 sm:w-16"
 				>
 					<Sparkles class="h-6 w-6 text-white sm:h-8 sm:w-8" />
 				</div>
 				<Dialog.Title
-					class="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-center text-xl font-bold text-transparent sm:text-3xl"
+					class="bg-linear-to-r from-orange-500 to-orange-600 bg-clip-text text-center text-xl font-bold text-transparent sm:text-3xl"
 				>
 					Como você prefere prosseguir?
 				</Dialog.Title>
@@ -89,22 +89,20 @@
 					>
 						<Card.Root
 							class={cn(
-								'group relative cursor-pointer overflow-hidden  transition-all duration-300',
+								'group  relative cursor-pointer overflow-hidden  transition-all duration-300',
 								'hover:-translate-y-1 hover:shadow-xl hover:shadow-orange-500/10',
-								'from-background to-background/50 border-2 bg-gradient-to-br hover:border-orange-500/50',
+								'from-background to-background/50 border-2 bg-linear-to-br hover:border-orange-500/50',
 								'h-full min-h-[280px] sm:min-h-[320px]'
 							)}
 						>
 							<div
-								class="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+								class="absolute inset-0 bg-linear-to-br from-orange-500/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
 							></div>
 
-							<Card.Header class="pb-0 text-center sm:pb-4">
-								<div
-									class="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-orange-500/20 to-orange-600/10 transition-transform duration-300 group-hover:scale-110 sm:mb-4 sm:h-20 sm:w-20"
-								>
+							<Card.Header class=" flex items-center justify-center gap-4">
+						
 									<MessagesSquare class="h-8 w-8 text-orange-500 sm:h-10 sm:w-10" />
-								</div>
+								
 								<Card.Title
 									class="text-foreground text-lg font-bold transition-colors group-hover:text-orange-500 sm:text-2xl"
 								>
@@ -136,7 +134,7 @@
 								<div
 									class={cn(
 										'flex h-10 w-full items-center justify-center gap-2 rounded-md text-sm font-semibold sm:h-12 sm:text-base',
-										'bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700',
+										'bg-linear-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700',
 										'transform border-0 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl',
 										'text-white'
 									)}
@@ -154,20 +152,17 @@
 							class={cn(
 								'group relative cursor-pointer overflow-hidden transition-all duration-300',
 								'hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10',
-								'from-background to-background/50 border-2 bg-gradient-to-br hover:border-blue-500/50',
+								'from-background to-background/50 border-2 bg-linear-to-br hover:border-blue-500/50',
 								'h-full min-h-[280px] sm:min-h-[320px]'
 							)}
 						>
 							<div
-								class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+								class="absolute inset-0 bg-linear-to-br from-blue-500/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
 							></div>
 
-							<Card.Header class="pb-3 text-center sm:pb-4">
-								<div
-									class="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-blue-500/20 to-blue-600/10 transition-transform duration-300 group-hover:scale-110 sm:mb-4 sm:h-20 sm:w-20"
-								>
-									<FileCheck class="h-8 w-8 text-blue-500 sm:h-10 sm:w-10" />
-								</div>
+							<Card.Header class=" flex items-center justify-center gap-4">
+								<FileCheck class="h-8 w-8 text-blue-500 sm:h-10 sm:w-10" />
+
 								<Card.Title
 									class="text-foreground text-lg font-bold transition-colors group-hover:text-blue-500 sm:text-2xl"
 								>
@@ -199,7 +194,7 @@
 								<div
 									class={cn(
 										'flex h-10 w-full items-center justify-center gap-2 rounded-md text-sm font-semibold sm:h-12 sm:text-base',
-										'bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700',
+										'bg-linear-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700',
 										'transform border-0 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl',
 										'text-white'
 									)}

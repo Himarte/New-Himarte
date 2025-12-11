@@ -56,10 +56,10 @@
 					*Os valores são válidos apenas para pagamentos realizados até a data de vencimento.
 				</h5>
 			</div>
-			<div class="flex w-full items-center justify-center pt-2 text-center">
+			<div class="flex w-full items-center justify-center text-center">
 				<a
 					href={resolve('/planos-residenciais')}
-					class="group text-background relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-xs bg-linear-to-r from-orange-400 to-orange-600 px-8 py-3 text-base font-semibold shadow-lg transition-all duration-300 ease-out hover:scale-105 hover:shadow-xl hover:shadow-orange-500/25 active:scale-95"
+					class="group text-background relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-xs bg-linear-to-r from-orange-400 to-orange-600 px-8 py-2 text-base font-semibold shadow-lg transition-all duration-300 ease-out hover:scale-105 hover:shadow-xl hover:shadow-orange-500/25 active:scale-95"
 				>
 					<!-- Efeito de brilho no hover -->
 					<div

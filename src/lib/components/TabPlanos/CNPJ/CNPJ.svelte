@@ -67,11 +67,11 @@
 
 <div class="flex min-h-full w-full flex-col items-center justify-center text-nowrap">
 	<div
-		class="mt-6 flex h-full w-3/4 flex-col items-end justify-center gap-5 md:h-80 md:w-2/3 md:flex-row"
+		class="mt-6 flex min-h-full w-full flex-col items-center justify-center gap-12 md:h-80 md:w-3/5 md:flex-row md:items-end md:justify-between"
 	>
 		{#each items as item}
 			<div
-				class="card bg-background/70 flex h-64 w-full flex-col items-start justify-center border pl-10 hover:z-10 hover:scale-105 hover:border-amber-500/70 md:h-72 md:w-1/4"
+				class="card relative z-10 flex h-72 w-3/4 flex-col items-center justify-center rounded-md border bg-gray-800/30 text-start md:w-1/3 md:hover:scale-102"
 			>
 				<img
 					src={item.img}
@@ -86,7 +86,7 @@
 				<h2 class=" mt-1 text-5xl font-bold">
 					{item.megas} <span class="font-inter text-3xl font-bold">Megas</span>
 				</h2>
-				<ul>
+				<ul class="mt-1 flex flex-col gap-1">
 					{#each item.beneficios as beneficio}
 						<li class="flex gap-2"><Plus color="#f97316" /> {beneficio}</li>
 					{/each}
@@ -110,11 +110,11 @@
 		{/each}
 	</div>
 	<div
-		class=" mt-6 flex h-full w-3/4 flex-col items-end justify-center gap-5 md:h-80 md:w-2/3 md:flex-row"
+		class=" mt-12 flex min-h-full w-full flex-col items-center justify-center gap-12 md:h-80 md:w-3/5 md:flex-row md:items-end md:justify-between"
 	>
 		{#each items2 as item}
 			<div
-				class=" card bg-background/70 flex h-64 w-full flex-col items-start justify-center border pl-10 hover:z-10 hover:scale-105 hover:border-amber-500/70 md:h-72 md:w-1/4 md:pl-14"
+				class="card relative z-10 flex h-72 w-3/4 flex-col items-center justify-center rounded-md border bg-gray-800/30 text-start md:w-1/3 md:hover:scale-102"
 			>
 				<img
 					src={item.img}
@@ -136,7 +136,7 @@
 					</h1>
 					<h2 class=" mt-1 text-3xl font-bold">Ilimitado</h2>
 				{/if}
-				<ul>
+				<ul class="mt-1 flex flex-col gap-1">
 					{#each item.beneficios as beneficio}
 						<li class="flex gap-2"><Plus color="#f97316" /> {beneficio}</li>
 					{/each}

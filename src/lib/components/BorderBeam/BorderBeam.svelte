@@ -25,21 +25,25 @@
 		class?: string;
 	}>();
 
-	// Animação de rotação do gradiente
+	// Animação de rotação do gradiente  
+	// Usamos um valor fixo inicial, a prop duration é usada diretamente na closure
 	let rotation = tweened(0, {
-		duration: duration * 1000,
+		duration: 15000, // valor inicial default
 		easing: linear
 	});
 
 	onMount(() => {
+		const durationValue = duration * 1000;
+		const delayValue = delay * 1000;
+		
 		setTimeout(() => {
 			const startRotation = () => {
-				rotation.set(360, { duration: duration * 1000 }).then(() => {
+				rotation.set(360, { duration: durationValue }).then(() => {
 					rotation.set(0, { duration: 0 }).then(startRotation);
 				});
 			};
 			startRotation();
-		}, delay * 1000);
+		}, delayValue);
 	});
 
 	// Gradiente que gira baseado na rotação atual

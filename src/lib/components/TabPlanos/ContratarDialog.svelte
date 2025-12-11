@@ -51,7 +51,7 @@
 		{@render children()}
 	</Dialog.Trigger>
 	<Dialog.Content
-		class="bg-background/95 max-h-[90vh] max-w-[95vw] overflow-y-auto rounded-md border-orange-500/20 shadow-2xl backdrop-blur-md sm:max-w-4xl md:max-h-[95vh]"
+		class="bg-background/75 max-h-[90vh] max-w-[95vw] overflow-y-auto rounded-md shadow-2xl backdrop-blur-md sm:max-w-4xl md:max-h-[95vh]"
 	>
 		<!-- Container principal com scroll -->
 		<div class="flex h-full max-h-[80vh] flex-col overflow-hidden md:max-h-[90vh]">
@@ -89,7 +89,7 @@
 					>
 						<Card.Root
 							class={cn(
-								'group relative cursor-pointer overflow-hidden  transition-all duration-300',
+								'group  relative cursor-pointer overflow-hidden  transition-all duration-300',
 								'hover:-translate-y-1 hover:shadow-xl hover:shadow-orange-500/10',
 								'from-background to-background/50 border-2 bg-linear-to-br hover:border-orange-500/50',
 								'h-full min-h-[280px] sm:min-h-[320px]'
@@ -99,12 +99,10 @@
 								class="absolute inset-0 bg-linear-to-br from-orange-500/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
 							></div>
 
-							<Card.Header class="pb-0 text-center sm:pb-4">
-								<div
-									class="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-linear-to-br from-orange-500/20 to-orange-600/10 transition-transform duration-300 group-hover:scale-110 sm:mb-4 sm:h-20 sm:w-20"
-								>
-									<MessagesSquare class="h-8 w-8 text-orange-500 sm:h-10 sm:w-10" />
-								</div>
+							<Card.Header class=" flex items-center justify-center gap-4">
+						
+										<MessagesSquare class="h-8 w-8 text-orange-500 sm:h-10 sm:w-10" />
+								
 								<Card.Title
 									class="text-foreground text-lg font-bold transition-colors group-hover:text-orange-500 sm:text-2xl"
 								>
@@ -162,12 +160,9 @@
 								class="absolute inset-0 bg-linear-to-br from-blue-500/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
 							></div>
 
-							<Card.Header class="pb-3 text-center sm:pb-4">
-								<div
-									class="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-linear-to-br from-blue-500/20 to-blue-600/10 transition-transform duration-300 group-hover:scale-110 sm:mb-4 sm:h-20 sm:w-20"
-								>
-									<FileCheck class="h-8 w-8 text-blue-500 sm:h-10 sm:w-10" />
-								</div>
+							<Card.Header class=" flex items-center justify-center gap-4">
+								<FileCheck class="h-8 w-8 text-blue-500 sm:h-10 sm:w-10" />
+
 								<Card.Title
 									class="text-foreground text-lg font-bold transition-colors group-hover:text-blue-500 sm:text-2xl"
 								>
