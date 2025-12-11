@@ -6,6 +6,7 @@
 	import StepOne from '$lib/components/Cadastro/StepOne.svelte';
 	import StepTwo from '$lib/components/Cadastro/StepTwo.svelte';
 	import StepThree from '$lib/components/Cadastro/StepThree.svelte';
+	import SuccessModal from '$lib/components/Cadastro/SuccessModal.svelte';
 	import type { FormData } from '$lib/components/Cadastro/types';
 	import type { SubmitFunction } from '@sveltejs/kit';
 	import { cn } from '$lib/utils';
@@ -15,6 +16,8 @@
 	let currentStep = $state(1);
 	let isSubmitting = $state(false);
 	let isMobile = $state(false);
+	let showSuccessModal = $state(false);
+	let successClientName = $state('');
 
 	// Verificar tamanho da tela no carregamento e ao redimensionar
 	$effect(() => {
@@ -204,16 +207,11 @@
 
 			// Processar resultado da submissão
 			if (result.type === 'success') {
-				// Exibe mensagem de sucesso para o fluxo completo
-				toast.success(result.data?.mensagem || 'Cadastro realizado com sucesso!');
+				// Salvar nome do cliente antes de resetar
+				successClientName = formData.fullName;
 
-				// Exibe detalhes do Voalle se disponíveis
-				processarMensagensVoalle(result.data?.voalleResult);
-
-				// Exibe detalhes do sistema Indica se disponíveis
-				if (result.data?.indicaResult?.message) {
-					toast.success(`Indica: ${result.data.indicaResult.message}`);
-				}
+				// Abrir modal de sucesso
+				showSuccessModal = true;
 
 				// Resetar formulário após sucesso
 				formData = {
@@ -422,3 +420,6 @@
 		</div>
 	</form>
 </div>
+
+<!-- Modal de Sucesso -->
+<SuccessModal bind:open={showSuccessModal} clientName={successClientName} />
