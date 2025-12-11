@@ -2,8 +2,19 @@
 	import { Label } from '$lib/components/ui/label';
 	import { Input } from '$lib/components/ui/input';
 	import * as Select from '$lib/components/ui/select';
+	import * as Popover from '$lib/components/ui/popover';
+	import { Calendar } from '$lib/components/ui/calendar';
+	import { Button } from '$lib/components/ui/button';
+	import CalendarIcon from '@lucide/svelte/icons/calendar';
 	import type { FormData, Genero } from './types';
 	import { cn } from '$lib/utils';
+	import {
+		type DateValue,
+		DateFormatter,
+		getLocalTimeZone,
+		CalendarDate,
+		today
+	} from '@internationalized/date';
 
 	let { formData = $bindable() } = $props<{
 		formData: FormData;
@@ -14,6 +25,38 @@
 		{ value: 'feminino', label: 'Feminino' },
 		{ value: 'outro', label: 'Outro' }
 	];
+
+	// Formatador de data em português
+	const df = new DateFormatter('pt-BR', {
+		dateStyle: 'long'
+	});
+
+	// Converte string (YYYY-MM-DD) para DateValue
+	function stringToDateValue(dateString: string): DateValue | undefined {
+		if (!dateString) return undefined;
+		const [year, month, day] = dateString.split('-').map(Number);
+		if (year && month && day) {
+			return new CalendarDate(year, month, day);
+		}
+		return undefined;
+	}
+
+	// Converte DateValue para string (YYYY-MM-DD)
+	function dateValueToString(dateValue: DateValue | undefined): string {
+		if (!dateValue) return '';
+		return `${dateValue.year}-${String(dateValue.month).padStart(2, '0')}-${String(dateValue.day).padStart(2, '0')}`;
+	}
+
+	// Estado interno do date picker
+	let dateValue = $state<DateValue | undefined>(stringToDateValue(formData.dataNascimento));
+
+	// Sincroniza dateValue -> formData.dataNascimento
+	$effect(() => {
+		formData.dataNascimento = dateValueToString(dateValue);
+	});
+
+	// Data máxima (hoje) - não pode nascer no futuro
+	const maxDate = today(getLocalTimeZone());
 
 	function formatarTelefone(telefone: string): string {
 		const apenasNumeros = telefone.replace(/\D/g, '').slice(0, 11);
@@ -41,9 +84,6 @@
 		formData.telefone = formatarTelefone(input.value);
 		input.value = formData.telefone;
 	}
-
-	// Data máxima (hoje)
-	const hoje = new Date().toISOString().split('T')[0];
 </script>
 
 <div class="flex h-full w-full flex-col gap-5">
@@ -98,14 +138,35 @@
 
 		<div class="flex w-full flex-col gap-2 sm:w-1/3">
 			<Label for="dataNascimento">Data de Nascimento*</Label>
-			<Input
-				type="date"
-				name="dataNascimento"
-				autocomplete="off"
-				max={hoje}
-				class="placeholder:text-sm focus-visible:ring-0 focus-visible:ring-offset-0"
-				bind:value={formData.dataNascimento}
-			/>
+			<Popover.Root>
+				<Popover.Trigger>
+					{#snippet child({ props })}
+						<Button
+							variant="outline"
+							class={cn(
+								'w-full justify-start text-start font-normal focus-visible:ring-0 focus-visible:ring-offset-0',
+								!dateValue && 'text-muted-foreground'
+							)}
+							{...props}
+						>
+							<CalendarIcon class="mr-2 size-4" />
+							{dateValue
+								? df.format(dateValue.toDate(getLocalTimeZone()))
+								: 'Selecione a data'}
+						</Button>
+					{/snippet}
+				</Popover.Trigger>
+				<Popover.Content class="w-auto p-0">
+					<Calendar
+						type="single"
+						bind:value={dateValue}
+						maxValue={maxDate}
+						locale="pt-BR"
+						captionLayout="dropdown"
+						initialFocus
+					/>
+				</Popover.Content>
+			</Popover.Root>
 		</div>
 	</div>
 

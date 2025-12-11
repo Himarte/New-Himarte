@@ -5,6 +5,8 @@
 	import { browser } from '$app/environment';
 	import { toast } from 'svelte-sonner';
 	import { cn } from '$lib/utils';
+	import { verificarCobertura } from '$lib/data/cobertura';
+	import NoCoverageModal from './NoCoverageModal.svelte';
 
 	let { formData = $bindable(), validationChange } = $props<{
 		formData: FormData;
@@ -14,6 +16,9 @@
 	// Estados reativos com runes
 	let cepConsultado = $state(false);
 	let carregando = $state(false);
+	let showNoCoverageModal = $state(false);
+	let cidadeSemCobertura = $state('');
+	let temCobertura = $state(true);
 
 	// Mapa de campos disponíveis na API
 	const camposDisponiveis = $state({
@@ -31,6 +36,12 @@
 
 	// Função para validar os campos do step 2
 	function validarStep2() {
+		// Se não tem cobertura, não permite avançar
+		if (!temCobertura) {
+			showNoCoverageModal = true;
+			return false;
+		}
+
 		return Boolean(
 			formData.cep &&
 				formData.numero &&
@@ -84,6 +95,15 @@
 				formData.bairro = data.bairro || '';
 				formData.rua = data.logradouro || '';
 				formData.estado = data.uf || '';
+
+				// Verificar cobertura na cidade
+				if (data.localidade) {
+					temCobertura = verificarCobertura(data.localidade);
+					if (!temCobertura) {
+						cidadeSemCobertura = data.localidade;
+						showNoCoverageModal = true;
+					}
+				}
 
 				cepConsultado = true;
 				carregando = false;
@@ -241,3 +261,6 @@
 		</div>
 	{/if}
 </div>
+
+<!-- Modal de Sem Cobertura -->
+<NoCoverageModal bind:open={showNoCoverageModal} cidade={cidadeSemCobertura} />
