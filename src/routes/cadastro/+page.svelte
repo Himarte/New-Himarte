@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { PUBLIC_GOOGLE_ADS_ID } from '$env/static/public';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import { toast } from 'svelte-sonner';
 	import { enhance } from '$app/forms';
@@ -288,6 +289,24 @@
 		name="twitter:description"
 		content="Complete seu cadastro na Himarte e aproveite a melhor internet fibra ótica do RS. Processo rápido e seguro para ativar seu plano."
 	/>
+
+	<!-- Google tag (gtag.js) -->
+	<script
+		async
+		src={`https://www.googletagmanager.com/gtag/js?id=${PUBLIC_GOOGLE_ADS_ID}`}
+	></script>
+	<script>
+		// @ts-ignore - este bloco roda no browser
+		window.dataLayer = window.dataLayer || [];
+		// @ts-ignore
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		// @ts-ignore
+		gtag('js', new Date());
+		// @ts-ignore
+		gtag('config', `{PUBLIC_GOOGLE_ADS_ID}`);
+	</script>
 </svelte:head>
 
 <div class="flex h-full w-full items-center justify-center px-4 pt-16 pb-20 sm:px-6 md:pt-28">
