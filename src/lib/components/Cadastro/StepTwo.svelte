@@ -121,7 +121,7 @@
 			<Input
 				name="cep"
 				autocomplete="off"
-				placeholder="00000-000"
+				placeholder="Digite seu CEP"
 				type="text"
 				class="placeholder:text-sm focus-visible:ring-0 focus-visible:ring-offset-0"
 				bind:value={formData.cep}
@@ -142,7 +142,7 @@
 						<Input
 							name="cidade"
 							autocomplete="off"
-							placeholder="Santa Cruz do Sul"
+							placeholder="Digite sua cidade"
 							class="placeholder:text-sm focus-visible:ring-0 focus-visible:ring-offset-0"
 							type="text"
 							bind:value={formData.cidade}
@@ -157,7 +157,7 @@
 						<Input
 							name="estado"
 							autocomplete="off"
-							placeholder="RS"
+							placeholder="Digite seu estado"
 							class="placeholder:text-sm focus-visible:ring-0 focus-visible:ring-offset-0"
 							type="text"
 							bind:value={formData.estado}
@@ -204,7 +204,7 @@
 					<Input
 						name="numero"
 						autocomplete="off"
-						placeholder="290"
+						placeholder="Digite seu número"
 						class="placeholder:text-sm focus-visible:ring-0 focus-visible:ring-offset-0"
 						type="number"
 						bind:value={formData.numero}
@@ -215,7 +215,7 @@
 					<Input
 						name="complemento"
 						autocomplete="off"
-						placeholder="Apto 101"
+						placeholder="Digite seu complemento"
 						class="placeholder:text-sm focus-visible:ring-0 focus-visible:ring-offset-0"
 						type="text"
 						bind:value={formData.complemento}
@@ -231,7 +231,7 @@
 					<Input
 						name="pontoReferencia"
 						autocomplete="off"
-						placeholder="Himarte"
+						placeholder="Digite seu ponto de referência"
 						class="placeholder:text-sm focus-visible:ring-0 focus-visible:ring-offset-0"
 						type="text"
 						bind:value={formData.pontoReferencia}

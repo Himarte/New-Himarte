@@ -8,7 +8,7 @@ const limparTexto = (texto: unknown): string => {
 };
 
 // Função utilitária para configurar dados de indicação
-const prepararDadosIndicacao = (cadastroData: Record<string, any>) => {
+const prepararDadosIndicacao = (cadastroData: Record<string, string>) => {
 	const camposIndicacao = [
 		'fullName',
 		'telefone',
@@ -69,14 +69,19 @@ export const actions: Actions = {
 				// Verificar erros na resposta do Voalle
 				const temErroVoalle =
 					!voalleResult.success ||
-					voalleResult.data?.messages?.some((msg: any) => msg.type === 'Error');
+					voalleResult.data?.messages?.some((msg: { type: string }) => msg.type === 'Error');
 
-				// Se a criação no Voalle falhou, retornamos o erro sem tentar o Indica
-				if (temErroVoalle) {
+				// Verifica se é um erro de pessoa já existente (permite continuar)
+				const pessoaJaExisteNoVoalle = voalleResult.pessoaJaExiste === true;
+
+				// Se a criação no Voalle falhou E NÃO é um erro de pessoa já existente,
+				// retornamos o erro sem tentar o Indica
+				if (temErroVoalle && !pessoaJaExisteNoVoalle) {
 					// Encontrar a primeira mensagem de erro, se existir
 					const mensagemErro =
 						voalleResult.mensagem ||
-						voalleResult.data?.messages?.find((msg: any) => msg.type === 'Error')?.message ||
+						voalleResult.data?.messages?.find((msg: { type: string }) => msg.type === 'Error')
+							?.message ||
 						'Falha ao cadastrar no Voalle. Verifique os dados e tente novamente.';
 
 					return fail(400, {
@@ -84,6 +89,11 @@ export const actions: Actions = {
 						mensagem: mensagemErro,
 						voalleResult
 					});
+				}
+
+				// Log para rastreamento quando pessoa já existe
+				if (pessoaJaExisteNoVoalle) {
+					console.log('CPF/CNPJ já existe no Voalle, continuando apenas com Indica Himarte');
 				}
 			} catch (erro) {
 				console.error('Erro na comunicação com Voalle:', erro);
@@ -97,9 +107,9 @@ export const actions: Actions = {
 				});
 			}
 
-			// 2. Somente após sucesso no Voalle, integração com o Indica Himarte
+			// 2. Integração com o Indica Himarte (após sucesso OU quando pessoa já existe no Voalle)
 			try {
-				const dadosIndicacao = prepararDadosIndicacao(cadastroData);
+				const dadosIndicacao = prepararDadosIndicacao(cadastroData as Record<string, string>);
 				const indicacaoParams = new URLSearchParams(dadosIndicacao);
 				const urlBase = `${SITE_URL_API}/api/indicacoes`;
 
@@ -114,26 +124,38 @@ export const actions: Actions = {
 				const responseData = await response.json();
 
 				if (!response.ok) {
+					const mensagemErroIndica = voalleResult.pessoaJaExiste
+						? `Falha ao registrar no sistema de indicação: ${responseData.message || 'Erro desconhecido'}`
+						: `Pessoa criada no Voalle, mas falha ao registrar no sistema de indicação: ${responseData.message || 'Erro desconhecido'}`;
+
 					return fail(response.status, {
 						erro: true,
-						mensagem: `Pessoa criada no Voalle, mas falha ao registrar no sistema de indicação: ${responseData.message || 'Erro desconhecido'}`,
+						mensagem: mensagemErroIndica,
 						voalleResult,
 						indicaResult: responseData
 					});
 				}
 
-				// Sucesso em ambos os sistemas
+				// Sucesso na integração com Indica Himarte
+				const pessoaJaExistia = voalleResult.pessoaJaExiste === true;
 				return {
 					success: true,
-					mensagem: 'Cadastro realizado com sucesso em todos os sistemas!',
+					mensagem: pessoaJaExistia
+						? 'Cadastro realizado com sucesso!'
+						: 'Cadastro realizado com sucesso em todos os sistemas!',
 					voalleResult,
-					indicaResult: responseData
+					indicaResult: responseData,
+					pessoaJaExistiaNoVoalle: pessoaJaExistia
 				};
 			} catch (erroIndica) {
 				console.error('Erro na comunicação com sistema de indicação:', erroIndica);
+				const mensagemErroIndica = voalleResult.pessoaJaExiste
+					? 'Erro ao comunicar com sistema de indicação'
+					: 'Pessoa criada no Voalle, mas erro ao comunicar com sistema de indicação';
+
 				return fail(500, {
 					erro: true,
-					mensagem: 'Pessoa criada no Voalle, mas erro ao comunicar com sistema de indicação',
+					mensagem: mensagemErroIndica,
 					voalleResult,
 					indicaError: erroIndica instanceof Error ? erroIndica.message : 'Erro desconhecido'
 				});

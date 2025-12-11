@@ -53,7 +53,7 @@
 			type="text"
 			name="fullName"
 			autocomplete="off"
-			placeholder="Marcos Silva"
+			placeholder="Digite seu nome completo"
 			class="placeholder:text-sm focus-visible:ring-0 focus-visible:ring-offset-0"
 			bind:value={formData.fullName}
 		/>
@@ -67,7 +67,7 @@
 				name="telefone"
 				autocomplete="off"
 				maxlength={15}
-				placeholder="(51) 99999-9999"
+				placeholder="Digite seu telefone"
 				class="placeholder:text-sm focus-visible:ring-0 focus-visible:ring-offset-0"
 				value={formData.telefone}
 				oninput={handleTelefoneInput}
@@ -115,7 +115,7 @@
 			type="email"
 			name="emailCliente"
 			autocomplete="off"
-			placeholder="exemplo@gmail.com"
+			placeholder="Digite seu e-mail"
 			class="placeholder:text-sm focus-visible:ring-0 focus-visible:ring-offset-0"
 			bind:value={formData.emailCliente}
 		/>

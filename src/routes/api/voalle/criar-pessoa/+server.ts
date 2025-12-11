@@ -36,7 +36,7 @@ async function obterTokenVoalle() {
 }
 
 // Função para criar pessoa no Voalle
-async function criarPessoaVoalle(accessToken: string, cadastroData: any) {
+async function criarPessoaVoalle(accessToken: string, cadastroData: Record<string, string>) {
 	// Determinar tipo de documento e obter valor
 	const typeTxId = cadastroData.planoModelo === 'CNPJ' ? 1 : 2;
 	const txId = typeTxId === 1 ? cadastroData.cnpj : cadastroData.cpf;
@@ -76,10 +76,17 @@ async function criarPessoaVoalle(accessToken: string, cadastroData: any) {
 	console.log('resultado --------------', resultado);
 
 	// Verifica se há mensagens de erro na resposta, mesmo que o status seja 200
-	const temErro = resultado.messages?.some((msg: any) => msg.type === 'Error');
+	const temErro = resultado.messages?.some((msg: { type: string }) => msg.type === 'Error');
+
+	// Verifica se o erro é especificamente de CPF/CNPJ já existente
+	const cpfCnpjJaExiste = resultado.messages?.some(
+		(msg: { type: string; message: string }) =>
+			msg.type === 'Error' && msg.message?.includes('CPF/CNPJ já existe')
+	);
 
 	return {
 		sucesso: response.ok && !temErro,
+		cpfCnpjJaExiste,
 		dados: resultado
 	};
 }
@@ -113,12 +120,13 @@ export const POST: RequestHandler = async ({ request }) => {
 
 			// Extrai mensagem de erro se existir
 			const mensagemErro = resultado.dados.messages?.find(
-				(msg: any) => msg.type === 'Error'
+				(msg: { type: string }) => msg.type === 'Error'
 			)?.message;
 
 			return new Response(
 				JSON.stringify({
 					success: resultado.sucesso,
+					pessoaJaExiste: resultado.cpfCnpjJaExiste || false,
 					data: resultado.dados,
 					mensagem: !resultado.sucesso && mensagemErro ? mensagemErro : undefined
 				}),

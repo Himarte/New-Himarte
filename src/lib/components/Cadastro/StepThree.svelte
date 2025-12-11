@@ -181,7 +181,7 @@
 					name="cpf"
 					autocomplete="off"
 					maxlength={14}
-					placeholder="123.456.789-10"
+					placeholder="Digite seu CPF"
 					class="focus-visible:ring-0 focus-visible:ring-offset-0"
 					type="text"
 					value={formData.cpf}
@@ -195,7 +195,7 @@
 					name="cnpj"
 					autocomplete="off"
 					maxlength={18}
-					placeholder="12.345.678/0001-00"
+					placeholder="Digite seu CNPJ"
 					class="focus-visible:ring-0 focus-visible:ring-offset-0"
 					type="text"
 					value={formData.cnpj}
@@ -237,7 +237,7 @@
 				name="promoCode"
 				autocomplete="off"
 				class="focus-visible:ring-0 focus-visible:ring-offset-0"
-				placeholder="himarte15"
+				placeholder="Digite seu código promocional"
 				type="text"
 				bind:value={formData.promoCode}
 			/>
